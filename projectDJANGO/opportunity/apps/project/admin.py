@@ -11,11 +11,15 @@ class AlunoAdmin(admin.ModelAdmin):
         'CRA'
     )
     
+    pass
+    
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
     list_display = (
         'nomeProfessor',
     )
+    
+    pass
     
 
 @admin.register(vagasEmprego)
@@ -29,6 +33,8 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         'dataCadastro',
         'dataFechamento'
     )
+    
+    pass
 
 @admin.register(areaInteresse)
 class areaInteresseAdmin(admin.ModelAdmin):
@@ -36,6 +42,8 @@ class areaInteresseAdmin(admin.ModelAdmin):
         'professor_id',
         'interesseProfessor'
     )
+    
+    pass
 
 @admin.register(Inscricao)
 class Inscricao(admin.ModelAdmin):
@@ -43,3 +51,5 @@ class Inscricao(admin.ModelAdmin):
         'IDAluno',
         'IDVAGA'
     )
+    
+    pass
