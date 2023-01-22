@@ -1,7 +1,7 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, filters
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 from project.serializer import AlunoSerializer, areaInteresseSerializer, ProfessorSerializer, vagasEmpregoSerializer, InscricaoSerializer, ListaCadastroVagasProfessorSerializer, ListaInteresseProfessorSerializer, ListaIncricoesAlunoSerializer, ListaIncricoesVagaSerializer
 from project.models import Aluno, Inscricao, areaInteresse, Professor, vagasEmprego
@@ -13,6 +13,10 @@ class ProfessorViewSet(viewsets.ModelViewSet):
     serializer_class = ProfessorSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['nomeProfessor']
+    search_fields = ['nomeProfessor']
 
 
 class areaInteresseViewSet(viewsets.ModelViewSet):
@@ -29,6 +33,12 @@ class vagasEmpregoViewSet(viewsets.ModelViewSet):
     serializer_class = vagasEmpregoSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['nivel', 'numeroVagas',
+                       'valorSalario', 'tipoVaga', 'dataFechamento']
+    search_fields = ['nivel', 'numeroVagas',
+                     'valorSalario', 'tipoVaga', 'dataFechamento']
 
 
 class AlunosViewSet(viewsets.ModelViewSet):
@@ -37,6 +47,10 @@ class AlunosViewSet(viewsets.ModelViewSet):
     serializer_class = AlunoSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['nomeAluno', 'periodo', 'dataEstimadaSaida']
+    search_fields = ['nomeAluno', 'periodo', 'dataEstimada', 'matriculaAluno']
 
 
 class InscricaoViewSet(viewsets.ModelViewSet):
