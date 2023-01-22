@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from project.models import Aluno, areaInteresse, Inscricao, Professor, vagasEmprego
+from project.validators import *
 
 
 class ProfessorSerializer(serializers.ModelSerializer):
@@ -21,8 +22,19 @@ class areaInteresseSerializer(serializers.ModelSerializer):
         ]
 
 
+class ChoicesField(serializers.Field):
+    def __init__(self, choices, **kwargs):
+        self._choices = choices
+        super(ChoicesField, self).__init__(**kwargs)
+
+    def to_representation(self, obj):
+        return self._choices[obj]
+
+    def to_internal_value(self, data):
+        return getattr(self._choices, data)
+
+
 class vagasEmpregoSerializer(serializers.ModelSerializer):
-    nivel = serializers.SerializerMethodField()
     professor_name = serializers.ReadOnlyField(
         source='professor_id.nomeProfessor')
 
@@ -44,8 +56,13 @@ class vagasEmpregoSerializer(serializers.ModelSerializer):
             'professor_name'
         ]
 
-    def get_nivel(self, obj):
-        return obj.get_nivel_display()
+    def validate(self, data):
+        for k, v in ValidaVagas.validadores_vagas.items():
+            if v(data) != data:
+                raise serializers.ValidationError(
+                    v(data))
+
+        return data
 
 
 class AlunoSerializer(serializers.ModelSerializer):

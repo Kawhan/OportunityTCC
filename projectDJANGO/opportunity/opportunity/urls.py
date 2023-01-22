@@ -8,16 +8,17 @@ from apps.project.views import AlunosViewSet, InscricaoViewSet, ProfessorViewSet
 
 router = routers.DefaultRouter()
 
-router.register('alunos', AlunosViewSet, basename="Alunos")
-router.register('inscricoes', InscricaoViewSet, basename="Inscricoes")
-router.register('professor', ProfessorViewSet, basename="Professores")
-router.register('vagas', vagasEmpregoViewSet, basename="Vagas")
-router.register('areaInteresse', areaInteresseViewSet,
+router.register(r'alunos', AlunosViewSet, basename="Alunos")
+router.register(r'inscricoes', InscricaoViewSet, basename="Inscricoes")
+router.register(r'professor', ProfessorViewSet, basename="Professores")
+router.register(r'vagas', vagasEmpregoViewSet, basename="Vagas")
+router.register(r'areaInteresse', areaInteresseViewSet,
                 basename="AreaInteresse")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('admin', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/', include(router.urls)),
     path('professor/<int:pk>/cadastros/',
          professorVagasCadastradasViewSet.as_view()),
     path('professor/<int:pk>/interesses/',

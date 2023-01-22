@@ -13,7 +13,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import sys
 import os
+import environ
 
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,6 +59,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 ROOT_URLCONF = 'opportunity.urls'
 
 TEMPLATES = [
@@ -88,9 +101,9 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASS'),
         'HOST': 'localhost',
         'PORT': '5435',
     }
