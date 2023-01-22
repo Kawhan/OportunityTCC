@@ -31,7 +31,7 @@ class vagasEmprego(models.Model):
     tituloVaga = models.CharField(max_length=255)
     descricao = models.CharField(max_length=255)
     dataFechamento = models.DateField()
-    professor_id = models.ForeignKey(Professor, on_delete=models.CASCADE)
+    professor_id = models.ForeignKey(Professor, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.tituloVaga + ' - ' + str(self.nivel)
@@ -40,6 +40,9 @@ class vagasEmprego(models.Model):
 class areaInteresse(models.Model):
     professor_id = models.ForeignKey(Professor, on_delete=models.CASCADE)
     interesseProfessor = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.interesseProfessor
 
 
 class Aluno(models.Model):
