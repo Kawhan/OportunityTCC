@@ -26,3 +26,20 @@ class ValidaVagas:
         'valida_horas_semanas': lambda data: data if not ValidaVagas.valida_horas_semana(data)
         else {"horasSemana": "O valor de horas semanas tem de ser maior que 0"},
     }
+
+
+class ValidaAluno:
+    @staticmethod
+    def valida_CRA(data):
+        return data['CRA'] < 0 or data['CRA'] > 10
+
+    @staticmethod
+    def valida_data(data):
+        return data['dataEstimadaSaida'] < data['dataIngresso']
+
+    valida_aluno = {
+        'cra_valido': lambda data: data if not ValidaAluno.valida_CRA(data)
+        else {"CRA": "Precisa ser maior que 0 e menor que 10"},
+        'data_valida': lambda data: data if not ValidaAluno.valida_data(data)
+        else {"dataEstimadaSaida": "A data de saida não pode ser antes da data de ingresso na faculdade"}
+    }

@@ -70,6 +70,14 @@ class AlunoSerializer(serializers.ModelSerializer):
         model = Aluno
         fields = '__all__'
 
+    def validate(self, data):
+        for k, v in ValidaAluno.valida_aluno.items():
+            if v(data) != data:
+                raise serializers.ValidationError(
+                    v(data))
+
+        return data
+
 
 class InscricaoSerializer(serializers.ModelSerializer):
     nome_aluno = serializers.ReadOnlyField(source='IDAluno.nomeAluno')
