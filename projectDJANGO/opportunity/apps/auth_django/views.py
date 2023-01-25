@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
@@ -10,6 +11,11 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 
+from django.contrib import auth
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import render, redirect
+
 # from .serializers import UserSerializer
 
 
@@ -17,6 +23,11 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
+
+
+def logout_view(request):
+    logout(request)
+    redirect('/')
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
