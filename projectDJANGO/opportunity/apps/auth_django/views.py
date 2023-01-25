@@ -1,4 +1,4 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
@@ -28,6 +28,10 @@ class RegisterView(generics.CreateAPIView):
 def logout_view(request):
     logout(request)
     redirect('/')
+
+
+def login_view(request):
+    site_header = "Teste"
 
 
 class MyObtainTokenPairView(TokenObtainPairView):

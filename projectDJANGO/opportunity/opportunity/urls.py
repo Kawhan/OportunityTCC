@@ -41,8 +41,6 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls',
-                              namespace='rest_framework')),
     path('api/', include(router.urls)),
     path('professor/<int:pk>/cadastros/',
          professorVagasCadastradasViewSet.as_view()),
@@ -60,3 +58,7 @@ urlpatterns = [
     path("accounts/",  include("django.contrib.auth.urls"))
 
 ]
+
+admin.site.site_title = "Opportunity"
+admin.site.site_header = "Opportunity admin site"
+admin.site.index_title = "Opportunity Admin"
