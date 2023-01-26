@@ -2,7 +2,6 @@ from rest_framework import viewsets, generics, filters
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.authentication import BasicAuthentication
 
 from project.serializer import AlunoSerializer, areaInteresseSerializer, ProfessorSerializer, vagasEmpregoSerializer, InscricaoSerializer, ListaCadastroVagasProfessorSerializer, ListaInteresseProfessorSerializer, ListaIncricoesAlunoSerializer, ListaIncricoesVagaSerializer
 from project.models import Aluno, Inscricao, areaInteresse, Professor, vagasEmprego
@@ -58,7 +57,6 @@ class AlunosViewSet(viewsets.ModelViewSet):
 
 class InscricaoViewSet(viewsets.ModelViewSet):
     """ Exibindo as inscricoes de cada pessoa """
-    # authentication_classes = [authentication.JWTAuthentication]
     queryset = Inscricao.objects.select_related(
         'IDAluno').select_related('IDVAGA').all()
     serializer_class = InscricaoSerializer

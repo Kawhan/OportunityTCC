@@ -1,40 +1,38 @@
 from django.contrib.auth import logout, login
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
+
 from rest_framework import status
 from rest_framework.response import Response
-from django.contrib.auth import get_user_model  # If used custom user model
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
-
-from .serializers import MyTokenObtainPairSerializer, RegisterSerializer, ChangePasswordSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 
-from django.contrib import auth
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import render, redirect
+from auth_django.serializers import MyTokenObtainPairSerializer, RegisterSerializer, ChangePasswordSerializer
+
 
 # from .serializers import UserSerializer
 
 
 class RegisterView(generics.CreateAPIView):
+    """ Endpoint de registro """
+
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
 
 def logout_view(request):
+    """ View de Logout """
+
     logout(request)
     redirect('/')
 
 
-def login_view(request):
-    site_header = "Teste"
-
-
 class MyObtainTokenPairView(TokenObtainPairView):
+    """ Endpoint para obter token """
     permission_classes = (AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 

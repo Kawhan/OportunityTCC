@@ -1,9 +1,12 @@
 from rest_framework import serializers
+
 from project.models import Aluno, areaInteresse, Inscricao, Professor, vagasEmprego
+
 from project.validators import *
 
 
 class ProfessorSerializer(serializers.ModelSerializer):
+    """ Serializer para o professor """
     class Meta:
         model = Professor
         fields = '__all__'

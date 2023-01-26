@@ -9,6 +9,7 @@ UserModel = get_user_model()
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    """ Serializer para registro """
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
@@ -54,6 +55,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """ Serializer Token do JWT """
 
     @classmethod
     def get_token(cls, user):
@@ -65,6 +67,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class ChangePasswordSerializer(serializers.Serializer):
+    """ Serializer para alterar senha """
     model = User
 
     """
