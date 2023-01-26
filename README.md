@@ -26,9 +26,6 @@ python manage.py runserver                  //Iniciar o servidor
 ```
 ---
 
-## Link do repositorio Original:
-- https://github.com/MatheusNelvam/ESA2022.1-SuaDieta
-
 ## ✔️ Tecnologias utilizadas
 
 - Python (Django)
