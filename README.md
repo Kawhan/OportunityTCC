@@ -38,4 +38,4 @@ python manage.py runserver                  //Iniciar o servidor
 ## 🚩 Contribuidores
 
 | [<img src="https://avatars.githubusercontent.com/u/69232156?v=4" width=115><br><sub>Kawhan Laurindo de Lima</sub>](https://github.com/Kawhan) | 
-| :---: | :---: | :---: | :---: |
+| :---: | 
