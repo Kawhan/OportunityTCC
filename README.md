@@ -26,9 +26,15 @@ python manage.py runserver                  //Iniciar o servidor
 ```
 ---
 
-## ✔️ Tecnologias utilizadas
+## ✔️ Tecnologias utilizadas | Práticas utilizadas
 
 - Python (Django)
+- JWT Auth 
+- HTLML 5
+- CSS 3
+- Clean code and Design Patters
+- REST API
+- Swagger
 
 ---
 
