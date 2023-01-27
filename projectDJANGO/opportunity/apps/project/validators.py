@@ -1,3 +1,6 @@
+NOTA_MAXIMA = 10
+NOTA_MINIMA = 0
+
 
 class ValidaVagas:
     @staticmethod
@@ -31,7 +34,7 @@ class ValidaVagas:
 class ValidaAluno:
     @staticmethod
     def valida_CRA(data):
-        return data['CRA'] < 0 or data['CRA'] > 10
+        return data['CRA'] < NOTA_MINIMA or data['CRA'] > NOTA_MAXIMA
 
     @staticmethod
     def valida_data(data):
