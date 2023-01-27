@@ -1,9 +1,12 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from django.contrib.auth.models import User
+from auth_django.models import User
 from rest_framework.validators import UniqueValidator
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model  # If used custom user model
+from django.contrib import auth
+from rest_framework.exceptions import AuthenticationFailed
+
 
 UserModel = get_user_model()
 
@@ -54,16 +57,16 @@ class RegisterSerializer(serializers.ModelSerializer):
 #         fields = ("id", "username", "password", )
 
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    """ Serializer Token do JWT """
+# class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+#     """ Serializer Token do JWT """
 
-    @classmethod
-    def get_token(cls, user):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+#     @classmethod
+#     def get_token(cls, user):
+#         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
 
-        # Add custom claims
-        token['username'] = user.username
-        return token
+#         # Add custom claims
+#         token['username'] = user.username
+#         return token
 
 
 class ChangePasswordSerializer(serializers.Serializer):
@@ -75,3 +78,45 @@ class ChangePasswordSerializer(serializers.Serializer):
     """
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(max_length=255)
+    password = serializers.CharField(max_length=68, write_only=True)
+    username = serializers.EmailField(max_length=255, read_only=True)
+    tokens = serializers.CharField(max_length=68, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ['email', 'password', 'username', 'tokens']
+
+    def validate(self, attrs):
+        email = attrs.get('email', '')
+        password = attrs.get('password', '')
+
+        user = auth.authenticate(email=email, password=password)
+
+        if not user:
+            raise AuthenticationFailed('Invalid credentials, try again')
+
+        if not user.is_active:
+            raise AuthenticationFailed('Account disabled, contact admin')
+
+        if not user.is_verified:
+            raise AuthenticationFailed('Email is not verified')
+
+        return {
+            'email': user.email,
+            'username': user.username,
+            'tokens': user.tokens
+        }
+
+        return super().validate(attrs)
+
+
+class EmailVerificationSerializer(serializers.ModelSerializer):
+    token = serializers.CharField(max_length=555)
+
+    class Meta:
+        model = User
+        fields = ['token']
