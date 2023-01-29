@@ -7,8 +7,9 @@ from django.contrib.auth import get_user_model  # If used custom user model
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 
+from auth_django.validators import validateUser
 
-UserModel = get_user_model()
+# UserModel = get_user_model()
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -96,26 +97,14 @@ class LoginSerializer(serializers.ModelSerializer):
 
         user = auth.authenticate(email=email, password=password)
 
-        if not user:
-            raise AuthenticationFailed('Invalid credentials, try again')
-
-        if not user.verify_staff_user:
-            raise AuthenticationFailed(
-                'You have not been verified by the system as a valid user for authentication')
-
-        if not user.is_active:
-            raise AuthenticationFailed('Account disabled, contact admin')
-
-        if not user.is_verified:
-            raise AuthenticationFailed('Email is not verified')
+        for k, v in validateUser.validadores_usuarios.items():
+            v(user)
 
         return {
             'email': user.email,
             'username': user.username,
             'tokens': user.tokens
         }
-
-        return super().validate(attrs)
 
 
 class EmailVerificationSerializer(serializers.ModelSerializer):
