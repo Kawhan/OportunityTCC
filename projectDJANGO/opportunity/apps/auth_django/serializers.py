@@ -99,6 +99,10 @@ class LoginSerializer(serializers.ModelSerializer):
         if not user:
             raise AuthenticationFailed('Invalid credentials, try again')
 
+        if not user.verify_staff_user:
+            raise AuthenticationFailed(
+                'You have not been verified by the system as a valid user for authentication')
+
         if not user.is_active:
             raise AuthenticationFailed('Account disabled, contact admin')
 

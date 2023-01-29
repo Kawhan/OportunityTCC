@@ -1,4 +1,5 @@
 from django.db import models
+from auth_django.models import User
 
 
 class Professor(models.Model):
@@ -44,6 +45,16 @@ class areaInteresse(models.Model):
         return self.interesseProfessor
 
 
+'''
+class usuarioComposto(models.Model):
+    id_aluno = chave estrangeira aluno
+    id_professor = chave estrangeira para professor
+    
+não pode conter os 2 somente 1
+
+'''
+
+
 class Aluno(models.Model):
     matriculaAluno = models.CharField(max_length=255)
     dataIngresso = models.DateField()
@@ -59,3 +70,19 @@ class Aluno(models.Model):
 class Inscricao(models.Model):
     IDAluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     IDVAGA = models.ForeignKey(vagasEmprego, on_delete=models.CASCADE)
+
+
+class usuarioComposto(models.Model):
+    id_aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    id_user_aluno = models.ForeignKey(User, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.id_aluno.nomeAluno + ' - ' + self.id_user_aluno.username
+
+
+class professorComposto(models.Model):
+    id_professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
+    id_user_professor = models.ForeignKey(User, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.id_professor.nomeProfessor + ' - ' + self.id_user_professor.username
