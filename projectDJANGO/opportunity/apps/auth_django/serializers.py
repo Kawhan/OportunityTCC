@@ -1,13 +1,12 @@
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from auth_django.models import User
-from rest_framework.validators import UniqueValidator
-from rest_framework import serializers
-from django.contrib.auth.password_validation import validate_password
-from django.contrib.auth import get_user_model  # If used custom user model
-from django.contrib import auth
-from rest_framework.exceptions import AuthenticationFailed
-
 from auth_django.validators import validateUser
+from django.contrib import auth
+from django.contrib.auth import get_user_model  # If used custom user model
+from django.contrib.auth.password_validation import validate_password
+from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.validators import UniqueValidator
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 # UserModel = get_user_model()
 
@@ -37,37 +36,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
-
-
-# class UserSerializer(serializers.ModelSerializer):
-
-#     password = serializers.CharField(write_only=True)
-
-#     def create(self, validated_data):
-
-#         user = UserModel.objects.create_user(
-#             username=validated_data['username'],
-#             password=validated_data['password'],
-#         )
-
-#         return user
-
-#     class Meta:
-#         model = UserModel
-#         # Tuple of serialized model fields (see link [2])
-#         fields = ("id", "username", "password", )
-
-
-# class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-#     """ Serializer Token do JWT """
-
-#     @classmethod
-#     def get_token(cls, user):
-#         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
-
-#         # Add custom claims
-#         token['username'] = user.username
-#         return token
 
 
 class ChangePasswordSerializer(serializers.Serializer):

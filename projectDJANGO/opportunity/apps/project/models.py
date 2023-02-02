@@ -1,5 +1,5 @@
-from django.db import models
 from auth_django.models import User
+from django.db import models
 
 
 class Professor(models.Model):
@@ -56,6 +56,7 @@ não pode conter os 2 somente 1
 
 
 class Aluno(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     matriculaAluno = models.CharField(max_length=255)
     dataIngresso = models.DateField()
     nomeAluno = models.CharField(max_length=255)

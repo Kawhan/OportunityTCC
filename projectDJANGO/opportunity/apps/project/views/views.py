@@ -1,10 +1,16 @@
-from rest_framework import viewsets, generics, filters
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
-
-from project.serializer import AlunoSerializer, areaInteresseSerializer, ProfessorSerializer, vagasEmpregoSerializer, InscricaoSerializer, ListaCadastroVagasProfessorSerializer, ListaInteresseProfessorSerializer, ListaIncricoesAlunoSerializer, ListaIncricoesVagaSerializer
-from project.models import Aluno, Inscricao, areaInteresse, Professor, vagasEmprego
+from project.models import (Aluno, Inscricao, Professor, areaInteresse,
+                            usuarioComposto, vagasEmprego)
+from project.serializer import (AlunoSerializer, InscricaoSerializer,
+                                ListaCadastroVagasProfessorSerializer,
+                                ListaIncricoesAlunoSerializer,
+                                ListaIncricoesVagaSerializer,
+                                ListaInteresseProfessorSerializer,
+                                ProfessorSerializer, areaInteresseSerializer,
+                                vagasEmpregoSerializer)
+from rest_framework import filters, generics, viewsets
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class ProfessorViewSet(viewsets.ModelViewSet):
@@ -17,7 +23,7 @@ class ProfessorViewSet(viewsets.ModelViewSet):
     search_fields = ['nomeProfessor']
     authentication_classes = [
         JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
 
 
 class areaInteresseViewSet(viewsets.ModelViewSet):
@@ -26,7 +32,7 @@ class areaInteresseViewSet(viewsets.ModelViewSet):
     serializer_class = areaInteresseSerializer
     authentication_classes = [
         JWTAuthentication]
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUser,)
 
 
 class vagasEmpregoViewSet(viewsets.ModelViewSet):
@@ -45,7 +51,7 @@ class vagasEmpregoViewSet(viewsets.ModelViewSet):
 
 class AlunosViewSet(viewsets.ModelViewSet):
     """  Exibindo os alunos cadastrados """
-    queryset = Aluno.objects.all()
+    queryset = Aluno.objects.select_related('user_id').all()
     serializer_class = AlunoSerializer
     filter_backends = [DjangoFilterBackend,
                        filters.OrderingFilter, filters.SearchFilter]

@@ -1,3 +1,7 @@
+import jwt
+from auth_django.models import User
+from django.conf import settings
+
 NOTA_MAXIMA = 10
 NOTA_MINIMA = 0
 
@@ -19,6 +23,17 @@ class ValidaVagas:
     def valida_horas_semana(data):
         return data['horasSemana'] <= 0
 
+    @staticmethod
+    def adiciona_user_id(data, request):
+        print("OLA OLA OLA OLA", user)
+        token = request.GET.get('token')
+        payload = jwt.decode(
+            token, settings.SECRET_KEY, algorithms=['HS256'])
+        user = User.objects.get(id=payload['user_id'])
+        data['user_id'] = user['id']
+
+        return data
+
     validadores_vagas = {
         'hora_valida': lambda data: data if not ValidaVagas.hora_valida(data)
         else {"dataFechamento": "Precisa ser depois da data de cadastro"},
@@ -28,6 +43,7 @@ class ValidaVagas:
         else {"valorSalario": "Valor salario não pode ser menor que 0"},
         'valida_horas_semanas': lambda data: data if not ValidaVagas.valida_horas_semana(data)
         else {"horasSemana": "O valor de horas semanas tem de ser maior que 0"},
+        'adiciona_user_id': lambda data:  ValidaVagas.adiciona_user_id(data)
     }
 
 

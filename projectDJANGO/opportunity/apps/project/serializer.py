@@ -1,8 +1,10 @@
-from rest_framework import serializers
-
-from project.models import Aluno, areaInteresse, Inscricao, Professor, vagasEmprego
-
+import jwt
+from auth_django.models import User
+from django.conf import settings
+from project.models import (Aluno, Inscricao, Professor, areaInteresse,
+                            vagasEmprego)
 from project.validators import *
+from rest_framework import serializers
 
 
 class ProfessorSerializer(serializers.ModelSerializer):
@@ -69,16 +71,27 @@ class vagasEmpregoSerializer(serializers.ModelSerializer):
 
 
 class AlunoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Aluno
-        fields = '__all__'
+        fields = (
+            'matriculaAluno',
+            'dataIngresso',
+            'nomeAluno',
+            'periodo',
+            'CRA',
+            'dataEstimadaSaida',
+            # 'user_id',
+        )
 
     def validate(self, data):
+
         for k, v in ValidaAluno.valida_aluno.items():
             if v(data) != data:
                 raise serializers.ValidationError(
                     v(data))
-
+        user = self.context['request'].user
+        data['user'] = user
         return data
 
 
