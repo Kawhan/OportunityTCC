@@ -24,6 +24,7 @@ class ProfessorViewSet(viewsets.ModelViewSet):
     authentication_classes = [
         JWTAuthentication]
     permission_classes = [IsAdminUser]
+    # http_method_names = ['POST', 'PUT', 'PATCH', 'UPDATE']
 
 
 class areaInteresseViewSet(viewsets.ModelViewSet):
