@@ -81,11 +81,10 @@ class AlunoSerializer(serializers.ModelSerializer):
             'periodo',
             'CRA',
             'dataEstimadaSaida',
-            # 'user_id',
+            'user',
         )
 
     def validate(self, data):
-
         for k, v in ValidaAluno.valida_aluno.items():
             if v(data) != data:
                 raise serializers.ValidationError(

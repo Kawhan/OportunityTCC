@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from django.contrib.messages import constants as messages
-from pathlib import Path
-from datetime import timedelta
-import sys
 import os
-import environ
+import sys
+from datetime import timedelta
+from pathlib import Path
 
+import environ
+from django.contrib.messages import constants as messages
 
 # Initialise environment variables
 env = environ.Env()
@@ -79,7 +79,15 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAdminUser'
-    )
+    ),
+    # 'DEFAULT_THROTTLE_CLASSES': [
+    #     'rest_framework.throttling.AnonRateThrottle',
+    #     'rest_framework.throttling.UserRateThrottle'
+    # ],
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'anon': '100/day',
+    #     'user': '1000/day'
+    # }
 }
 
 REST_FRAMEWORK = {

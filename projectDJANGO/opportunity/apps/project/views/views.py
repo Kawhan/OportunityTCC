@@ -51,7 +51,7 @@ class vagasEmpregoViewSet(viewsets.ModelViewSet):
 
 class AlunosViewSet(viewsets.ModelViewSet):
     """  Exibindo os alunos cadastrados """
-    queryset = Aluno.objects.select_related('user_id').all()
+    queryset = Aluno.objects.select_related('user').all()
     serializer_class = AlunoSerializer
     filter_backends = [DjangoFilterBackend,
                        filters.OrderingFilter, filters.SearchFilter]
