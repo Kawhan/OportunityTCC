@@ -71,6 +71,7 @@ class vagasEmpregoSerializer(serializers.ModelSerializer):
 
 
 class AlunoSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source="user_id")
 
     class Meta:
         model = Aluno
@@ -81,7 +82,7 @@ class AlunoSerializer(serializers.ModelSerializer):
             'periodo',
             'CRA',
             'dataEstimadaSaida',
-            # 'user',
+            'user',
         )
 
     def validate(self, data):

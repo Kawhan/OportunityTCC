@@ -35,7 +35,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 LOGOUT_URL = '/admin/logout'
@@ -129,11 +129,11 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
-        'HOST': 'localhost',
-        'PORT': '5435',
+        'NAME': 'project',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'pgdb',
+        'PORT': 5432,
     }
 }
 
@@ -236,3 +236,20 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 
 AUTH_USER_MODEL = 'auth_django.User'
+
+
+REDIS_HOST = os.environ.get('REDIS_HOST', 'redis')
+REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://{}:{}/1".format(REDIS_HOST, REDIS_PORT),
+        "OPTIONS": {
+        }
+    },
+    # ...
+}
+
+SESSION_ENDING = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'

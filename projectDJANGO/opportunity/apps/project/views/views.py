@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django_filters.rest_framework import DjangoFilterBackend
 from project.models import (Aluno, Inscricao, Professor, areaInteresse,
                             usuarioComposto, vagasEmprego)
@@ -58,6 +60,10 @@ class vagasEmpregoViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = (IsAuthenticated,)
 
+    @method_decorator(cache_page(60))
+    def dispatch(self, *args, **kwargs):
+        return super(vagasEmpregoViewSet, self).dispatch(*args, **kwargs)
+
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -79,7 +85,11 @@ class AlunosViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     authentication_classes = [JWTAuthentication]
 
-    http_method_names = ['post', 'put', 'patch', 'delete']
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+
+    @method_decorator(cache_page(60))
+    def dispatch(self, *args, **kwargs):
+        return super(AlunosViewSet, self).dispatch(*args, **kwargs)
 
 
 class InscricaoViewSet(viewsets.ModelViewSet):
