@@ -8,8 +8,9 @@ from project.serializer import (AlunoSerializer, InscricaoSerializer,
                                 ListaInteresseProfessorSerializer,
                                 ProfessorSerializer, areaInteresseSerializer,
                                 vagasEmpregoSerializer)
-from rest_framework import filters, generics, viewsets
+from rest_framework import filters, generics, status, viewsets
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
@@ -24,7 +25,15 @@ class ProfessorViewSet(viewsets.ModelViewSet):
     authentication_classes = [
         JWTAuthentication]
     permission_classes = [IsAdminUser]
-    # http_method_names = ['POST', 'PUT', 'PATCH', 'UPDATE']
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status.HTTP_201_CREATED)
+            id = str(serializer.data['id'])
+            response['Location'] = request.build_absolute_uri() + id
+            return response
 
 
 class areaInteresseViewSet(viewsets.ModelViewSet):
@@ -49,6 +58,15 @@ class vagasEmpregoViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = (IsAuthenticated,)
 
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status.HTTP_201_CREATED)
+            id = str(serializer.data['id'])
+            response['Location'] = request.build_absolute_uri() + id
+            return response
+
 
 class AlunosViewSet(viewsets.ModelViewSet):
     """  Exibindo os alunos cadastrados """
@@ -61,6 +79,8 @@ class AlunosViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     authentication_classes = [JWTAuthentication]
 
+    http_method_names = ['post', 'put', 'patch', 'delete']
+
 
 class InscricaoViewSet(viewsets.ModelViewSet):
     """ Exibindo as inscricoes de cada pessoa """
@@ -69,6 +89,15 @@ class InscricaoViewSet(viewsets.ModelViewSet):
     serializer_class = InscricaoSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = [JWTAuthentication]
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status.HTTP_201_CREATED)
+            id = str(serializer.data['id'])
+            response['Location'] = request.build_absolute_uri() + id
+            return response
 
 
 class professorVagasCadastradasViewSet(generics.ListAPIView):

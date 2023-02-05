@@ -81,7 +81,7 @@ class AlunoSerializer(serializers.ModelSerializer):
             'periodo',
             'CRA',
             'dataEstimadaSaida',
-            'user',
+            # 'user',
         )
 
     def validate(self, data):
