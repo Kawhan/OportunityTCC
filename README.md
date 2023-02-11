@@ -39,6 +39,7 @@ python manage.py runserver                  //Iniciar o servidor
 - REST API
 - Swagger
 - Redis Cache 
+- Docker
 
 ---
 
