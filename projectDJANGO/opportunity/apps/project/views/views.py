@@ -2,7 +2,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django_filters.rest_framework import DjangoFilterBackend
 from project.models import (Aluno, Inscricao, Professor, areaInteresse,
-                            usuarioComposto, vagasEmprego)
+                            vagasEmprego)
 from project.serializer import (AlunoSerializer, InscricaoSerializer,
                                 ListaCadastroVagasProfessorSerializer,
                                 ListaIncricoesAlunoSerializer,

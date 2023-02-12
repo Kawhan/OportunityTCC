@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import Aluno, areaInteresse, Inscricao, Professor, vagasEmprego, professorComposto, usuarioComposto
 from django.contrib.admin.options import TabularInline
+
+from .models import (Aluno, Inscricao, Professor, areaInteresse,
+                     professorComposto, vagasEmprego)
 
 # Register your models here.
 
@@ -61,20 +63,20 @@ class Inscricao(admin.ModelAdmin):
     pass
 
 
-@admin.register(usuarioComposto)
-class usuarioCompostoAdmin(admin.ModelAdmin):
-    list_display = (
-        'nome_aluno',
-        'username_user'
-    )
+# @admin.register(usuarioComposto)
+# class usuarioCompostoAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'nome_aluno',
+#         'username_user'
+#     )
 
-    def nome_aluno(self, obj):
-        return obj.id_aluno.nomeAluno
+#     def nome_aluno(self, obj):
+#         return obj.id_aluno.nomeAluno
 
-    def username_user(self, obj):
-        return obj.id_user_aluno.username
+#     def username_user(self, obj):
+#         return obj.id_user_aluno.username
 
-    pass
+#     pass
 
 
 @admin.register(professorComposto)

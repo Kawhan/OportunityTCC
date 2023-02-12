@@ -73,12 +73,12 @@ class Inscricao(models.Model):
     IDVAGA = models.ForeignKey(vagasEmprego, on_delete=models.CASCADE)
 
 
-class usuarioComposto(models.Model):
-    id_aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-    id_user_aluno = models.ForeignKey(User, on_delete=models.PROTECT)
+# class usuarioComposto(models.Model):
+#     id_aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+#     id_user_aluno = models.ForeignKey(User, on_delete=models.PROTECT)
 
-    def __str__(self):
-        return self.id_aluno.nomeAluno + ' - ' + self.id_user_aluno.username
+#     def __str__(self):
+#         return self.id_aluno.nomeAluno + ' - ' + self.id_user_aluno.username
 
 
 class professorComposto(models.Model):
