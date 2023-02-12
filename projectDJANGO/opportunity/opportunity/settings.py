@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 REST_FRAMEWORK = {
@@ -119,6 +120,7 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# SQLite database local
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -126,14 +128,27 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 #     }
 # }
 
+# Docker
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'project',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password',
+#         'HOST': 'pgdb',
+#         'PORT': 5432,
+#     }
+# }
+
+# Local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'project',
         'USER': 'postgres',
         'PASSWORD': 'password',
-        'HOST': 'pgdb',
-        'PORT': 5432,
+        'HOST': 'localhost',
+        'PORT': '5435',
     }
 }
 
