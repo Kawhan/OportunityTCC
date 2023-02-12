@@ -4,7 +4,10 @@ services:
   django:
     build: .
     container_name: django
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app
     ports:
@@ -29,3 +32,4 @@ services:
       - "5432:5432"
 volumes:
     pgdata:
+      driver: local
