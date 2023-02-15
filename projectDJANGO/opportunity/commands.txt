@@ -1,6 +1,8 @@
 docker-compose run django django-admin startproject core .
 docker exec -it pgdb psql -U postgres
 
+
+docker-compose up --build -> first time
 docker-compose up / down
 
 Postgres
