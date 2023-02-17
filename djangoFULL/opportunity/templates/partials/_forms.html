@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+<div class="container">
+    <section class="col-6">
+        <form method="POST" enctype="multipart/form-data">
+    
+            <!-- Security token -->
+            {% csrf_token %}
+    
+            <!-- Using the formset -->
+        
+            {{ form }}
+            
+            <input type="submit" value="Ok" class="btn btn-success mt-2 mb-2">
+        </form>
+    </section>
+</div>
+
+{% endblock %}

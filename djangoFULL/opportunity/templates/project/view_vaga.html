@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+    {% include 'partials/_menu.html' %}
+    {% include 'partials/_alerts.html' %}
+
+    <div class="container mt-3">
+        <section>
+            <img src="" alt="">
+            <h2>Titulo Vaga: {{ vaga.tituloVaga }}</h2>
+            <h2>tipo vaga: {{  vaga.tipoVaga }}</h2>
+            <h6>Data de cadastro: {{ vaga.dataCadastro }}</h6>
+            <h6>Data de fechamento: {{ vaga.dataFechamento }}</h6>
+            <h6>Horas seamana: {{ vaga.horasSemana }}</h6>
+            <h6>Número vagas: {{ vaga.numeroVagas }}</h6>
+            <h6>valor Salario: R$ {{ vaga.valorSalario }}</h6>
+            <h6>Professor: {{ vaga.professor_id.nomeProfessor }}</h6>
+            
+            <div>
+                <h2>Descrição: </h2>
+                <p>{{ vaga.descricao }}</p>
+            </div>
+            
+
+
+        </section>
+    </div>
+
+{% endblock %}

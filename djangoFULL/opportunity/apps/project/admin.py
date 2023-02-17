@@ -6,6 +6,7 @@ from .models import Professor, vagasEmprego
 # Register your models here.
 @admin.register(vagasEmprego)
 class VagasEmpregoAdmin(admin.ModelAdmin):
+
     list_display = (
         'id',
         'tituloVaga',
@@ -14,7 +15,8 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         'horasSemana',
         'valorSalario',
         'dataCadastro',
-        'dataFechamento'
+        'dataFechamento',
+        'nome_professor'
     )
 
     search_fields = (
@@ -24,9 +26,23 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         'horasSemana',
         'valorSalario',
         'dataCadastro',
-        'dataFechamento'
+        'dataFechamento',
+        'professor_id__nomeProfessor'
     )
+
+    list_filter = (
+        'nivel',
+        'horasSemana',
+        'dataCadastro',
+        'professor_id__nomeProfessor',
+        'numeroVagas'
+    )
+
     list_display_links = ['id', 'nivel']
+
+    def nome_professor(self, obj):
+        return obj.professor_id.nomeProfessor
+
     # list_editable = ['', ]
     list_per_page = 20
 
