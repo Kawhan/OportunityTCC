@@ -6,21 +6,30 @@
 {% include 'partials/_menu.html' %}
 {% include 'partials/_alerts.html' %}
 
+
 <div class="container">
 
-
-    {% for vaga in  vagas %}
-    <div class="mt-4">
-        <div class="card" style="width: 18rem;">
+    <div class="d-flex justify-content-center">
+        {% for vaga in  vagas %}
+        {% comment %} <div class="card mt-4 mx-2" style="width: 18rem;">
             <div class="card-body">
             <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
             <p class="card-text">{{ vaga.descricao }}</p>
             <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary">Ver informacoes</a>
             </div>
-        </div>
+        </div> {% endcomment %}
+        <div class="card mx-2 mt-3 mb-2" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
+              <p class="card-text">{{ vaga.descricao }}</p>
+              <a href="{% url 'view_vaga' vaga.id %}" class="card-link">Informacoes</a>
+            </div>
+          </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+
+    
+</div> 
 
     {% include "partials/_paginator.html" %}
 

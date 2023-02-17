@@ -15,7 +15,13 @@
             <h6>Número vagas: {{ vaga.numeroVagas }}</h6>
             <h6>valor Salario: R$ {{ vaga.valorSalario }}</h6>
             <h6>Professor: {{ vaga.professor_id.nomeProfessor }}</h6>
-            
+            {% if vaga.nivel == 'B' %}
+                <h6>Nivel: Básico</h6>
+            {% elif vaga.nivel == 'I' %}
+                <h6>Nivel: Intermediário</h6>
+            {% else %}
+                <h6>Nivel: Avançado</h6>
+            {%endif%}
             <div>
                 <h2>Descrição: </h2>
                 <p>{{ vaga.descricao }}</p>
