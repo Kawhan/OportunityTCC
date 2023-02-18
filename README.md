@@ -1,4 +1,4 @@
-<h1 align="center">Projeto opportunity API </h1>
+<h1 align="center">Projeto opportunity API | Django FULL STACK </h1>
 
 ## 🖥️ Descrição do projeto / Project description
 
