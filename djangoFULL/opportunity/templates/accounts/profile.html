@@ -2,15 +2,29 @@
 {% load static %}
 {% block content %}
 {% include 'partials/_menu.html' %}
-{% include 'partials/_alerts.html' %}
-<div class="container pt-5">
-    <div class="d-flex justify-content-center">
-      <form method="post">
-        {% csrf_token %}
-        {{ p_form.as_p}}
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-  </div>
+{% load bootstrap %}
 
+<div class="container">
+  <div class="d-flex justify-content-center mt-2 mb-2">
+    <section class="col-6">
+      <form method="POST" enctype="multipart/form-data">
+
+
+        <!-- Security token -->
+        {% csrf_token %}
+
+        <!-- Using the formset -->
+
+        {{ form|bootstrap }}
+
+
+        <div class="buttons-dialog">
+          <input class="button-background-green dialog-button-specific" type="submit" value="Ok" />
+        </div>
+
+
+      </form>
+    </section>
+  </div>
+</div>
 {% endblock %}

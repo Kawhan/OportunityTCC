@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
@@ -7,6 +8,7 @@ from project.models import vagasEmprego
 
 
 # View of vagas
+@login_required
 def index(request):
     vagas = vagasEmprego.objects.all().order_by('-dataCadastro')
 
@@ -22,6 +24,7 @@ def index(request):
     return render(request, 'project/index.html', dados)
 
 
+@login_required
 def view_vaga(request, vaga_id):
     vaga = get_object_or_404(
         vagasEmprego.objects.select_related('professor'), id=vaga_id)
@@ -33,12 +36,12 @@ def view_vaga(request, vaga_id):
     return render(request, 'project/view_vaga.html', dados)
 
 
+@login_required
 def create_vaga(request):
     context = {}
     # print('teste')
 
     user = get_object_or_404(User, pk=request.user.id)
-    print(user)
     form = JobForm(request.POST or None, initial={"professor": user})
 
     if form.is_valid():
@@ -52,9 +55,9 @@ def create_vaga(request):
     return render(request, 'project/forms.html', context)
 
 
+@login_required
 def change_vaga(request, vaga_id):
     nome = request.user
-    print(nome)
 
     context = {}
     job = get_object_or_404(vagasEmprego, pk=vaga_id)
@@ -77,6 +80,7 @@ def change_vaga(request, vaga_id):
     return render(request, "project/forms.html", context)
 
 
+@login_required
 def search(request):
     # print('teste')
     vagas = vagasEmprego.objects.all().order_by('-dataCadastro')
@@ -93,6 +97,7 @@ def search(request):
     return render(request, 'project/search.html', dados)
 
 
+@login_required
 def delete_job(request, vaga_id):
 
     context = {}

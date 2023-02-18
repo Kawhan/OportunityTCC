@@ -2,6 +2,7 @@ from accounts.models import UserProfile
 from accounts.validator import *
 from django import forms
 from django.contrib.auth.models import User
+from tempus_dominus.widgets import DatePicker
 
 
 class UserProfileForm(forms.ModelForm):
@@ -10,6 +11,8 @@ class UserProfileForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'user': forms.HiddenInput,
+            # 'data_ingresso': DatePicker(),
+            # 'data_saida': DatePicker()
         }
 
     def clean(self):

@@ -1,10 +1,11 @@
 from accounts.forms import UserProfileForm
+from accounts.models import UserProfile
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import transaction
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 
 def login(request):
@@ -124,5 +125,23 @@ def update_profile(request):
             user_profile_form.save()
             return redirect('index')
     else:
+        dados = {}
+
+        dados["title"] = "cadastro de informacoes"
         user_profile_form = UserProfileForm(instance=request.user.userprofile)
-    return render(request, 'accounts/profile.html', {'p_form': user_profile_form})
+        dados["form"] = user_profile_form
+    return render(request, 'accounts/profile.html', dados)
+
+
+@login_required
+@transaction.atomic
+def update_profile_2(request):
+    if request.method == 'POST':
+        pass
+    else:
+        user_profile_form = get_object_or_404(UserProfile, pk=request.user.id)
+        dados = {}
+
+        dados["title"] = "cadastro de informacoes"
+        dados["form"] = user_profile_form
+        return render(request, 'accounts/profile_2.html', dados)
