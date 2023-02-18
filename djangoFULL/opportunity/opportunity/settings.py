@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'project',
     'tempus_dominus',
-    'bootstrapform'
+    'bootstrapform',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,5 @@ MESSAGE_TAGS = {
 }
 
 TEMPUS_DOMINUS_LOCALIZE = True
+
+LOGIN_URL = '/accounts/login'
