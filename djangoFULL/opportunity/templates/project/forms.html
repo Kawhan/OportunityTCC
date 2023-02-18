@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+{% load bootstrap %}
+<div class="container">
+    <div class="d-flex justify-content-center mt-2 mb-2">
+        <section class="col-6">
+            <form method="POST" enctype="multipart/form-data">
+
+
+                <!-- Security token -->
+                {% csrf_token %}
+
+                <!-- Using the formset -->
+
+                {{ form|bootstrap }}
+
+
+                <div class="buttons-dialog">
+                    <input class="button-background-green dialog-button-specific" type="submit" value="Ok" />
+                    <a class="button-border-green dialog-button-specific" href="{% url 'index' %}">Não</a>
+                </div>
+
+
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}

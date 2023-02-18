@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'project'
+    'project',
+    'tempus_dominus',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
 }
+
+TEMPUS_DOMINUS_LOCALIZE = True

@@ -1,11 +1,14 @@
+from django.contrib import messages
+from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
+from project.forms import JobForm
 from project.models import vagasEmprego
 
 
 # View of vagas
 def index(request):
-    vagas = vagasEmprego.objects.all()
+    vagas = vagasEmprego.objects.all().order_by('-dataCadastro')
 
     paginator = Paginator(vagas, 3)
     page = request.GET.get('page')
@@ -21,10 +24,84 @@ def index(request):
 
 def view_vaga(request, vaga_id):
     vaga = get_object_or_404(
-        vagasEmprego.objects.select_related('professor_id'), id=vaga_id)
+        vagasEmprego.objects.select_related('professor'), id=vaga_id)
 
     dados = {}
 
     dados['vaga'] = vaga
 
     return render(request, 'project/view_vaga.html', dados)
+
+
+def create_vaga(request):
+    context = {}
+    # print('teste')
+
+    user = get_object_or_404(User, pk=request.user.id)
+    print(user)
+    form = JobForm(request.POST or None, initial={"professor": user})
+
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+
+    context['form'] = form
+    context['user'] = user
+    context['title'] = "Criar projeto"
+
+    return render(request, 'project/forms.html', context)
+
+
+def change_vaga(request, vaga_id):
+    nome = request.user
+    print(nome)
+
+    context = {}
+    job = get_object_or_404(vagasEmprego, pk=vaga_id)
+
+    if job.professor.user != nome:
+        messages.error(request, "Você não pode realizar essa operação!")
+        return redirect("index")
+
+    form = JobForm(request.POST or None, instance=job)
+
+    if form.is_valid():
+        # print(form.id)
+        form.save()
+        messages.success(request, "Vaga de emprego alterado com sucesso!")
+        return redirect('index')
+
+    context["form"] = form
+    context["title"] = "Alterar vaga"
+
+    return render(request, "project/forms.html", context)
+
+
+def search(request):
+    # print('teste')
+    vagas = vagasEmprego.objects.all().order_by('-dataCadastro')
+
+    if 'search' in request.GET:
+        search_name = request.GET['search']
+        if search_name:
+            vagas = vagas.filter(tituloVaga__icontains=search_name)
+
+    dados = {
+        'vagas': vagas
+    }
+
+    return render(request, 'project/search.html', dados)
+
+
+def delete_job(request, vaga_id):
+
+    context = {}
+    job = get_object_or_404(vagasEmprego, pk=vaga_id)
+    context['title'] = 'deletar vaga'
+    context['vaga'] = job
+
+    if request.method == "POST":
+        job.delete()
+        return redirect('index')
+
+    return render(request, 'project/delete.html', context)

@@ -27,7 +27,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         'valorSalario',
         'dataCadastro',
         'dataFechamento',
-        'professor_id__nomeProfessor'
+        'professor__nomeProfessor'
     )
 
     list_filter = (
@@ -41,7 +41,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'nivel']
 
     def nome_professor(self, obj):
-        return obj.professor_id.nomeProfessor
+        return obj.professor.nomeProfessor
 
     # list_editable = ['', ]
     list_per_page = 20

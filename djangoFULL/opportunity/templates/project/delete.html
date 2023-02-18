@@ -1,10 +1,14 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    {% include 'partials/_menu.html' %}
-    {% include 'partials/_alerts.html' %}
 
-    <div class="container mt-3">
+{% include 'partials/_menu.html' %}
+
+<div class="container mt-3">
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
         <section>
             <img src="" alt="">
             <h2>Titulo Vaga: {{ vaga.tituloVaga }}</h2>
@@ -27,9 +31,13 @@
                 <p>{{ vaga.descricao }}</p>
             </div>
             
-
-
+    
+    
         </section>
-    </div>
+        <h2 class="text-danger">Deseja Deletar esse item? </h2>
+        <input type="submit" value="Sim" />
+        <a href="{% url 'index' %}">Cancelar </a>
+    </form>
+</div>
 
 {% endblock %}

@@ -23,6 +23,8 @@
               <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
               <p class="card-text">{{ vaga.descricao }}</p>
               <a href="{% url 'view_vaga' vaga.id %}" class="card-link">Informacoes</a>
+              <a href="{% url 'change_vaga' vaga.id %}" class="card-link">Editar</a>
+              <a href="{% url 'delete_vaga' vaga.id %}" class="card-link">Deletar</a>
             </div>
           </div>
         {% endfor %}
