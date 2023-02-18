@@ -1,4 +1,5 @@
 # Register your models here.
+from accounts.forms import UserProfileForm
 from accounts.models import UserProfile
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
@@ -6,6 +7,7 @@ from django.contrib.auth.models import User
 
 
 class UserProfileInline(admin.StackedInline):
+    form = UserProfileForm
     model = UserProfile
     can_delete = False
 

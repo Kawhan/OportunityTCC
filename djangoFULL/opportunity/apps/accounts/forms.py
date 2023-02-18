@@ -24,6 +24,11 @@ class UserProfileForm(forms.ModelForm):
         lista_de_erros = {}
 
         nome_invalid(nome, 'nome', lista_de_erros)
+        matricula_invalid(matricula, 'matricula', lista_de_erros)
+        periodo_invalid(periodo, 'periodo', lista_de_erros)
+        cra_invalid(cra, 'cra', lista_de_erros)
+        date_in_invalid(data_ingresso, data_saida,
+                        'data_ingresso', lista_de_erros)
 
         if lista_de_erros is not None:
             for erro in lista_de_erros:
