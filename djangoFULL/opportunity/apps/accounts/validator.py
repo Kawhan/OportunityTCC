@@ -51,3 +51,11 @@ def date_in_invalid(data_ingresso, data_saida, nome_campo, lista_erros):
     if data_ingresso > data_saida:
         lista_erros[nome_campo] = "Data de entrada não pode ser maior que data saida"
         return
+
+
+def email_not_dcx(email, nome_campo, lista_de_erros):
+    domain = email.split('@')[1]
+
+    if domain != 'dcx.ufpb.br':
+        lista_de_erros[nome_campo] = "Email não é dcx"
+        return

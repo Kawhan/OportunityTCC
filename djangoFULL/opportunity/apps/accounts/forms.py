@@ -24,6 +24,19 @@ class UserRegistrationForm(UserCreationForm):
 
         return user
 
+    # def clean(self):
+    #     email = self.cleaned_data.get("email")
+    #     lista_de_erros = {}
+
+    #     email_not_dcx(email, 'email', lista_de_erros)
+
+    #     if lista_de_erros is not None:
+    #         for erro in lista_de_erros:
+    #             mensagem_error = lista_de_erros[erro]
+    #             self.add_error(erro, mensagem_error)
+
+    #     return self.cleaned_data
+
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
