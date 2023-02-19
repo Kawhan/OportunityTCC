@@ -12,8 +12,10 @@ from django.core.mail import EmailMessage
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
-from django.template.loader import render_to_string
+from django.template import Context
+from django.template.loader import get_template, render_to_string
 from django.utils.encoding import force_bytes, force_str
+from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
@@ -40,14 +42,16 @@ def activate(request, uidb64, token):
 
 def activateEmail(request, user, to_email):
     mail_subject = "Ative sua conta."
-    message = render_to_string("template_activate_account.html", {
+    context = {
         'user': user.username,
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
         "protocol": 'https' if request.is_secure() else 'http'
-    })
+    }
+    message = get_template('template_activate_account.html').render(context)
     email = EmailMessage(mail_subject, message, to=[to_email])
+    email.content_subtype = "html"
     if email.send():
         messages.success(request, f'Prezado {user}, vá até a caixa de entrada do seu e-mail {to_email} e clique em \
                 recebeu o link de ativação para confirmar e concluir o registro. Observação: verifique sua pasta de spam.')
