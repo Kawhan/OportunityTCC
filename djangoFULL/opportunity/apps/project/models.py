@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -22,17 +23,17 @@ class vagasEmprego(models.Model):
         ('A', 'Avançado')
     )
 
-    numeroVagas = models.IntegerField()
+    numeroVagas = models.IntegerField("Número de vagas")
     nivel = models.CharField(
         max_length=1, choices=nivel)
-    horasSemana = models.IntegerField()
-    valorSalario = models.FloatField()
-    dataCadastro = models.DateField(auto_now_add=True)
-    tipoVaga = models.CharField(max_length=255)
-    beneficios = models.CharField(max_length=255)
-    tituloVaga = models.CharField(max_length=255)
-    descricao = models.CharField(max_length=255)
-    dataFechamento = models.DateField()
+    horasSemana = models.IntegerField("Horas Semana")
+    valorSalario = models.FloatField("Valor Salario")
+    dataCadastro = models.DateField("Data de cadastro", default=timezone.now)
+    tipoVaga = models.CharField("Tipo da Vaga", max_length=255)
+    beneficios = models.CharField("Beneficios", max_length=255)
+    tituloVaga = models.CharField("Titulo da Vaga", max_length=255)
+    descricao = models.TextField("Descrição")
+    dataFechamento = models.DateField("Data de Fechamento")
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
 
     def __str__(self):

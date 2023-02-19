@@ -6,6 +6,14 @@ from .models import Professor, vagasEmprego
 # Register your models here.
 @admin.register(vagasEmprego)
 class VagasEmpregoAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ("Header", {"fields": ['tituloVaga', 'numeroVagas']}),
+        ("Content", {"fields": [
+         'nivel', 'horasSemana', 'valorSalario', 'descricao']}),
+        ("Date", {"fields": ['dataCadastro', 'dataFechamento']}),
+        ("Keys", {"fields": ['professor']})
+
+    ]
 
     list_display = (
         'id',
@@ -16,7 +24,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         'valorSalario',
         'dataCadastro',
         'dataFechamento',
-        'nome_professor'
+        'professor'
     )
 
     search_fields = (

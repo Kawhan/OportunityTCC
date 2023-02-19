@@ -1,11 +1,58 @@
 from accounts.forms import UserProfileForm
 from accounts.models import UserProfile
+from accounts.tokens import account_activation_token
 from django.contrib import auth, messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+# Email
+from django.core.mail import EmailMessage
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+
+
+def activate(request, uidb64, token):
+    User = get_user_model()
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except:
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+
+        messages.success(
+            request, "Obrigado pela sua confirmação por e-mail. Agora você pode acessar sua conta.")
+        return redirect('login')
+    else:
+        messages.error(request, "O link de ativação é inválido!")
+
+    return redirect('index')
+
+
+def activateEmail(request, user, to_email):
+    mail_subject = "Ative sua conta."
+    message = render_to_string("template_activate_account.html", {
+        'user': user.username,
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+        "protocol": 'https' if request.is_secure() else 'http'
+    })
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    if email.send():
+        messages.success(request, f'Prezado {user}, vá até a caixa de entrada do seu e-mail {to_email} e clique em \
+                recebeu o link de ativação para confirmar e concluir o registro. Observação: verifique sua pasta de spam.')
+    else:
+        messages.error(
+            request, f'Problema ao enviar e-mail para {to_email}, verifique se você digitou corretamente.')
 
 
 def login(request):
@@ -53,7 +100,9 @@ def cadastro(request):
         user = User.objects.create_user(
             username=nome, email=email, password=senha)
 
+        user.is_active = False
         user.save()
+        activateEmail(request, user, email)
         messages.success(request, "Usuário cadastrado com sucesso!")
         return redirect('login')
     else:
@@ -81,6 +130,11 @@ def login(request):
                 'username', flat=True).get()
 
             user = auth.authenticate(request, username=nome, password=senha)
+
+            if user == None:
+                messages.error(
+                    request, 'Usuário não ativado! Verifique seu email.')
+                return redirect('login')
 
             if user is not None:
                 auth.login(request, user)
@@ -124,24 +178,16 @@ def update_profile(request):
                 request, "Obrigado por cadastrar suas informações!")
             user_profile_form.save()
             return redirect('index')
+        else:
+            for error in list(user_profile_form.errors.values()):
+                messages.error(request, error)
+
+            return redirect('profile')
     else:
         dados = {}
 
         dados["title"] = "cadastro de informacoes"
         user_profile_form = UserProfileForm(instance=request.user.userprofile)
         dados["form"] = user_profile_form
-    return render(request, 'accounts/profile.html', dados)
 
-
-@login_required
-@transaction.atomic
-def update_profile_2(request):
-    if request.method == 'POST':
-        pass
-    else:
-        user_profile_form = get_object_or_404(UserProfile, pk=request.user.id)
-        dados = {}
-
-        dados["title"] = "cadastro de informacoes"
-        dados["form"] = user_profile_form
-        return render(request, 'accounts/profile_2.html', dados)
+        return render(request, 'accounts/profile.html', dados)
