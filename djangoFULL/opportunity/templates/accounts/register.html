@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Resgitro</legend>
+                {{ form|bootstrap }}
+            </fieldset>
+
+            Ao se registrar, você aceita os Termos de Serviço e o Aviso de Privacidade
+
+            <div class="form-group">
+                <button class="btn btn-outline-info mb-2" type="submit">Registrar</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Já tem uma conta? <a class="ml-2" href="{% url 'index' %}">Logar</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
