@@ -9,7 +9,8 @@ The system revolves around a need seen by me (Kawhan) in helping professors who 
 ---
 
 ## 📌 Funcionalidades
-
+- Verificação de cadastro por e-mail
+- Cadastro de vagas do CAMPUS IV
 
 
 ---
