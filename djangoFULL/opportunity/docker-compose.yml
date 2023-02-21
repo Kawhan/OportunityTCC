@@ -1,0 +1,37 @@
+version: '3.8'
+name: opportunity_full
+services:
+  django:
+    build: .
+    container_name: django_full
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - pgdb
+      - redis
+  redis:
+    image: "redis:latest"
+    environment:
+      - REDIS_HOST=redis
+  pgdb:
+    image: "postgres:latest"
+    container_name: pgdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+      - ./migration/docker-database-initial.sql:/docker-entrypoint-initdb.d/docker-database-initial.sql 
+    ports:
+      - "5432:5432"
+volumes:
+    pgdata:
+      driver: local

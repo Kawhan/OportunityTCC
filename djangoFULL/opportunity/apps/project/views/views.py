@@ -1,6 +1,6 @@
+from accounts.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from project.forms import JobForm
@@ -45,6 +45,7 @@ def create_vaga(request):
     form = JobForm(request.POST or None, initial={"professor": user})
 
     if form.is_valid():
+        print('passou')
         form.save()
         return redirect('index')
 

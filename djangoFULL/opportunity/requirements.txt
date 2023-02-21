@@ -9,3 +9,5 @@ fontawesomefree==6.3.0
 pysqlite3-binary==0.5.0
 six==1.16.0
 sqlparse==0.4.3
+django-widget-tweaks
+psycopg2-binary==2.9.5
