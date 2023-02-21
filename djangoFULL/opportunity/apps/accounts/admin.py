@@ -1,9 +1,9 @@
 # Register your models here.
-from accounts.forms import UserProfileForm
-from accounts.models import UserProfile
+from accounts.models import User, UserProfile
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
-from django.contrib.auth.models import User
+
+from .forms import UserProfileForm
 
 
 class UserProfileInline(admin.StackedInline):
@@ -12,15 +12,19 @@ class UserProfileInline(admin.StackedInline):
     can_delete = False
 
 
-class AccountsUserAdmin(AuthUserAdmin):
+class UserAdmin(AuthUserAdmin):
+    list_display = ['username', 'email',
+                    'auth_provider', 'created_at', 'is_staff', 'verify_staff_user', 'user_is_teacher']
+
+    list_editable = ['is_staff', 'verify_staff_user', 'user_is_teacher']
+
     def add_view(self, *args, **kwargs):
         self.inlines = []
-        return super(AccountsUserAdmin, self).add_view(*args, **kwargs)
+        return super(UserAdmin, self).add_view(*args, **kwargs)
 
     def change_view(self, *args, **kwargs):
         self.inlines = [UserProfileInline]
-        return super(AccountsUserAdmin, self).change_view(*args, **kwargs)
+        return super(UserAdmin, self).change_view(*args, **kwargs)
 
 
-admin.site.unregister(User)
-admin.site.register(User, AccountsUserAdmin)
+admin.site.register(User, UserAdmin)

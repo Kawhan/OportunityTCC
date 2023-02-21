@@ -1,11 +1,10 @@
 from accounts.decorators import user_not_authenticated
 from accounts.forms import UserProfileForm, UserRegistrationForm
-from accounts.models import UserProfile
+from accounts.models import User
 from accounts.tokens import account_activation_token
 from django.contrib import auth, messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
 # Email
 from django.core.mail import EmailMessage
@@ -15,7 +14,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context
 from django.template.loader import get_template, render_to_string
 from django.utils.encoding import force_bytes, force_str
-from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
@@ -156,10 +154,7 @@ def login(request):
 
         # Trazendo as informações desse usuário apartir do email
         if User.objects.filter(email=email).exists():
-            nome = User.objects.filter(email=email).values_list(
-                'username', flat=True).get()
-
-            user = auth.authenticate(request, username=nome, password=senha)
+            user = auth.authenticate(request, email=email, password=senha)
 
             if user == None:
                 messages.error(
@@ -169,7 +164,14 @@ def login(request):
             if user is not None:
                 auth.login(request, user)
                 dados = {}
-                dados["title"] = "Home"
+                dados["title"] = "Cadastro Informacoes"
+
+                if user.user_is_teacher:
+                    dados['title'] = 'Home'
+                    messages.success(
+                        request, "Login realizado com sucesso! Seja bem-vindo Professor(a)")
+                    return redirect('index')
+
                 messages.success(
                     request, "Login realizado com sucesso! Cadastre suas informações")
                 return redirect('profile')
@@ -199,6 +201,12 @@ def logout(request):
 @login_required
 @transaction.atomic
 def update_profile(request):
+    dados = {}
+
+    dados["title"] = "cadastro de informacoes"
+    user_profile_form = UserProfileForm(instance=request.user.userprofile)
+    dados["form"] = user_profile_form
+
     if request.method == "POST":
         user_profile_form = UserProfileForm(
             request.POST, instance=request.user.userprofile)
@@ -212,12 +220,6 @@ def update_profile(request):
             for error in list(user_profile_form.errors.values()):
                 messages.error(request, error)
 
-            return redirect('profile')
-    else:
-        dados = {}
-
-        dados["title"] = "cadastro de informacoes"
-        user_profile_form = UserProfileForm(instance=request.user.userprofile)
         dados["form"] = user_profile_form
 
-        return render(request, 'accounts/profile.html', dados)
+    return render(request, 'accounts/profile.html', dados)

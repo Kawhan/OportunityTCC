@@ -99,11 +99,16 @@ def search(request):
 
 @login_required
 def delete_job(request, vaga_id):
+    nome = request.user
 
     context = {}
     job = get_object_or_404(vagasEmprego, pk=vaga_id)
     context['title'] = 'deletar vaga'
     context['vaga'] = job
+
+    if job.professor.user != nome:
+        messages.error(request, "Você não pode realizar essa operação!")
+        return redirect("index")
 
     if request.method == "POST":
         job.delete()

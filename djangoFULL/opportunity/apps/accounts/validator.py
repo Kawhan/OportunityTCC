@@ -1,10 +1,20 @@
 from datetime import datetime
 
+from accounts.models import User, UserProfile
+from django.forms import ModelForm, ValidationError
 
-def nome_invalid(nome, nome_campo, lista_erros):
+
+def nome_invalid(nome, user, nome_campo, lista_erros):
     """ Verifica se o nome é valido """
     if nome == None:
         lista_erros[nome_campo] = "Nome vazio!"
+        return
+
+    user_provider = UserProfile.objects.select_related(
+        'user').filter(nome=nome).values_list('user', flat=True).order_by('id')
+
+    if UserProfile.objects.filter(nome=nome).exists() and user_provider[0] != user.id:
+        lista_erros[nome_campo] = "Nome já cadastrado em outro usuário!"
         return
 
     if any(char.isdigit() for char in nome):
@@ -12,10 +22,21 @@ def nome_invalid(nome, nome_campo, lista_erros):
         return
 
 
-def matricula_invalid(matricula, nome_campo, lista_erros):
+def matricula_invalid(matricula, user, nome_campo, lista_erros):
     """ Verifica se a matricula é valida """
     if matricula == None:
         lista_erros[nome_campo] = "Campo Matricula Vazio!"
+        return
+
+    user_provider = UserProfile.objects.select_related(
+        'user').filter(matricula=matricula).values_list('user', flat=True).order_by('id')
+
+    if UserProfile.objects.filter(matricula=matricula).exists() and user_provider[0] != user.id:
+        lista_erros[nome_campo] = "Está matricula já existe!"
+        return
+
+    if len(matricula) != 11:
+        lista_erros[nome_campo] = "Está matricula tem um número incorreto de caracteres"
         return
 
     if (not matricula.isnumeric()):
