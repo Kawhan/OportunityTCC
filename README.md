@@ -14,7 +14,11 @@ The system revolves around a need seen by me (Kawhan) in helping professors who 
 
 
 ---
-
+## 🚢 Using Docker
+```
+docker-compose up --build
+docker-compose up 
+```
 ## 🛠️ Usabilidade do código do sistema / system code usability
 
 - Criação do ambiente virtual:
