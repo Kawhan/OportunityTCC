@@ -1,0 +1,8 @@
+.errorlist ul {
+    color: red;
+    font-family: italic;
+}
+
+.listError {
+    list-style-type: "🚩";
+}

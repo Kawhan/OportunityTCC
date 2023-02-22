@@ -1,0 +1,11 @@
+.errorlist {
+    color: red;
+    font-family: italic;
+    font-size: 20px;
+}
+
+.listError {
+    list-style-type: "🚩";
+    color: cadetblue;
+    font-weight: bold;
+}

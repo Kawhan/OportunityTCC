@@ -103,29 +103,29 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'pgdb',
-        'PORT': 5432,
-    }
-}
-
-
-# # Local
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'project',
 #         'USER': 'postgres',
 #         'PASSWORD': 'password',
-#         'HOST': 'localhost',
-#         'PORT': '5435',
+#         'HOST': 'pgdb',
+#         'PORT': 5432,
 #     }
 # }
+
+
+# # Local
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'project',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5435',
+    }
+}
 
 
 # Password validation
