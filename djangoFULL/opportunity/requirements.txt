@@ -5,6 +5,7 @@ django-bootstrap-form==3.4
 django-crispy-forms==2.0
 django-environ==0.9.0
 django-tempus-dominus==5.1.2.17
+django-tinymce==3.5.0
 django-widget-tweaks==1.4.12
 fontawesomefree==6.3.0
 psycopg2-binary==2.9.5
