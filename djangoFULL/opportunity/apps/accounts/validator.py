@@ -22,6 +22,16 @@ def nome_invalid(nome, user, nome_campo, lista_erros):
         return
 
 
+def idade_invalid(idade, nome_campo, lista_de_erros):
+    if idade == None:
+        lista_de_erros[nome_campo] = "Campo de idade vazio!"
+        return
+
+    if idade <= 0:
+        lista_de_erros[nome_campo] = "Campo de idade invalido!"
+        return
+
+
 def matricula_invalid(matricula, user, nome_campo, lista_erros):
     """ Verifica se a matricula é valida """
     if matricula == None:
@@ -75,6 +85,7 @@ def date_in_invalid(data_ingresso, data_saida, nome_campo, lista_erros):
 
 
 def email_not_dcx(email, nome_campo, lista_de_erros):
+    """ Verifica se o e-mail é valido """
     domain = email.split('@')[1]
 
     if domain != 'dcx.ufpb.br':
@@ -83,6 +94,7 @@ def email_not_dcx(email, nome_campo, lista_de_erros):
 
 
 def curso_invalid(curso, nome_campo, lista_de_erros):
+    """ Verifica se o curso é valido """
     if curso == None:
         lista_de_erros[nome_campo] = "Curso não pode ficar vazio"
         return
@@ -93,6 +105,7 @@ def curso_invalid(curso, nome_campo, lista_de_erros):
 
 
 def nota_introducao_invalid(nota_introducao, nome_campo, lista_de_erros):
+    """ Verifica se a nota de introdução a programação é valida """
     if nota_introducao == None:
         lista_de_erros[nome_campo] = "Campo de nota de introdução a programação não pode ficar vazio"
         return
@@ -103,6 +116,7 @@ def nota_introducao_invalid(nota_introducao, nome_campo, lista_de_erros):
 
 
 def nota_POO_invalid(nota_POO, nome_campo, lista_de_erros):
+    """ Verifica se a nota de POO é valida """
     if nota_POO != None:
         if nota_POO < 0 or nota_POO > 10:
             lista_de_erros[nome_campo] = "Nota de POO tem de ser maior que 0 e menor ou igual a 10"
@@ -110,6 +124,7 @@ def nota_POO_invalid(nota_POO, nome_campo, lista_de_erros):
 
 
 def nota_linguagem_invalid(nota_linguagem, nome_campo, lista_de_erros):
+    """ Verifica se a nota de linguagem de programação é valida """
     if nota_linguagem != None:
         if nota_linguagem < 0 or nota_linguagem > 10:
             lista_de_erros[nome_campo] = "Nota de linguagem tem de ser maior que 0 e menor ou igual a 10"
@@ -117,6 +132,7 @@ def nota_linguagem_invalid(nota_linguagem, nome_campo, lista_de_erros):
 
 
 def nota_estrutura_invalid(nota_estrutura, nome_campo, lista_de_erros):
+    """ Verifica se a noota de estrutura é valida """
     if nota_estrutura != None:
         if nota_estrutura < 0 or nota_estrutura > 10:
             lista_de_erros[nome_campo] = "Nota de estrutura de dados tem de ser maior que 0 e menor ou igual a 10"
@@ -124,6 +140,7 @@ def nota_estrutura_invalid(nota_estrutura, nome_campo, lista_de_erros):
 
 
 def disposicao_invalid(disposicao, nome_campo, lista_de_erros):
+    """ Verifica se as horas de disposicao são validas """
     if disposicao == None:
         lista_de_erros[nome_campo] = "Campo de disposição não pode ficar vazio"
         return
@@ -134,6 +151,7 @@ def disposicao_invalid(disposicao, nome_campo, lista_de_erros):
 
 
 def numero_disciplinas_invalid(numero_disciplinas, nome_campo, lista_de_erros):
+    """ Verifica se o número de disciplinas é valido """
     numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     if (numero_disciplinas not in numeros):

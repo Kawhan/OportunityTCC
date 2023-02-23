@@ -11,7 +11,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         ("Content", {"fields": [
          'nivel', 'horasSemana', 'valorSalario', 'descricao', 'tipoVaga', 'beneficios']}),
         ("Date", {"fields": ['dataCadastro', 'dataFechamento']}),
-        ("Keys", {"fields": ['professor']})
+        # ("Keys", {"fields": ['professor']})
 
     ]
 

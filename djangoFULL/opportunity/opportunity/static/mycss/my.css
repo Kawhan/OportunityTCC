@@ -12,14 +12,17 @@
     font-size: 17;
 } */
 
-div ul {
+div.form-floating ul {
     list-style-type: "⚠️ ";
-    color: cadetblue;
+    color: #C0C0C0	;
     font-weight: bold;
     font-size: 17;
+    font-style: italic;
 }
 
-
+.date {
+    padding: 10px;
+}
 
 div.alerts-mensage ul {
     font-weight: bolder;;

@@ -161,6 +161,7 @@ class UserProfileForm(forms.ModelForm):
         lista_de_erros = {}
 
         nome_invalid(nome, user, 'nome', lista_de_erros)
+        idade_invalid(idade, 'idade', lista_de_erros)
         matricula_invalid(matricula, user, 'matricula', lista_de_erros)
         periodo_invalid(periodo, 'periodo', lista_de_erros)
         cra_invalid(cra, 'cra', lista_de_erros)

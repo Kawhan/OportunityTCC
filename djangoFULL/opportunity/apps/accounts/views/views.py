@@ -84,17 +84,11 @@ def cadastro(request):
             activateEmail(request, user, form.cleaned_data.get('email'))
             return redirect('index')
 
-        else:
-            for error in list(form.errors.values()):
-                messages.error(request, error)
+        # else:
+        #     for error in list(form.errors.values()):
+        #         messages.error(request, error)
 
         dados["form"] = form
-
-        return render(
-            request,
-            "accounts/register.html",
-            dados,
-        )
 
     return render(
         request,
@@ -228,9 +222,9 @@ def update_profile(request):
                 request, "Obrigado por cadastrar suas informações!")
             user_profile_form.save()
             return redirect('index')
-        else:
-            for error in list(user_profile_form.errors.values()):
-                messages.error(request, error)
+        # else:
+        #     for error in list(user_profile_form.errors.values()):
+        #         messages.error(request, error)
 
         dados["form"] = user_profile_form
 

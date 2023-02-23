@@ -1,10 +1,12 @@
+import datetime
+
 from accounts.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from project.forms import JobForm
-from project.models import vagasEmprego
+from project.models import Professor, vagasEmprego
 
 
 # View of vagas
@@ -39,10 +41,11 @@ def view_vaga(request, vaga_id):
 @login_required
 def create_vaga(request):
     context = {}
-    # print('teste')
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
 
-    user = get_object_or_404(User, pk=request.user.id)
-    form = JobForm(request.POST or None, initial={"professor": user})
+    user = get_object_or_404(Professor, pk=request.user.id)
+    form = JobForm(request.POST or None, initial={
+                   "professor": user, "dataCadastro": date})
 
     if form.is_valid():
         print('passou')
@@ -50,8 +53,7 @@ def create_vaga(request):
         return redirect('index')
 
     context['form'] = form
-    context['user'] = user
-    context['title'] = "Criar projeto"
+    context['title'] = "Cadastrar vagas"
 
     return render(request, 'project/forms.html', context)
 
@@ -59,9 +61,12 @@ def create_vaga(request):
 @login_required
 def change_vaga(request, vaga_id):
     nome = request.user
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
 
     context = {}
     job = get_object_or_404(vagasEmprego, pk=vaga_id)
+    job.dataCadastro = job.dataCadastro.strftime('%Y-%m-%d')
+    job.dataFechamento = job.dataFechamento.strftime('%Y-%m-%d')
 
     if job.professor.user != nome:
         messages.error(request, "Você não pode realizar essa operação!")
