@@ -209,7 +209,7 @@ def logout(request):
 def update_profile(request):
     dados = {}
 
-    dados["title"] = "cadastro de informacoes"
+    dados["title"] = "Cadastro de informacoes"
     user_profile_form = UserProfileForm(instance=request.user.userprofile)
     dados["form"] = user_profile_form
 
