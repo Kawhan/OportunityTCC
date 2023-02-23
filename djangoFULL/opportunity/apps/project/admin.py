@@ -11,7 +11,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         ("Content", {"fields": [
          'nivel', 'horasSemana', 'valorSalario', 'descricao', 'tipoVaga', 'beneficios']}),
         ("Date", {"fields": ['dataCadastro', 'dataFechamento']}),
-        # ("Keys", {"fields": ['professor']})
+        ("Keys", {"fields": ['professor']})
 
     ]
 
@@ -52,7 +52,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         return obj.professor.nomeProfessor
 
     # list_editable = ['', ]
-    list_per_page = 20
+    list_per_page = 5
 
     pass
 

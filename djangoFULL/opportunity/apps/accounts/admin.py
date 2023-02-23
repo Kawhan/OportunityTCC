@@ -3,11 +3,11 @@ from accounts.models import User, UserProfile
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 
-from .forms import UserProfileForm
+from .forms import UserProfileForm, UserProfileFormAdmin
 
 
 class UserProfileInline(admin.StackedInline):
-    form = UserProfileForm
+    form = UserProfileFormAdmin
     model = UserProfile
     can_delete = False
 

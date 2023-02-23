@@ -1,6 +1,8 @@
+import datetime
+
 from accounts.decorators import user_not_authenticated
 from accounts.forms import UserProfileForm, UserRegistrationForm
-from accounts.models import User
+from accounts.models import User, UserProfile
 from accounts.tokens import account_activation_token
 from django.contrib import auth, messages
 from django.contrib.auth import get_user_model
@@ -210,6 +212,15 @@ def update_profile(request):
     dados = {}
 
     dados["title"] = "Cadastro de informacoes"
+
+    if request.user.userprofile.data_ingresso != None:
+        request.user.userprofile.data_ingresso = request.user.userprofile.data_ingresso.strftime(
+            '%Y-%m-%d')
+
+    if request.user.userprofile.data_estimada_saida != None:
+        request.user.userprofile.data_estimada_saida = request.user.userprofile.data_estimada_saida.strftime(
+            '%Y-%m-%d')
+
     user_profile_form = UserProfileForm(instance=request.user.userprofile)
     dados["form"] = user_profile_form
 
