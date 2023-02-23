@@ -18,7 +18,14 @@
         <div class="card mx-2 mt-3 mb-2" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
-              <p class="card-text">{{ vaga.descricao }}</p>
+              <p class="card-title">Número vagas: {{ vaga.numeroVagas }}</p>
+              {% if vaga.nivel == 'B' %}
+                    <p>Nivel: Básico</p>
+                {% elif vaga.nivel == 'I' %}
+                    <p>Nivel: Intermediário</p>
+                {% else %}
+                    <p>Nivel: Avançado</p>
+                {%endif%}
               <a href="{% url 'view_vaga' vaga.id %}" class="card-link">Informacoes</a>
               <a href="{% url 'change_vaga' vaga.id %}" class="card-link">Editar</a>
               <a href="{% url 'delete_vaga' vaga.id %}" class="card-link">Deletar</a>

@@ -1,6 +1,7 @@
 from accounts.models import User
 from django.db import models
 from django.utils import timezone
+from tinymce.models import HTMLField
 
 
 # Create your models here.
@@ -32,7 +33,7 @@ class vagasEmprego(models.Model):
     tipoVaga = models.CharField("Tipo da Vaga", max_length=255)
     beneficios = models.CharField("Beneficios", max_length=255)
     tituloVaga = models.CharField("Titulo da Vaga", max_length=255)
-    descricao = models.TextField("Descrição")
+    descricao = HTMLField("Descrição")
     dataFechamento = models.DateField("Data de Fechamento")
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
 

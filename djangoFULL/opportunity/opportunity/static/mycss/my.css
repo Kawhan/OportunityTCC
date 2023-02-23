@@ -31,3 +31,11 @@ div.alerts-mensage ul {
     font-family: italic;
 } 
 
+.label-form {
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.teste-container {
+    width: 60%;
+}

@@ -5,30 +5,31 @@
 {% load widget_tweaks %}
 
 <div class="content-section shadow-lg p-3 mb-5 bg-white rounded">
-    <section class="container col-8">
-        <form  method="POST">
+    <section class="container col-8 teste-container">
+        <form class="form-teste" method="POST">
             {% csrf_token %}
-            {{ form.user }}
-            <legend class="border-bottom mb-4 "><h2>Cadastro</h2></legend>
+            <legend class="border-bottom mb-4 ">
+                <h2>Cadastro</h2>
+            </legend>
             {% for field in form.visible_fields%}
-                <div class="form-floating mb-3">
-                    {{ field|add_class:'form-control' }}
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {% if field.help_text %}
-                        <p class="help">{{ field.help_text|safe }}</p>
-                    {% endif %}
-                    {% if field.help_texts %}
-                            {{ field.help_texts|safe }}
-                    {% endif %}
-                </div>
-                {% comment %} <div class="form-group">
-                    <label for="{{ field.id_for_label|add_class }}">{{ field.label }}</label>
-                    {{ field|add_class:'form-control' }}
-                </div> {% endcomment %}
+            <div class="form mb-2">
+                <label class="label-form" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field|add_class:'form-control' }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                {% if field.help_texts %}
+                {{ field.help_texts|safe }}
+                {% endif %}
+            </div>
+            {% comment %} <div class="form-group">
+                <label for="{{ field.id_for_label|add_class }}">{{ field.label }}</label>
+                {{ field|add_class:'form-control' }}
+            </div> {% endcomment %}
             {% for error in field.errors %}
 
-                    {{ field.errors }}
-                
+            {{ field.errors }}
+
             {% endfor %}
             {% endfor %}
             <input type="submit" value="Ok" class="btn btn-success mt-2">

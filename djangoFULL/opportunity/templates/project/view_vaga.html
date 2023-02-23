@@ -20,14 +20,15 @@
             {% else %}
                 <h6>Nivel: Avançado</h6>
             {%endif%}
-            <div>
-                <h2>Descrição: </h2>
-                <p>{{ vaga.descricao }}</p>
+           
+            
+            <div class="col-lg-9 col-md-12 col-sm-12" class="with-css">
+                <div class="">
+                    {{ vaga.descricao|safe }}
+                </div>
             </div>
             
-
-
         </section>
     </div>
-
+    
 {% endblock %}

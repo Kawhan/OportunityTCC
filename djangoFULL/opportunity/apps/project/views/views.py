@@ -40,6 +40,10 @@ def view_vaga(request, vaga_id):
 
 @login_required
 def create_vaga(request):
+    if not request.user.user_is_teacher:
+        messages.error(request, "Você não pode realizar essa operação!")
+        return redirect("index")
+
     context = {}
     date = datetime.datetime.today().strftime('%Y-%m-%d')
 
@@ -60,6 +64,10 @@ def create_vaga(request):
 
 @login_required
 def change_vaga(request, vaga_id):
+    if not request.user.user_is_teacher:
+        messages.error(request, "Você não pode realizar essa operação!")
+        return redirect("index")
+
     nome = request.user
     date = datetime.datetime.today().strftime('%Y-%m-%d')
 
@@ -105,6 +113,10 @@ def search(request):
 
 @login_required
 def delete_job(request, vaga_id):
+    if not request.user.user_is_teacher:
+        messages.error(request, "Você não pode realizar essa operação!")
+        return redirect("index")
+
     nome = request.user
 
     context = {}
