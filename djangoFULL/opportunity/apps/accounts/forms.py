@@ -10,27 +10,26 @@ from .models import User, UserProfile
 
 class UserRegistrationForm(UserCreationForm):
 
-    def __init__(self, *args, **kwargs):
-        super(UserRegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['password1'].widget.attrs = {
-            'class': 'venue-type-select', }
-
     class Meta:
         model = User
         fields = ['username',
                   'email', 'password1', 'password2']
         help_texts = {
             'username': mark_safe(
-                '<ul  class="listError">\
-                    <li>Username deve ser único e não pode conter números</li>\
-                    <li>Por favor, evitar espeços entre o username</li>\
-                <ul/>'
+                '<div class="teste">\
+                    <ul>\
+                        <li>Username deve ser único e não pode conter números</li>\
+                        <li>Por favor, evitar espeços entre o username</li>\
+                    <ul/>\
+                </div>'
             ),
             'email': mark_safe(
-                '<ul  class="listError">\
-                    <li>Digite um e-mail valido</li>\
-                    <li>Digite um e-mail do dominio DCX</li>\
-                <ul/>'
+                '<div>\
+                    <ul>\
+                        <li>Digite um e-mail valido</li>\
+                        <li>Digite um e-mail do dominio DCX</li>\
+                    <ul/>\
+                </div>'
             ),
         }
 
@@ -41,23 +40,6 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
 
         return user
-
-    def clean(self):
-        # email = self.cleaned_data.get("email")
-        lista_de_erros = {}
-
-        # email_not_dcx(email, 'email', lista_de_erros)
-
-        if lista_de_erros is not None:
-            for erro in lista_de_erros:
-                mensagem_error = lista_de_erros[erro]
-                self.add_error(erro, mensagem_error)
-
-        return self.cleaned_data
-
-
-class DateInput(forms.DateInput):
-    input_type = 'date'
 
 
 class UserProfileForm(forms.ModelForm):

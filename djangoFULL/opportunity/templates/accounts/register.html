@@ -4,10 +4,10 @@
 {% load widget_tweaks %}
 
     <div class="content-section shadow-lg p-3 mb-5 bg-white rounded">
-        <div class="d-flex justify-content-center teste">
+        <div class="d-flex justify-content-center">
             <form method="POST" class="w-50 ">
                 {% csrf_token %}
-                <legend class="border-bottom mb-4">Resgitro</legend>
+                <legend class="border-bottom mb-4">Registro</legend>
                 {% for field in form.visible_fields %}
                 <div class="form-floating mb-3">
                     {{ field|add_class:'form-control' }}
@@ -19,10 +19,12 @@
                             {{ field.help_texts|safe }}
                     {% endif %}
                 </div>
-                {%endfor%} 
                 {% for error in field.errors %}
+
                     {{ field.errors }}
+                
                 {% endfor %}
+                {%endfor%} 
                 {% comment %} <fieldset class="form-group">
                     <legend class="border-bottom mb-4">Resgitro</legend>
                     {{ form|bootstrap }}

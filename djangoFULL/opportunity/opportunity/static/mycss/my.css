@@ -5,19 +5,26 @@
     list-style-type: "❌ ";
 }
 
-.listError {
+/* .listError {
+    list-style-type: "⚠️ ";
+    color: cadetblue;
+    font-weight: bold;
+    font-size: 17;
+} */
+
+div ul {
     list-style-type: "⚠️ ";
     color: cadetblue;
     font-weight: bold;
     font-size: 17;
 }
 
-.test > div:nth-child(3) {
-    color: red;
-    font-family: italic;
-    font-size: 19px;
-}
 
-div .venue-type-select {
-    font-size: 30px;
-}
+
+div.alerts-mensage ul {
+    font-weight: bolder;;
+    color: black;
+    font-size: 20px;
+    font-family: italic;
+} 
+

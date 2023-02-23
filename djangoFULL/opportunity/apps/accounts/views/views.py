@@ -67,7 +67,14 @@ def login(request):
 
 @user_not_authenticated
 def cadastro(request):
-    form = UserRegistrationForm()
+    # form = UserRegistrationForm()
+
+    dados = {}
+
+    dados["title"] = "Registro"
+    user_profile_form = UserRegistrationForm()
+    dados["form"] = user_profile_form
+
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -81,16 +88,18 @@ def cadastro(request):
             for error in list(form.errors.values()):
                 messages.error(request, error)
 
+        dados["form"] = form
+
         return render(
-            request=request,
-            template_name="accounts/register.html",
-            context={"form": form, "title": "Registro"}
+            request,
+            "accounts/register.html",
+            dados,
         )
 
     return render(
-        request=request,
-        template_name="accounts/register.html",
-        context={"form": form, "title": "Registro"}
+        request,
+        "accounts/register.html",
+        dados,
     )
 
 # def cadastro(request):
