@@ -67,6 +67,7 @@ def login(request):
 
 @user_not_authenticated
 def cadastro(request):
+    form = UserRegistrationForm()
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -80,9 +81,11 @@ def cadastro(request):
             for error in list(form.errors.values()):
                 messages.error(request, error)
 
-    else:
-
-        form = UserRegistrationForm()
+        return render(
+            request=request,
+            template_name="accounts/register.html",
+            context={"form": form, "title": "Registro"}
+        )
 
     return render(
         request=request,

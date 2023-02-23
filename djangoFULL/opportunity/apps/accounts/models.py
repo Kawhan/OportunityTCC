@@ -62,6 +62,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class UserProfile(models.Model):
+    resp = (
+        ('S', 'Sim'),
+        ('N', 'Não'),
+    )
+
+    curso = (
+        ('SI', 'Sistemas de Informação'),
+        ('LCC', 'Lic. Ciência da Computação')
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=255, null=True, blank=True, unique=True)
     idade = models.IntegerField(null=True, blank=True)
@@ -71,6 +81,17 @@ class UserProfile(models.Model):
     data_estimada_saida = models.DateField(null=True, blank=True)
     periodo = models.IntegerField(null=True, blank=True)
     cra = models.FloatField(null=True, blank=True)
+    curso = models.CharField(max_length=3, null=True,
+                             blank=True, choices=curso)
+    nota_introducao = models.IntegerField(null=True, blank=True)
+    nota_POO = models.IntegerField(null=True, blank=True)
+    nota_linguagem = models.IntegerField(null=True, blank=True)
+    nota_estrutura = models.IntegerField(null=True, blank=True)
+    disposicao = models.CharField(
+        max_length=1, null=True, blank=True, choices=resp)
+    numero_disciplinas = models.IntegerField(null=True, blank=True)
+    link_git_hub = models.CharField(max_length=255, null=True, blank=True)
+    link_linkedin = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

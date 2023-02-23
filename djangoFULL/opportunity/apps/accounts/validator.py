@@ -80,3 +80,61 @@ def email_not_dcx(email, nome_campo, lista_de_erros):
     if domain != 'dcx.ufpb.br':
         lista_de_erros[nome_campo] = "Email não é dcx"
         return
+
+
+def curso_invalid(curso, nome_campo, lista_de_erros):
+    if curso == None:
+        lista_de_erros[nome_campo] = "Curso não pode ficar vazio"
+        return
+
+    if curso != 'SI' and curso != 'LCC':
+        lista_de_erros[nome_campo] = "Curso invalido"
+        return
+
+
+def nota_introducao_invalid(nota_introducao, nome_campo, lista_de_erros):
+    if nota_introducao == None:
+        lista_de_erros[nome_campo] = "Campo de nota de introdução a programação não pode ficar vazio"
+        return
+
+    if nota_introducao > 10 or nota_introducao < 0:
+        lista_de_erros[nome_campo] = "Nota de introdução a programação tem de ser maior que 0 e menor ou igual a 10"
+        return
+
+
+def nota_POO_invalid(nota_POO, nome_campo, lista_de_erros):
+    if nota_POO != None:
+        if nota_POO < 0 or nota_POO > 10:
+            lista_de_erros[nome_campo] = "Nota de POO tem de ser maior que 0 e menor ou igual a 10"
+            return
+
+
+def nota_linguagem_invalid(nota_linguagem, nome_campo, lista_de_erros):
+    if nota_linguagem != None:
+        if nota_linguagem < 0 or nota_linguagem > 10:
+            lista_de_erros[nome_campo] = "Nota de linguagem tem de ser maior que 0 e menor ou igual a 10"
+            return
+
+
+def nota_estrutura_invalid(nota_estrutura, nome_campo, lista_de_erros):
+    if nota_estrutura != None:
+        if nota_estrutura < 0 or nota_estrutura > 10:
+            lista_de_erros[nome_campo] = "Nota de estrutura de dados tem de ser maior que 0 e menor ou igual a 10"
+            return
+
+
+def disposicao_invalid(disposicao, nome_campo, lista_de_erros):
+    if disposicao == None:
+        lista_de_erros[nome_campo] = "Campo de disposição não pode ficar vazio"
+        return
+
+    if disposicao != 'S' and disposicao != 'N':
+        lista_de_erros[nome_campo] = "Campo de disposição com valor invalido"
+        return
+
+
+def numero_disciplinas_invalid(numero_disciplinas, nome_campo, lista_de_erros):
+    numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    if (numero_disciplinas not in numeros):
+        lista_de_erros[nome_campo] = "O número de disciplinas mencionado não é valido"
