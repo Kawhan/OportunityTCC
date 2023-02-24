@@ -4,48 +4,37 @@
 <!-- Preloader -->
 
 <!-- ##### Contact Form Area Start ##### -->
-<div class="contact-area section-padding-0-80">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading">
-                    <h2>Login</h2>
-                </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card my-5 my-color-theme mycard-body">
+                <form class="card-body cardbody-color p-lg-5 mycard-body" method="POST">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <img src="https://st2.depositphotos.com/2885805/7400/v/600/depositphotos_74008891-stock-illustration-flying-eagle-icon.jpg"
+                            class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px"
+                            alt="profile">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                            placeholder="Email">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="senha" name="senha" placeholder="password">
+                    </div>
+                    <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button>
+                    </div>
+                    <div id="emailHelp" class="form-text text-center mb-5 text-dark">Ainda não é registrado?<a
+                            href="{% url 'cadastro' %}" class="text-dark fw-bold">Crie sua conta</a>
+                    </div>
+                </form>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="contact-form-area">
-                    <form action="{% url 'login' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-12 col-lg-12">
-                                <label for="email"><b>Email</b></label>
-                                <input type="text" id="email" class="form-control" name="email"
-                                    placeholder="Entre com o email cadastrado">
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <label for="senha"><b>Senha</b></label>
-                                <input id="senha" type="password" class="form-control" name="senha"
-                                    placeholder="Digite aqui sua senha">
-                            </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-success" type="submit">Acessar sua conta</button>
-                                <button type="button" class="btn btn-primary" onclick="exibirCriarConta()">Ainda não tem
-                                    conta? Clique aqui</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
 
-<script>
-    function exibirCriarConta() {
-        location.href = "{% url 'cadastro' %}";
-    } 
-</script>
 
 {% endblock %}
