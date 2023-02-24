@@ -3,15 +3,15 @@
 {% block content %}
 {% load widget_tweaks %}
 
-    <div class="content-section shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="content-section p-3 mb-5 mt-2 bg-white class-rouder">
         <div class="d-flex justify-content-center">
             <form method="POST" class="w-50 ">
                 {% csrf_token %}
                 <legend class="border-bottom mb-4">Registro</legend>
                 {% for field in form.visible_fields %}
-                    <div class="form-floating mb-3">
-                        {{ field|add_class:'form-control' }}
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    <div class="layout mb-3">
+                        <label for="{{ field.id_for_label }}" class="label-form mb-2">{{ field.label }}</label>
+                        {{ field|add_class:'form-control my-input-group' }}
                         {% if field.help_text %}
                             <p class="help">{{ field.help_text|safe }}</p>
                         {% endif %}

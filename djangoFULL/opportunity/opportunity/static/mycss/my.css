@@ -1,8 +1,9 @@
 .errorlist {
     color: red;
     font-family: italic;
-    font-size: 18px;
+    font-size: 1em;
     list-style-type: "❌ ";
+    margin: 0.2em 0 0 0 ;
 }
 
 /* .listError {
@@ -12,12 +13,12 @@
     font-size: 17;
 } */
 
-div.form-floating ul {
-    list-style-type: "⚠️ ";
-    color: #C0C0C0	;
+div.layout ul {
+    list-style-type: "☑️ ";
+    color: #c0c0c0;
     font-weight: bold;
     font-size: 17;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .date {
@@ -25,11 +26,11 @@ div.form-floating ul {
 }
 
 div.alerts-mensage ul {
-    font-weight: bolder;;
+    font-weight: bolder;
     color: black;
     font-size: 20px;
     font-family: italic;
-} 
+}
 
 .label-form {
     font-weight: bolder;
@@ -38,4 +39,42 @@ div.alerts-mensage ul {
 
 .teste-container {
     width: 60%;
+}
+
+.teste {
+    color: red;
+    font-size: 16px;
+}
+
+.body-class {
+    background-color: #ecf0f1;
+}
+
+.error {
+    border-bottom: 2px solid red
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: none;
+}
+
+.my-input-group {
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid #99CC32;
+    border-radius: 0;
+    display: block;
+    line-height: 1.2em;
+    font-size: 0.9em;
+    padding: 0;
+    padding-bottom: 2px;
+}
+
+.my-input-group:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.class-rouder {
+    border-radius: 20px;
 }

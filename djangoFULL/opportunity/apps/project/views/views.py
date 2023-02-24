@@ -12,7 +12,7 @@ from project.models import Professor, vagasEmprego
 # View of vagas
 @login_required
 def index(request):
-    vagas = vagasEmprego.objects.all().order_by('-dataCadastro')
+    vagas = vagasEmprego.objects.all().order_by('dataCadastro')
 
     paginator = Paginator(vagas, 3)
     page = request.GET.get('page')
@@ -47,7 +47,8 @@ def create_vaga(request):
     context = {}
     date = datetime.datetime.today().strftime('%Y-%m-%d')
 
-    user = get_object_or_404(Professor, pk=request.user.id)
+    user = get_object_or_404(User, pk=request.user.id)
+
     form = JobForm(request.POST or None, initial={
                    "professor": user, "dataCadastro": date})
 
@@ -57,6 +58,7 @@ def create_vaga(request):
         return redirect('index')
 
     context['form'] = form
+    context['professor'] = user
     context['title'] = "Cadastrar vagas"
 
     return render(request, 'project/forms.html', context)

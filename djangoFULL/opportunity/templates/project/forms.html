@@ -4,17 +4,18 @@
 {% load bootstrap %}
 {% load widget_tweaks %}
 
-<div class="content-section shadow-lg p-3 mb-5 bg-white rounded">
+<div class="content-section p-3 mb-5 mt-2 bg-white class-rouder">
     <section class="container col-8 teste-container">
         <form class="form-teste" method="POST">
             {% csrf_token %}
             <legend class="border-bottom mb-4 ">
                 <h2>Cadastro</h2>
             </legend>
+            {{ form.professor.as_hidden }}
             {% for field in form.visible_fields%}
             <div class="form mb-2">
                 <label class="label-form" for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field|add_class:'form-control' }}
+                {{ field|add_class:'form-control my-input-group' }}
                 {% if field.help_text %}
                 <p class="help">{{ field.help_text|safe }}</p>
                 {% endif %}
