@@ -1,4 +1,6 @@
-from accounts.models import User
+from datetime import date
+
+from accounts.models import User, UserProfile
 from django.db import models
 from django.utils import timezone
 from tinymce.models import HTMLField
@@ -36,6 +38,12 @@ class vagasEmprego(models.Model):
     descricao = HTMLField("Descrição")
     dataFechamento = models.DateField("Data de Fechamento")
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
+    aluno = models.ManyToManyField(
+        UserProfile, blank=True)
+
+    @property
+    def is_closed(self):
+        return date.today() > self.dataFechamento
 
     def __str__(self):
         return self.tituloVaga + ' - ' + str(self.nivel)

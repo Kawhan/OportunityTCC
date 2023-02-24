@@ -8,29 +8,49 @@
 
     <div class="d-flex justify-content-center">
         {% for vaga in  vagas %}
-        {% comment %} <div class="card mt-4 mx-2" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
-            <p class="card-text">{{ vaga.descricao }}</p>
-            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary">Ver informacoes</a>
+        {% if vaga.is_closed %}
+            <div class="card mx-2 mt-3 mb-2" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">{{ vaga.tituloVaga }} CLOSED</h5>
+                <p class="card-title">Número vagas: {{ vaga.numeroVagas }}</p>
+                {% if vaga.nivel == 'B' %}
+                        <p>Nivel: Básico</p>
+                    {% elif vaga.nivel == 'I' %}
+                        <p>Nivel: Intermediário</p>
+                    {% else %}
+                        <p>Nivel: Avançado</p>
+                    {%endif%}
+                <a href="{% url 'view_vaga' vaga.id %}" class="card-link">Informacoes</a>
+                <a href="{% url 'change_vaga' vaga.id %}" class="card-link">Editar</a>
+                <a href="{% url 'delete_vaga' vaga.id %}" class="card-link">Deletar</a>
+                </div>
             </div>
-        </div> {% endcomment %}
-        <div class="card mx-2 mt-3 mb-2" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
-              <p class="card-title">Número vagas: {{ vaga.numeroVagas }}</p>
-              {% if vaga.nivel == 'B' %}
+        {% else %}
+            {% comment %} <div class="card mt-4 mx-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
+                    <p class="card-text">{{ vaga.descricao }}</p>
+                    <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary">Ver informacoes</a>
+                </div>
+            </div> {% endcomment %}
+            <div class="card mx-2 mt-3 mb-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ vaga.tituloVaga }}</h5>
+                    <p class="card-title">Número vagas: {{ vaga.numeroVagas }}</p>
+                    {% if vaga.nivel == 'B' %}
                     <p>Nivel: Básico</p>
-                {% elif vaga.nivel == 'I' %}
+                    {% elif vaga.nivel == 'I' %}
                     <p>Nivel: Intermediário</p>
-                {% else %}
+                    {% else %}
                     <p>Nivel: Avançado</p>
-                {%endif%}
-              <a href="{% url 'view_vaga' vaga.id %}" class="card-link">Informacoes</a>
-              <a href="{% url 'change_vaga' vaga.id %}" class="card-link">Editar</a>
-              <a href="{% url 'delete_vaga' vaga.id %}" class="card-link">Deletar</a>
+                    {%endif%}
+                    <a href="{% url 'view_vaga' vaga.id %}" class="card-link">Informacoes</a>
+                    <a href="{% url 'change_vaga' vaga.id %}" class="card-link">Editar</a>
+                    <a href="{% url 'delete_vaga' vaga.id %}" class="card-link">Deletar</a>
+                    <a href="#" class="card-link">Increver-se</a>
+                </div>
             </div>
-          </div>
+        {% endif%}
         {% endfor %}
     </div>
 

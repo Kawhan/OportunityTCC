@@ -52,7 +52,7 @@ def create_vaga(request):
                    "professor": user, "dataCadastro": date})
 
     if form.is_valid():
-        print('passou')
+        # print('passou')
         form.save()
         return redirect('index')
 
@@ -69,7 +69,6 @@ def change_vaga(request, vaga_id):
         return redirect("index")
 
     nome = request.user
-    date = datetime.datetime.today().strftime('%Y-%m-%d')
 
     context = {}
     job = get_object_or_404(vagasEmprego, pk=vaga_id)

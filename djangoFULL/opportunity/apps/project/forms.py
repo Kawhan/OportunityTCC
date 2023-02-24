@@ -19,4 +19,5 @@ class JobForm(forms.ModelForm):
             'dataFechamento': DateInput(attrs={'placeholder': '%d/%m/%Y'}),
             'dataCadastro':  DateInput(),
             'professor': forms.HiddenInput,
+            'aluno': forms.HiddenInput
         }
