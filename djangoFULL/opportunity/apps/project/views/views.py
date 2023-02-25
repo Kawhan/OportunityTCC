@@ -57,7 +57,7 @@ def create_vaga(request):
     if form.is_valid():
         # print('passou')
         form.save()
-        return redirect('index')
+        return redirect('minhas_vagas')
 
     context['form'] = form
     context['professor'] = user
