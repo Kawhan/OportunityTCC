@@ -142,6 +142,10 @@ a {
     width: 11em;
 }
 
+.color-body {
+    background-color: #dde7f3;
+}
+
 
 @media (min-width: 360px) { 
     .my-card {
