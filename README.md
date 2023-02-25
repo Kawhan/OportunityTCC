@@ -31,7 +31,9 @@ docker-compose up
 - Criação do ambiente virtual:
 ```
 python -m venv 
-venv\Scripts\activate                            //Ativar ambiente virtual (cmd)
+
+venv\Scripts\activate.ps1                        //Ativar ambiente virtual (powershell)
+source venv\Scripts\activate                     //Ativar ambiente virtual (ubuntu)
 python -m pip install --upgrade pip             //Atualizar pip
 pip install -r requirements.txt                //Instalar dependências
 python manage.py migrate                      //Sincronizar database
