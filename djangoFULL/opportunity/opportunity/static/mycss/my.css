@@ -106,3 +106,34 @@ div.alerts-mensage ul {
 a {
     text-decoration: none;
 }
+
+
+.my-card {
+    border-radius: 10px;
+    height: 19em;
+}
+
+.with-css {
+    width: 200px;
+}
+
+.with-css h5 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.badge {
+    padding: 5px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.color-button-close {
+    background: red;
+}
+
+.color-button-green {
+    background: green;;
+}

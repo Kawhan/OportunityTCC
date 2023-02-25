@@ -47,7 +47,9 @@ def create_vaga(request):
     context = {}
     date = datetime.datetime.today().strftime('%Y-%m-%d')
 
-    user = get_object_or_404(User, pk=request.user.id)
+    user = Professor.objects.filter(user=request.user.id).first()
+
+    # print(user)
 
     form = JobForm(request.POST or None, initial={
                    "professor": user, "dataCadastro": date})
@@ -87,7 +89,7 @@ def change_vaga(request, vaga_id):
         # print(form.id)
         form.save()
         messages.success(request, "Vaga de emprego alterado com sucesso!")
-        return redirect('index')
+        return redirect('minhas_vagas')
 
     context["form"] = form
     context["title"] = "Alterar vaga"
@@ -131,6 +133,29 @@ def delete_job(request, vaga_id):
 
     if request.method == "POST":
         job.delete()
-        return redirect('index')
+        return redirect('minhas_vagas')
 
     return render(request, 'project/delete.html', context)
+
+
+@login_required
+def minhas_vagas(request):
+    if not request.user.user_is_teacher:
+        messages.error(request, "Você não pode realizar essa operação!")
+        return redirect("index")
+
+    professor = Professor.objects.filter(user=request.user.id).first()
+
+    vagas = vagasEmprego.objects.all().filter(
+        professor=professor).order_by('dataCadastro')
+
+    paginator = Paginator(vagas, 3)
+    page = request.GET.get('page')
+    vagas_per_page = paginator.get_page(page)
+
+    dados = {}
+
+    dados['vagas'] = vagas_per_page
+    dados['title'] = "Minhas oportunidades"
+
+    return render(request, 'project/dashboard.html', dados)

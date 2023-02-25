@@ -11,7 +11,7 @@
             <legend class="border-bottom mb-4 ">
                 <h2>Cadastro</h2>
             </legend>
-            {{ form.professor.as_hidden }}
+            {{ form.professor }}
             {% for field in form.visible_fields%}
             <div class="form mb-2">
                 <label class="label-form" for="{{ field.id_for_label }}">{{ field.label }}</label>
