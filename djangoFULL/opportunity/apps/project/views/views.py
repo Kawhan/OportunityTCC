@@ -14,7 +14,7 @@ from project.models import Professor, vagasEmprego
 def index(request):
     vagas = vagasEmprego.objects.all().order_by('dataCadastro')
 
-    paginator = Paginator(vagas, 3)
+    paginator = Paginator(vagas, 6)
     page = request.GET.get('page')
     vagas_per_page = paginator.get_page(page)
 
@@ -149,7 +149,7 @@ def minhas_vagas(request):
     vagas = vagasEmprego.objects.all().filter(
         professor=professor).order_by('dataCadastro')
 
-    paginator = Paginator(vagas, 3)
+    paginator = Paginator(vagas, 6)
     page = request.GET.get('page')
     vagas_per_page = paginator.get_page(page)
 

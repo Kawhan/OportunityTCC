@@ -137,3 +137,63 @@ a {
 .color-button-green {
     background: green;;
 }
+
+.button-width {
+    width: 11em;
+}
+
+
+@media (min-width: 360px) { 
+    .my-card {
+        width: 15em;
+    }
+
+    .my-margin-card {
+        margin-left: 10%;
+    }
+
+    .button-width {
+        width: 17em;
+    }
+
+    .my-dash-button {
+        width: 9em;
+    }
+}
+
+@media (min-width: 577px) { 
+    .button-width {
+        width: 14em;
+    }  
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (min-width: 767.98px) { 
+    .button-width {
+        width: 11em;
+    }  
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (min-width: 991.98px) { 
+    .button-width {
+        width: 7em;
+    } 
+}
+
+@media (min-width: 1189px) {
+    .button-width {
+        width: 7.4em;
+    }    
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (min-width: 1199.98px) { 
+    .button-width {
+        width: 11em;
+    }
+
+    .my-dash-button {
+        width: 8em;
+    }
+}

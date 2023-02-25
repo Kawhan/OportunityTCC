@@ -166,9 +166,13 @@ def login(request):
 
             if user == None:
                 messages.error(
-                    request, 'Usuário não ativado! Verifique seu email.')
+                    request, 'Cedenciais invalidas.')
                 return redirect('login')
 
+            if not user.is_active:
+                messages.error(
+                    request, 'Confirme seu e-mail para continuar.')
+                return redirect('login')
             if user is not None:
                 auth.login(request, user)
                 dados = {}
