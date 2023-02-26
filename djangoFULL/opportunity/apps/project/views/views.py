@@ -44,6 +44,7 @@ def view_vaga(request, vaga_id):
     dados = {}
 
     dados['vaga'] = vaga
+    dados['title'] = 'Visualizar vaga'
 
     return render(request, 'project/view_vaga.html', dados)
 
@@ -134,7 +135,7 @@ def delete_job(request, vaga_id):
 
     context = {}
     job = get_object_or_404(vagasEmprego, pk=vaga_id)
-    context['title'] = 'deletar vaga'
+    context['title'] = 'Deletar vaga'
     context['vaga'] = job
 
     if job.professor.user != nome:
