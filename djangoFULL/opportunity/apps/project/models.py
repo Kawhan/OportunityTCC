@@ -26,6 +26,11 @@ class vagasEmprego(models.Model):
         ('A', 'Avançado')
     )
 
+    disponivel = (
+        ('S', 'Sim'),
+        ('N', 'Não')
+    )
+
     numeroVagas = models.IntegerField("Número de vagas")
     nivel = models.CharField(
         max_length=1, choices=nivel)
@@ -40,6 +45,7 @@ class vagasEmprego(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
     aluno = models.ManyToManyField(
         UserProfile, blank=True)
+    disponivel = models.CharField(max_length=1, choices=disponivel)
 
     @property
     def is_closed(self):

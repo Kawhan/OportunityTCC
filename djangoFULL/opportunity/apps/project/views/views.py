@@ -12,7 +12,8 @@ from project.models import Professor, vagasEmprego
 # View of vagas
 @login_required
 def index(request):
-    vagas = vagasEmprego.objects.all().order_by('dataCadastro')
+    vagas = vagasEmprego.objects.all().filter(
+        disponivel='S').order_by('-dataFechamento')
 
     user = request.user
     user_info = None
@@ -111,7 +112,8 @@ def change_vaga(request, vaga_id):
 @login_required
 def search(request):
     # print('teste')
-    vagas = vagasEmprego.objects.all().order_by('-dataCadastro')
+    vagas = vagasEmprego.objects.all().filter(
+        disponivel='S').order_by('-dataFechamento')
 
     if 'search' in request.GET:
         search_name = request.GET['search']
@@ -158,7 +160,7 @@ def minhas_vagas(request):
     professor = Professor.objects.filter(user=request.user.id).first()
 
     vagas = vagasEmprego.objects.all().filter(
-        professor=professor).order_by('dataCadastro')
+        professor=professor).order_by('-dataFechamento')
 
     paginator = Paginator(vagas, 6)
     page = request.GET.get('page')
