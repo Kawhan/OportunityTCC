@@ -181,7 +181,7 @@ a {
 /* Medium devices (tablets, less than 992px) */
 @media (min-width: 991.98px) { 
     .button-width {
-        width: 7em;
+        width: 8em;
     } 
 }
 
@@ -198,6 +198,6 @@ a {
     }
 
     .my-dash-button {
-        width: 8em;
+        width: 9em;
     }
 }

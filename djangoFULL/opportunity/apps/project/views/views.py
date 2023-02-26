@@ -1,6 +1,6 @@
 import datetime
 
-from accounts.models import User
+from accounts.models import User, UserProfile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -14,6 +14,14 @@ from project.models import Professor, vagasEmprego
 def index(request):
     vagas = vagasEmprego.objects.all().order_by('dataCadastro')
 
+    user = request.user
+    user_info = None
+
+    if user.user_is_teacher:
+        user_info = Professor.objects.filter(user=request.user.id).first()
+    else:
+        user_info = get_object_or_404(UserProfile, user=user)
+
     paginator = Paginator(vagas, 6)
     page = request.GET.get('page')
     vagas_per_page = paginator.get_page(page)
@@ -22,6 +30,8 @@ def index(request):
 
     dados['vagas'] = vagas_per_page
     dados['title'] = "Home"
+    dados['user'] = user
+    dados['user_info'] = user_info
 
     return render(request, 'project/index.html', dados)
 
@@ -159,3 +169,64 @@ def minhas_vagas(request):
     dados['title'] = "Minhas oportunidades"
 
     return render(request, 'project/dashboard.html', dados)
+
+
+def inscrever_aluno(request, vaga_id):
+    if request.user.user_is_teacher:
+        messages.error(
+            request, "Você não pode realizar essa operação! Por ser professor")
+        return redirect("index")
+
+    user = request.user.id
+
+    aluno = get_object_or_404(UserProfile, user=user)
+
+    if aluno == None:
+        messages.error(request, "Erro você não é aluno")
+        return redirect("index")
+
+    if vagasEmprego.objects.filter(aluno=aluno).exists():
+        messages.error(request, "Você já está inscrito nessa vaga")
+        return redirect("index")
+
+    job = get_object_or_404(vagasEmprego, pk=vaga_id)
+
+    if job == None:
+        messages.error(request, "Vaga não existe!")
+        return redirect("index")
+
+    job.aluno.add(aluno)
+
+    messages.success(request, "Inscrição concluida com sucesso!")
+    return redirect('index')
+
+
+def desinscrever_aluno(request, vaga_id):
+    if request.user.user_is_teacher:
+        messages.error(
+            request, "Você não pode realizar essa operação! Por ser professor")
+        return redirect("index")
+
+    user = request.user.id
+
+    aluno = get_object_or_404(UserProfile, user=user)
+
+    if aluno == None:
+        messages.error(request, "Erro você não é aluno")
+        return redirect("index")
+
+    if vagasEmprego.objects.filter(aluno=aluno).exists():
+        job = get_object_or_404(vagasEmprego, pk=vaga_id)
+
+        if job == None:
+            messages.error(request, "Vaga não existe!")
+            return redirect("index")
+
+        job.aluno.remove(aluno)
+
+        messages.success(request, "Operação concluida!")
+
+        return redirect("index")
+
+    messages.error(request, "Você não está inscrito nessa vaga!")
+    return redirect('index')
