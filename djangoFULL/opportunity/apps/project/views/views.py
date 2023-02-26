@@ -121,7 +121,8 @@ def search(request):
             vagas = vagas.filter(tituloVaga__icontains=search_name)
 
     dados = {
-        'vagas': vagas
+        'vagas': vagas,
+        'title': 'Filtrar vagas'
     }
 
     return render(request, 'project/search.html', dados)
