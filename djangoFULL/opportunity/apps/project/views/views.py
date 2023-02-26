@@ -171,7 +171,10 @@ def minhas_vagas(request):
     return render(request, 'project/dashboard.html', dados)
 
 
+@login_required
 def inscrever_aluno(request, vaga_id):
+    data_hoje = datetime.datetime.today().date()
+
     if request.user.user_is_teacher:
         messages.error(
             request, "Você não pode realizar essa operação! Por ser professor")
@@ -195,12 +198,17 @@ def inscrever_aluno(request, vaga_id):
         messages.error(request, "Vaga não existe!")
         return redirect("index")
 
+    if data_hoje > job.dataFechamento:
+        messages.error(request, "Vaga não está aberta!")
+        return redirect("index")
+
     job.aluno.add(aluno)
 
     messages.success(request, "Inscrição concluida com sucesso!")
     return redirect('index')
 
 
+@login_required
 def desinscrever_aluno(request, vaga_id):
     if request.user.user_is_teacher:
         messages.error(
