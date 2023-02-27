@@ -1,3 +1,8 @@
+header li  {
+    color: white;
+}
+
+
 .errorlist {
     color: red;
     font-family: italic;

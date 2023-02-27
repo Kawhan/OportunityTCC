@@ -1,4 +1,86 @@
-<div class="">
+<header class="p-3 mb-3 border-bottom bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        {% if user.is_authenticated %}
+        {% if user.user_is_teacher %}
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'index' %}" class="nav-link px-2 link-light">Home</a></li>
+            <li><a href="{% url 'form' %}" class="nav-link px-2 link-light">Adicionar vagas</a></li>
+            <li><a href="{% url 'minhas_vagas' %}" class="nav-link px-2 link-light">Minhas vagas</a></li>
+          </ul>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search' %}" method="GET">
+            <input type="search" class="form-control" placeholder="Procurar vagas" name="search" aria-label="Search">
+          </form>
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle text-primary" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user text-primary"></i>
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+          </ul>
+        </div>
+        {% else %}
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'index' %}" class="nav-link px-2 link-light">Home</a></li>
+          </ul>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search' %}" method="GET">
+            <input type="search" class="form-control" placeholder="Procurar vagas" name="search" aria-label="Search">
+          </form>
+        <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle text-primary" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user text-primary"></i>
+            </a>
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+            </ul>
+          </div>
+        {% endif %}
+        {% else %}
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'login' %}" class="nav-link px-2 link-light">login</a></li>
+            <li><a href="{% url 'cadastro' %}" class="nav-link px-2 link-light">Register</a></li>
+          </ul>
+        {% endif %}
+
+        
+      </div>
+    </div>
+  </header>
+
+
+  {% comment %} <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+    <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+    <li><a href="#" class="nav-link px-2 link-light">Vagas</a></li>
+    <li><a href="#" class="nav-link px-2 link-light">Minhas vagas</a></li>
+    <li><a href="#" class="nav-link px-2 link-light">Products</a></li>
+  </ul>
+  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+  </form>
+
+  <div class="dropdown text-end">
+    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle text-primary" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fas fa-user text-primary"></i>
+    </a>
+    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+      <li><a class="dropdown-item" href="#">New project...</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Sign out</a></li>
+    </ul>
+  </div> {% endcomment %}
+
+
+  {% comment %} <div class="">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">Home</a>
@@ -27,4 +109,4 @@
             </div>
         </div>
     </nav>
-</div>
+</div> {% endcomment %}
