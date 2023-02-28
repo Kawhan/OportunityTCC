@@ -8,7 +8,17 @@
         {% if user.is_authenticated %}
         {% if user.user_is_teacher %}
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="{% url 'index' %}" class="nav-link px-2 link-light">Home</a></li>
+            {% comment %} <li><a href="{% url 'index' %}" class="nav-link px-2 link-light">Home</a></li> {% endcomment %}
+            <li class="nav-item dropdown">
+              <a class="nav-link link-light px-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Vagas
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Projetos de pesquisa</a></li>
+                <li><a class="dropdown-item" href="#">Projetos de extensão</a></li>
+                <li><a class="dropdown-item" href="#">Estágios</a></li>
+              </ul>
+            </li>
             <li><a href="{% url 'form' %}" class="nav-link px-2 link-light">Adicionar vagas</a></li>
             <li><a href="{% url 'minhas_vagas' %}" class="nav-link px-2 link-light">Minhas vagas</a></li>
           </ul>

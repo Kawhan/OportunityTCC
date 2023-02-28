@@ -5,56 +5,64 @@
 
 
 
-
 <div class="container">
     <div class="row"></div>
     <div class="row">
         {% for vaga in vagas %}
         <div class="col-12 col-md-4 mb-2">
             <div class="card card mx-auto border-0 bg-light rounded shadow mt-4 mb-2">
-                <div class="card-body p-3">
+                <div class="card-body my-card-2 p-3">
                     {% if vaga.is_closed %}
-                    <span class="badge rounded-pill float-md-end mb-3 mb-sm-0 color-button-close">Fechada</span>
-                    {% else %}
-                    <span class="badge rounded-pill float-md-end mb-3 mb-sm-0 color-button-green">Aberta</span>
-                    {% endif %}
-                    <div class="with-css">
-                        <h5 class="card-title">{{ vaga.tituloVaga}}</h5>
+                    <div class="hearth">
+                        {% if user.user_is_teacher %}
+                        <button class="my-button-hearth disabled"><i class="fa-solid fa-heart white"></i></button>
+                        {% else %}
+                        {% for aluno in vaga.aluno.all %}
+                        {% if user_info == aluno %}
+                            <a href="{% url 'retirar_inscricao' vaga.id %}" class="my-button-hearth"><i class="fa-solid fa-heart red-color"></i></a>
+                        {% endif %}
+                        {% empty %}
+                            <a href="{% url 'inscrever_aluno' vaga.id %}" class="my-button-hearth"><i class="fa-regular fa-heart white"></i></a>
+                        {% endfor %}
+                        {% endif %}
+                        <span class="badge rounded-pill float-md-end mb-3 mb-sm-0 color-button-close">Fechada</span>
                     </div>
+                    {% else %}
+                    <div class="hearth">
+                        {% if user.user_is_teacher %}
+                            <button class="my-button-hearth disabled"><i class="fa-solid fa-heart white"></i></button>
+                        {% else %}
+                        {% for aluno in vaga.aluno.all %}
+                        {% if user_info == aluno %}
+                            <a href="{% url 'retirar_inscricao' vaga.id %}" class="my-button-hearth"><i class="fa-solid fa-heart red-color"></i></a>
+                        {% endif %}
+                        {% empty %}
+                            <a href="{% url 'inscrever_aluno' vaga.id %}" class="my-button-hearth"><i class="fa-regular fa-heart white"></i></a>
+                        {% endfor %}
+                        {% endif %}
+                        <span class="badge rounded-pill float-md-end mb-3 mb-sm-0 color-button-green">Aberta</span>
+                    </div>
+                    {% endif %}
                     <div class="mt-3">
-                        <span><strong>Número de Vagas: </strong>{{ vaga.numeroVagas }}</span>
-                        <span class="d-block"><strong>Professor: </strong>{{ vaga.professor }}</span>
+                        <h5 class="my-card-title">{{ vaga.tituloVaga}}</h5>
+                        <div class="my-content">
+                            <span>Número de Vagas <span class="text-aside">{{ vaga.numeroVagas }}</span></span>
+                            <span class="">Professor <span class="text-aside">{{ vaga.professor }}</span></span>
+                            {% if vaga.tipo_vaga == "PP" %}
+                                <span class="">Tipo vaga <span class="text-aside">Projeto de Pesquisa</span></span>
+                            {% elif vaga.tipo_vaga == "PP" %}
+                            <span>Tipo vaga <span class="text-aside">Projeto de Pesquisa</span></span>
+                            {% else %}
+                            <span>Tipo vaga <span class="text-aside">Estágio</span></span>
+                            {% endif %}
+                            <span>Empresa<span class="text-aside">{{ vaga.nome_empresa }}</span></span>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
-                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary button-width">Visualizar</a>
+                    <div class="row div-center">
+                        <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6 div-center-content">
+                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary">Descrição da vaga</a>
                         </div>
-                        {% if vaga.is_closed %}
-                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
-                                <a href="{% url 'inscrever_aluno' vaga.id %}"
-                                    class="btn btn-primary button-width disabled ">inscrever-se</a>
-                            </div>
-                        {% elif user.user_is_teacher %}
-                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
-                                <a href="{% url 'inscrever_aluno' vaga.id %}"
-                                    class="btn btn-primary button-width disabled ">inscrever-se</a>
-                            </div>
-                        {% else %}
-                            {% for aluno in vaga.aluno.all %}
-                            {% if user_info == aluno %}
-                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
-                                <a href="{% url 'retirar_inscricao' vaga.id %}"
-                                    class="btn btn-danger button-width ">Desinscrever</a>
-                            </div>
-                            {% endif %}
-                            {% empty %}
-                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
-                                <a href="{% url 'inscrever_aluno' vaga.id %}"
-                                    class="btn btn-primary button-width ">inscrever-se</a>
-                            </div>
-                            {% endfor %}
-                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -63,6 +71,7 @@
     </div>
 </div>
 </div>
+
 
 
 {% endblock %}

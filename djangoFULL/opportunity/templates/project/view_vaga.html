@@ -5,22 +5,30 @@
 
     <div class="container mt-3">
         <section>
-            <img src="" alt="">
-            <h2>Titulo Vaga: {{ vaga.tituloVaga }}</h2>
-            <h2>tipo vaga: {{  vaga.tipoVaga }}</h2>
-            <h6>Data de cadastro: {{ vaga.dataCadastro }}</h6>
-            <h6>Data de fechamento: {{ vaga.dataFechamento }}</h6>
-            <h6>Horas seamana: {{ vaga.horasSemana }}</h6>
-            <h6>Número vagas: {{ vaga.numeroVagas }}</h6>
-            <h6>valor Salario: R$ {{ vaga.valorSalario }}</h6>
-            <h6>Professor: {{ vaga.professor.nomeProfessor }}</h6>
-            {% if vaga.nivel == 'B' %}
-                <h6>Nivel: Básico</h6>
-            {% elif vaga.nivel == 'I' %}
-                <h6>Nivel: Intermediário</h6>
-            {% else %}
-                <h6>Nivel: Avançado</h6>
-            {%endif%}
+            <h1 class="title">{{ vaga.tituloVaga }}</h1>
+            <div class="my-info-div">
+                {% if vaga.tipo_vaga == "PP" %}
+                <h5><span>Tipo vaga:</span> Projeto de Pesquisa</h5>
+                {% elif vaga.tipo_vaga == "PE" %}
+                <h5><span>Tipo vaga:</span>Projeto de Extensão</h5>
+                {% else %}
+                <h5><span>Tipo vaga: </span>Estágio</h5>
+                {% endif %}
+                <h5><span>Data de cadastro: </span>{{ vaga.dataCadastro }}</h5>
+                <h5><span>Data de fechamento: </span> {{ vaga.dataFechamento }}</h5>
+                <h5><span>Horas seamana:</span>  {{ vaga.horasSemana }}</h5>
+                <h5>Número vagas: {{ vaga.numeroVagas }}</h5>
+                <h5>valor Salario: R$ {{ vaga.valorSalario }}</h5>
+                <h5>Professor: {{ vaga.professor.nomeProfessor }}</h5>
+                {% if vaga.nivel == 'B' %}
+                    <h5>Nivel: Básico</h5>
+                {% elif vaga.nivel == 'I' %}
+                    <h5>Nivel: Intermediário</h5>
+                {% else %}
+                    <h5>Nivel: Avançado</h5>
+                {%endif%}
+            </div>
+            
            
             
             <div class="col-lg-9 col-md-12 col-sm-12" class="with-css">

@@ -31,6 +31,12 @@ class vagasEmprego(models.Model):
         ('N', 'Não')
     )
 
+    tipo_vaga = {
+        ('PP', 'Projeto de Pesquisa'),
+        ('PE', 'Projeto de extensão'),
+        ('ES', 'Estágio'),
+    }
+
     numeroVagas = models.IntegerField("Número de vagas")
     nivel = models.CharField(
         max_length=1, choices=nivel)
@@ -46,6 +52,9 @@ class vagasEmprego(models.Model):
     aluno = models.ManyToManyField(
         UserProfile, blank=True)
     disponivel = models.CharField(max_length=1, choices=disponivel)
+    tipo_vaga = models.CharField(max_length=2, choices=tipo_vaga)
+    nome_empresa = models.CharField(
+        "Nome empresa ou nome projeto", max_length=255)
 
     @property
     def is_closed(self):

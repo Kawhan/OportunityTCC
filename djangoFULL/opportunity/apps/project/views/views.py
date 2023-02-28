@@ -111,9 +111,18 @@ def change_vaga(request, vaga_id):
 
 @login_required
 def search(request):
+
     # print('teste')
     vagas = vagasEmprego.objects.all().filter(
         disponivel='S').order_by('-dataFechamento')
+
+    user = request.user
+    user_info = None
+
+    if user.user_is_teacher:
+        user_info = Professor.objects.filter(user=request.user.id).first()
+    else:
+        user_info = get_object_or_404(UserProfile, user=user)
 
     if 'search' in request.GET:
         search_name = request.GET['search']
@@ -122,7 +131,9 @@ def search(request):
 
     dados = {
         'vagas': vagas,
-        'title': 'Filtrar vagas'
+        'title': 'Filtrar vagas',
+        'user': user,
+        'user_info': user_info
     }
 
     return render(request, 'project/search.html', dados)
@@ -187,11 +198,13 @@ def inscrever_aluno(request, vaga_id):
     user = request.user.id
 
     aluno = get_object_or_404(UserProfile, user=user)
+    print(aluno)
 
     if aluno == None:
         messages.error(request, "Erro você não é aluno")
         return redirect("index")
 
+    print(vagasEmprego.objects.filter(aluno=aluno))
     if vagasEmprego.objects.filter(aluno=aluno).exists():
         messages.error(request, "Você já está inscrito nessa vaga")
         return redirect("index")
@@ -208,7 +221,7 @@ def inscrever_aluno(request, vaga_id):
 
     job.aluno.add(aluno)
 
-    messages.success(request, "Inscrição concluida com sucesso!")
+    messages.success(request, "interesse registrado com sucesso!")
     return redirect('index')
 
 
@@ -236,9 +249,9 @@ def desinscrever_aluno(request, vaga_id):
 
         job.aluno.remove(aluno)
 
-        messages.success(request, "Operação concluida!")
+        messages.success(request, "Seu interesse foi removido com sucesso!")
 
         return redirect("index")
 
-    messages.error(request, "Você não está inscrito nessa vaga!")
+    messages.error(request, "Você não possui interesse nessa vaga!")
     return redirect('index')

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
 header li  {
     color: white;
 }
@@ -25,6 +28,87 @@ div.layout ul {
     font-size: 17;
     /* font-style: italic; */
 }
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+.my-info-div {
+    margin-top: 2em;
+
+    font-family: 'Roboto';
+    
+}
+
+
+.my-info-div span {
+    font-weight: bold;
+}
+
+.red-color {
+    color:red;
+    font-size: 1.6em;
+}
+
+.white {
+    font-size: 1.6em;
+}
+
+.my-button-hearth {
+    background-color: #f8f9fa;
+    height: 29px;
+    border: none;
+}
+
+.div-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.div-center-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hearth {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-card-title {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.my-content {
+    padding: 2em;
+}
+
+.my-content span{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14.3px;
+}
+
+span .text-aside {
+    font-size: 15px;
+    font-family: 'Roboto';
+    font-weight: 700;
+}
+
+
 
 .date {
     padding: 10px;
@@ -181,28 +265,44 @@ a {
     .button-width {
         width: 11em;
     }  
-}
 
+    *, ::after, ::before {
+        box-sizing: unset;
+    }
+}
 /* Medium devices (tablets, less than 992px) */
 @media (min-width: 991.98px) { 
     .button-width {
         width: 8em;
     } 
+
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
 }
 
 @media (min-width: 1189px) {
     .button-width {
         width: 7.4em;
     }    
+
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
 }
 
 /* Large devices (desktops, less than 1200px) */
 @media (min-width: 1199.98px) { 
     .button-width {
-        width: 11em;
+        width: 9em;
+        padding: 6px;
     }
 
     .my-dash-button {
         width: 9em;
+    }
+
+    *, ::after, ::before {
+        box-sizing: border-box;
     }
 }
