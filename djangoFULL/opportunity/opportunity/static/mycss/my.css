@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 
-header li  {
-    color: white;
-}
-
-
 .errorlist {
     color: red;
     font-family: italic;
@@ -14,12 +9,6 @@ header li  {
     margin: 0.2em 0 0 0;
 }
 
-/* .listError {
-    list-style-type: "⚠️ ";
-    color: cadetblue;
-    font-weight: bold;
-    font-size: 17;
-} */
 
 div.layout ul {
     list-style-type: "☑️ ";
@@ -44,6 +33,18 @@ div.layout ul {
     
 }
 
+.rouded-button {
+    border-radius: 35px;
+    font-weight: bolder;
+    color: black;
+}
+
+.rouded-button:hover {
+    transition: 0.2s;
+    background-color: #e9d700;
+    border: #e9d700;
+    color: black;
+}
 
 .my-info-div span {
     font-weight: bold;
@@ -92,20 +93,22 @@ div.layout ul {
 }
 
 .my-content {
-    padding: 2em;
+    padding: 1em;
+    
 }
 
 .my-content span{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14.3px;
+    font-size: 14px;
 }
 
 span .text-aside {
-    font-size: 15px;
+    font-size: 13px;
     font-family: 'Roboto';
-    font-weight: 700;
+    font-weight: bold;
+    border-bottom: 3px solid #99cc32;
 }
 
 
@@ -130,10 +133,6 @@ div.alerts-mensage ul {
     width: 60%;
 }
 
-.teste {
-    color: red;
-    font-size: 16px;
-}
 
 .body-class {
     background-color: #ecf0f1;
@@ -266,8 +265,10 @@ a {
         width: 11em;
     }  
 
-    *, ::after, ::before {
-        box-sizing: unset;
+
+    .my-card-div {
+        height: 20em;
+        width: 18em;
     }
 }
 /* Medium devices (tablets, less than 992px) */
@@ -304,5 +305,10 @@ a {
 
     *, ::after, ::before {
         box-sizing: border-box;
+    }
+
+    .my-card-div {
+        width: 22em;
+        height: 21em;
     }
 }
