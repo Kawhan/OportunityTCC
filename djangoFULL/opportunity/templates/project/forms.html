@@ -12,6 +12,9 @@
                 <h2>Cadastro</h2>
             </legend>
             {{ form.professor }}
+            {% for aluno in form.aluno %}
+                {{ form.aluno }}
+            {% endfor %}
             {% for field in form.visible_fields%}
             <div class="form mb-2">
                 <label class="label-form" for="{{ field.id_for_label }}">{{ field.label }}</label>

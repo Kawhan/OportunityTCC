@@ -18,6 +18,8 @@ def index(request):
     user = request.user
     user_info = None
 
+    aluno = get_object_or_404(UserProfile, user=user)
+
     if user.user_is_teacher:
         user_info = Professor.objects.filter(user=request.user.id).first()
     else:
@@ -99,6 +101,7 @@ def change_vaga(request, vaga_id):
 
     if form.is_valid():
         # print(form.id)
+
         form.save()
         messages.success(request, "Vaga de emprego alterado com sucesso!")
         return redirect('minhas_vagas')
@@ -198,18 +201,16 @@ def inscrever_aluno(request, vaga_id):
     user = request.user.id
 
     aluno = get_object_or_404(UserProfile, user=user)
-    print(aluno)
 
     if aluno == None:
         messages.error(request, "Erro você não é aluno")
         return redirect("index")
 
-    print(vagasEmprego.objects.filter(aluno=aluno))
-    if vagasEmprego.objects.filter(aluno=aluno).exists():
+    job = get_object_or_404(vagasEmprego, pk=vaga_id)
+
+    if aluno in job.aluno.all():
         messages.error(request, "Você já está inscrito nessa vaga")
         return redirect("index")
-
-    job = get_object_or_404(vagasEmprego, pk=vaga_id)
 
     if job == None:
         messages.error(request, "Vaga não existe!")
@@ -240,7 +241,15 @@ def desinscrever_aluno(request, vaga_id):
         messages.error(request, "Erro você não é aluno")
         return redirect("index")
 
-    if vagasEmprego.objects.filter(aluno=aluno).exists():
+    job = get_object_or_404(vagasEmprego, pk=vaga_id)
+
+    data_hoje = datetime.datetime.today().date()
+
+    if data_hoje > job.dataFechamento:
+        messages.error(request, "Vaga não está aberta!")
+        return redirect("index")
+
+    if aluno in job.aluno.all():
         job = get_object_or_404(vagasEmprego, pk=vaga_id)
 
         if job == None:
@@ -248,6 +257,8 @@ def desinscrever_aluno(request, vaga_id):
             return redirect("index")
 
         job.aluno.remove(aluno)
+
+        job.save()
 
         messages.success(request, "Seu interesse foi removido com sucesso!")
 
