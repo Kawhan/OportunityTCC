@@ -12,7 +12,7 @@ O sistema ganhou uma versõa com django full stack template que tem as mesmas fu
 
 
 The system gained a version with django full stack template that has the same functionality as the API using django rest_framework, however, adding functionality in HTML and CSS3 to produce something visual or front-end, the web page was built using boostrap, html 5, CSS3 and JS along with django template functionality. The objective of this part of the project was to show what a first MVP would be using web design and responsiveness techniques, bringing an aspect of simplicity to the product, also aiming to reach the maximum possible number of students and professors of CAMPUS IV.
- 
+
 ---
 
 ## 📌 Funcionalidades

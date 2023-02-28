@@ -18,6 +18,6 @@ class JobForm(forms.ModelForm):
         widgets = {
             'dataFechamento': DateInput(attrs={'placeholder': '%d/%m/%Y'}),
             'dataCadastro':  DateInput(),
-            'aluno': forms.HiddenInput,
+            'aluno': forms.MultipleHiddenInput,
             'professor': forms.HiddenInput
         }
