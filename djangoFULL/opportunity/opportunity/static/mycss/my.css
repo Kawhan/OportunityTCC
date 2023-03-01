@@ -33,19 +33,6 @@ div.layout ul {
     
 }
 
-.rouded-button {
-    border-radius: 35px;
-    font-weight: bolder;
-    color: black;
-}
-
-.rouded-button:hover {
-    transition: 0.2s;
-    background-color: #e9d700;
-    border: #e9d700;
-    color: black;
-}
-
 .my-info-div span {
     font-weight: bold;
 }
@@ -61,9 +48,10 @@ div.layout ul {
 
 .my-button-hearth {
     background-color: #f8f9fa;
-    height: 29px;
+    height: 24px;
     border: none;
 }
+
 
 .div-center {
     display: flex;
@@ -73,10 +61,11 @@ div.layout ul {
     padding: 0;
 }
 
-.div-center-content{
+.div-center-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .hearth {
@@ -105,10 +94,9 @@ div.layout ul {
 }
 
 span .text-aside {
-    font-size: 13px;
+    font-size: 14px;
     font-family: 'Roboto';
     font-weight: bold;
-    border-bottom: 3px solid #99cc32;
 }
 
 
@@ -219,11 +207,20 @@ a {
 }
 
 .color-button-close {
-    background: red;
+    background: #f7c7c7;
+    color: #3a0202;
 }
 
 .color-button-green {
-    background: green;;
+    background: #bee1be;
+    color: #235923;
+    vertical-align: middle;
+}
+
+
+.rouded-button {
+    border-radius: 9px;
+    width: 18em;
 }
 
 .button-width {
@@ -309,6 +306,6 @@ a {
 
     .my-card-div {
         width: 22em;
-        height: 21em;
+        height: 19em;
     }
 }

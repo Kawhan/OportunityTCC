@@ -9,8 +9,8 @@
     <div class="row"></div>
     <div class="row">
         {% for vaga in vagas %}
-        <div class="col-12 col-md-4 mb-2">
-            <div class="card card mx-auto border-0 bg-light rounded shadow mt-4 mb-2">
+        <div class="col-12 col-md-6 col-lg-4 col-sm-8 mb-2">
+            <div class="card card mx-auto border-0 bg-light rounded shadow-sm mt-4 mb-2 my-card-div ">
                 <div class="card-body my-card-2 p-3">
                     {% if vaga.is_closed %}
                     <div class="hearth">
@@ -46,21 +46,26 @@
                     <div class="mt-3">
                         <h5 class="my-card-title">{{ vaga.tituloVaga}}</h5>
                         <div class="my-content">
-                            <span>Número de Vagas <span class="text-aside">{{ vaga.numeroVagas }}</span></span>
+                            <span>Número de Vagas: <span class="text-aside">{{ vaga.numeroVagas }}</span></span>
                             {% if vaga.tipo_vaga == "PP" %}
-                                <span class="">Tipo vaga <span class="text-aside">Projeto de Pesquisa</span></span>
+                                <span class="">Tipo vaga: <span class="text-aside">Projeto de Pesquisa</span></span>
                             {% elif vaga.tipo_vaga == "PP" %}
-                            <span>Tipo vaga <span class="text-aside">Projeto de Pesquisa</span></span>
+                            <span>Tipo vaga: <span class="text-aside">Projeto de Pesquisa</span></span>
                             {% else %}
-                            <span>Tipo vaga <span class="text-aside">Estágio</span></span>
+                            <span>Tipo vaga: <span class="text-aside">Estágio</span></span>
                             {% endif %}
-                            <span>Empresa<span class="text-aside">{{ vaga.nome_empresa }}</span></span>
+                            <span>Empresa/projeto:<span class="text-aside">{{ vaga.nome_empresa }}</span></span>
+                            {% if vaga.is_closed %}
+                            <span>Link inscrição:<a class="text-aside color-red" ></a></span>
+                            {% else %}
+                            <span>Link inscrição:<a class="text-aside" href="{{ vaga.link_vaga }}">Aqui <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
+                            {% endif %}
                         </div>
                     </div>
 
                     <div class="row div-center">
                         <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6 div-center-content">
-                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary">Descrição da vaga</a>
+                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary rouded-button">Descrição da Vaga</a>
                         </div>
                     </div>
                 </div>
@@ -70,6 +75,7 @@
     </div>
 </div>
 </div>
+
 
 
 
