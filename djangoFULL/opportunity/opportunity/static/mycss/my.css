@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 
-header li  {
-    color: white;
-}
-
-
 .errorlist {
     color: red;
     font-family: italic;
@@ -14,12 +9,6 @@ header li  {
     margin: 0.2em 0 0 0;
 }
 
-/* .listError {
-    list-style-type: "⚠️ ";
-    color: cadetblue;
-    font-weight: bold;
-    font-size: 17;
-} */
 
 div.layout ul {
     list-style-type: "☑️ ";
@@ -44,7 +33,6 @@ div.layout ul {
     
 }
 
-
 .my-info-div span {
     font-weight: bold;
 }
@@ -60,9 +48,10 @@ div.layout ul {
 
 .my-button-hearth {
     background-color: #f8f9fa;
-    height: 29px;
+    height: 24px;
     border: none;
 }
+
 
 .div-center {
     display: flex;
@@ -72,10 +61,11 @@ div.layout ul {
     padding: 0;
 }
 
-.div-center-content{
+.div-center-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .hearth {
@@ -92,20 +82,21 @@ div.layout ul {
 }
 
 .my-content {
-    padding: 2em;
+    padding: 1em;
+    
 }
 
 .my-content span{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14.3px;
+    font-size: 14px;
 }
 
 span .text-aside {
-    font-size: 15px;
+    font-size: 14px;
     font-family: 'Roboto';
-    font-weight: 700;
+    font-weight: bold;
 }
 
 
@@ -130,10 +121,6 @@ div.alerts-mensage ul {
     width: 60%;
 }
 
-.teste {
-    color: red;
-    font-size: 16px;
-}
 
 .body-class {
     background-color: #ecf0f1;
@@ -220,11 +207,20 @@ a {
 }
 
 .color-button-close {
-    background: red;
+    background: #f7c7c7;
+    color: #3a0202;
 }
 
 .color-button-green {
-    background: green;;
+    background: #bee1be;
+    color: #235923;
+    vertical-align: middle;
+}
+
+
+.rouded-button {
+    border-radius: 9px;
+    width: 18em;
 }
 
 .button-width {
@@ -266,8 +262,10 @@ a {
         width: 11em;
     }  
 
-    *, ::after, ::before {
-        box-sizing: unset;
+
+    .my-card-div {
+        height: 20em;
+        width: 18em;
     }
 }
 /* Medium devices (tablets, less than 992px) */
@@ -304,5 +302,10 @@ a {
 
     *, ::after, ::before {
         box-sizing: border-box;
+    }
+
+    .my-card-div {
+        width: 22em;
+        height: 19em;
     }
 }

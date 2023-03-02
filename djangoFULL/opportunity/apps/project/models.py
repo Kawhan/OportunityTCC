@@ -55,6 +55,7 @@ class vagasEmprego(models.Model):
     tipo_vaga = models.CharField(max_length=2, choices=tipo_vaga)
     nome_empresa = models.CharField(
         "Nome empresa ou nome projeto", max_length=255)
+    link_vaga = models.CharField("Link da vaga", max_length=255)
 
     @property
     def is_closed(self):
