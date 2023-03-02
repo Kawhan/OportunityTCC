@@ -9,7 +9,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Header", {"fields": ['tituloVaga', 'numeroVagas']}),
         ("Content", {"fields": [
-         'nivel', 'horasSemana', 'valorSalario', 'descricao', 'tipoVaga', 'beneficios']}),
+         'nivel', 'horasSemana', 'valorSalario', 'descricao', 'tipoVaga', 'beneficios', 'tipo_vaga']}),
         ("Date", {"fields": ['dataCadastro', 'dataFechamento']}),
         ("Keys", {"fields": ['professor']},),
         ("Alunos Inscritos", {"fields": ['aluno']})
@@ -25,7 +25,8 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         'valorSalario',
         'dataCadastro',
         'dataFechamento',
-        'professor'
+        'professor',
+        'tipo_vaga'
     )
 
     search_fields = (

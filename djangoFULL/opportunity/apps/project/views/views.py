@@ -266,3 +266,90 @@ def desinscrever_aluno(request, vaga_id):
 
     messages.error(request, "Você não possui interesse nessa vaga!")
     return redirect('index')
+
+
+@login_required
+def projeto_pesquisa(request):
+    vagas = vagasEmprego.objects.all().filter(
+        disponivel='S').filter(tipo_vaga='PP').order_by('-dataFechamento')
+
+    user = request.user
+    user_info = None
+
+    aluno = get_object_or_404(UserProfile, user=user)
+
+    if user.user_is_teacher:
+        user_info = Professor.objects.filter(user=request.user.id).first()
+    else:
+        user_info = get_object_or_404(UserProfile, user=user)
+
+    paginator = Paginator(vagas, 6)
+    page = request.GET.get('page')
+    vagas_per_page = paginator.get_page(page)
+
+    dados = {}
+
+    dados['vagas'] = vagas_per_page
+    dados['title'] = "Home"
+    dados['user'] = user
+    dados['user_info'] = user_info
+
+    return render(request, 'project/pesquisa.html', dados)
+
+
+@login_required
+def projeto_extencao(request):
+    vagas = vagasEmprego.objects.filter(
+        disponivel='S').filter(tipo_vaga='PE').order_by('-dataFechamento')
+
+    user = request.user
+    user_info = None
+
+    aluno = get_object_or_404(UserProfile, user=user)
+
+    if user.user_is_teacher:
+        user_info = Professor.objects.filter(user=request.user.id).first()
+    else:
+        user_info = get_object_or_404(UserProfile, user=user)
+
+    paginator = Paginator(vagas, 6)
+    page = request.GET.get('page')
+    vagas_per_page = paginator.get_page(page)
+
+    dados = {}
+
+    dados['vagas'] = vagas_per_page
+    dados['title'] = "Home"
+    dados['user'] = user
+    dados['user_info'] = user_info
+
+    return render(request, 'project/pesquisa.html', dados)
+
+
+@login_required
+def estagio(request):
+    vagas = vagasEmprego.objects.filter(
+        disponivel='S').filter(tipo_vaga='ES').order_by('-dataFechamento')
+
+    user = request.user
+    user_info = None
+
+    aluno = get_object_or_404(UserProfile, user=user)
+
+    if user.user_is_teacher:
+        user_info = Professor.objects.filter(user=request.user.id).first()
+    else:
+        user_info = get_object_or_404(UserProfile, user=user)
+
+    paginator = Paginator(vagas, 6)
+    page = request.GET.get('page')
+    vagas_per_page = paginator.get_page(page)
+
+    dados = {}
+
+    dados['vagas'] = vagas_per_page
+    dados['title'] = "Home"
+    dados['user'] = user
+    dados['user_info'] = user_info
+
+    return render(request, 'project/estagio.html', dados)
