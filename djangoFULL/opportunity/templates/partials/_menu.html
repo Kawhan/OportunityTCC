@@ -9,25 +9,36 @@
         {% if user.user_is_teacher %}
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             {% comment %} <li><a href="{% url 'index' %}" class="nav-link px-2 link-light">Home</a></li> {% endcomment %}
+            <li>
+              <a href="{% url 'index' %}" class="nav-link px-2 link-light">
+              <i class="fa-solid fa-house"></i>
+            </a></li>
             <li class="nav-item dropdown">
-              <a class="nav-link link-light px-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Vagas
+              <a class="nav-link link-light px-2 dropdown-toggle mx-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-business-time"></i>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Projetos de pesquisa</a></li>
-                <li><a class="dropdown-item" href="#">Projetos de extensão</a></li>
-                <li><a class="dropdown-item" href="#">Estágios</a></li>
+                <li><a class="dropdown-item" href="{% url 'projeto_pesquisa' %}">Projetos de pesquisa</a></li>
+                <li><a class="dropdown-item" href="{% url 'projeto_extencao' %}">Projetos de extensão</a></li>
+                <li><a class="dropdown-item" href="{% url 'vagas_estagio' %}">Estágios</a></li>
               </ul>
             </li>
-            <li><a href="{% url 'form' %}" class="nav-link px-2 link-light">Adicionar vagas</a></li>
-            <li><a href="{% url 'minhas_vagas' %}" class="nav-link px-2 link-light">Minhas vagas</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link link-light px-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'form' %}" class="nav-link px-2 link-light">Adicionar vagas</a></li>
+                <li><a class="dropdown-item" href="{% url 'minhas_vagas' %}" class="nav-link px-2 link-light">Minhas vagas</a></li>
+              </ul>
+            </li>
           </ul>
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search' %}" method="GET">
             <input type="search" class="form-control" placeholder="Procurar vagas" name="search" aria-label="Search">
           </form>
         <div class="dropdown text-end">
-          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle text-primary" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user text-primary"></i>
+          <a href="#" class="d-block mx-4 link-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user"></i>
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
             <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
@@ -41,7 +52,7 @@
               <i class="fa-solid fa-house"></i>
             </a></li>
             <li class="nav-item dropdown">
-              <a class="nav-link link-light px-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link link-light px-2 dropdown-toggle mx-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-business-time"></i>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -57,9 +68,9 @@
             <input type="search" class="form-control" placeholder="Procurar vagas" name="search" aria-label="Search">
           </form>
         <div class="dropdown text-end">
-            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle text-primary" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user text-primary"></i>
-            </a>
+          <a href="#" class="d-block mx-4 link-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
               <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
               <li><hr class="dropdown-divider"></li>
