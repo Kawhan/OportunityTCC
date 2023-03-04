@@ -74,7 +74,13 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row div-center">
+                    <div class="div-center">
+                        <div class="number-int-div">
+                            <span class="number-int">{{ vaga.aluno.all.count }}</span>
+                            <span class="number-int-leg">Interesse</span>
+                        </div>
+                        <div class="mycontent-left">
+                        </div>
                         <div class="col-8 col-md-8 col-sm-8 col-lg-6 div-center-content">
                             <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary rouded-button">Descrição da Vaga</a>
                         </div>
@@ -86,7 +92,6 @@
     </div>
 </div>
 </div>
-
 
 
 {% include "partials/_paginator.html" %}

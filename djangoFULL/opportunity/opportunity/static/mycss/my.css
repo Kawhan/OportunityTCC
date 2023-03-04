@@ -20,6 +20,34 @@
     justify-self: flex-end;
 }
 
+.number-int {
+    color: black;
+    font-weight: bolder;
+    font-size: 17px;
+    margin-top: 0;
+    padding: 0;
+}
+
+.number-int-leg {
+    font-size: 12px;
+    margin-top: 0;
+    padding: 0;
+}
+
+
+
+.number-int-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teste {
+    color: red;
+}
+
+
+
 /* end new cards */
 
 .errorlist {
@@ -76,17 +104,18 @@ div.layout ul {
 
 .div-center {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 0;
     padding: 0;
 }
 
+
 .div-center-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 69%;
 }
 
 .hearth {
