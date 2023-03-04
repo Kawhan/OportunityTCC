@@ -39,32 +39,32 @@ def index(request):
     return render(request, 'project/index.html', dados)
 
 
-def new_cards(request):
-    vagas = vagasEmprego.objects.all().filter(
-        disponivel='S').order_by('-dataFechamento')
+# def new_cards(request):
+#     vagas = vagasEmprego.objects.all().filter(
+#         disponivel='S').order_by('-dataFechamento')
 
-    user = request.user
-    user_info = None
+#     user = request.user
+#     user_info = None
 
-    aluno = get_object_or_404(UserProfile, user=user)
+#     aluno = get_object_or_404(UserProfile, user=user)
 
-    if user.user_is_teacher:
-        user_info = Professor.objects.filter(user=request.user.id).first()
-    else:
-        user_info = get_object_or_404(UserProfile, user=user)
+#     if user.user_is_teacher:
+#         user_info = Professor.objects.filter(user=request.user.id).first()
+#     else:
+#         user_info = get_object_or_404(UserProfile, user=user)
 
-    paginator = Paginator(vagas, 6)
-    page = request.GET.get('page')
-    vagas_per_page = paginator.get_page(page)
+#     paginator = Paginator(vagas, 6)
+#     page = request.GET.get('page')
+#     vagas_per_page = paginator.get_page(page)
 
-    dados = {}
+#     dados = {}
 
-    dados['vagas'] = vagas_per_page
-    dados['title'] = "Home"
-    dados['user'] = user
-    dados['user_info'] = user_info
+#     dados['vagas'] = vagas_per_page
+#     dados['title'] = "Home"
+#     dados['user'] = user
+#     dados['user_info'] = user_info
 
-    return render(request, 'project/new.html', dados)
+#     return render(request, 'project/new.html', dados)
 
 
 @login_required
@@ -250,7 +250,7 @@ def inscrever_aluno(request, vaga_id):
 
     job.aluno.add(aluno)
 
-    messages.success(request, "interesse registrado com sucesso!")
+    messages.success(request, "Interesse registrado com sucesso!")
     return redirect('index')
 
 

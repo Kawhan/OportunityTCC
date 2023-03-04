@@ -15,5 +15,5 @@ urlpatterns = [
     path('vagas-pesquisa', projeto_pesquisa, name='projeto_pesquisa'),
     path('vagas-extensao', projeto_extencao, name='projeto_extencao'),
     path('vagas-estagio', estagio, name="vagas_estagio"),
-    path('new-card', new_cards, name="new-cards")
+    # path('new-card', new_cards, name="new-cards")
 ]
