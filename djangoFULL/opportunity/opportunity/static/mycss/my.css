@@ -286,12 +286,16 @@ a {
     }  
 }
 
+
 /* Small devices (landscape phones, less than 768px) */
-@media (min-width: 767.98px) { 
+@media (min-width: 766px) { 
     .button-width {
         width: 11em;
     }  
 
+    .with-css {
+        width: 138px;
+    }
 
     .my-card-div {
         width: 18em;
@@ -305,7 +309,7 @@ a {
     } 
 
     .with-css {
-        width: 143px;
+        width: 142px;
     }
 
     .my-card-div {
@@ -336,7 +340,7 @@ a {
     }
 
     .with-css {
-        width: 207px;
+        width: 206px;
     }
 
     .my-card-div {
