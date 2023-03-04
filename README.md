@@ -21,7 +21,7 @@ The system gained a version with django full stack template that has the same fu
 - Verificar interesse dos alunos do campus
 
 ## Novas funcionalidades
-- Plataforma de analise das informações colhidas no interesse
+- Plataforma de analise das informações colhidas no interesse dos alunos
 
 ---
 ## 🚢 Using Docker
