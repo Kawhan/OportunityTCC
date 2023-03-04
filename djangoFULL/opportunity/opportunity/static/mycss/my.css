@@ -1,6 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 
+/* new cards */
+.hearth-new {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-new {
+    justify-self: flex-start;
+    margin: 0;
+}
+
+.title-new h5 {
+    margin-bottom: 0;
+}
+
+.icon-text {
+    justify-self: flex-end;
+}
+
+/* end new cards */
+
 .errorlist {
     color: red;
     font-family: italic;
@@ -81,10 +102,6 @@ div.layout ul {
     margin-top: 1em;
 }
 
-.my-content {
-    padding: 1em;
-    
-}
 
 .my-content span{
     display: flex;
@@ -189,16 +206,6 @@ a {
     height: 19em;
 }
 
-.with-css {
-    width: 200px;
-}
-
-.with-css h5 {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 .badge {
     padding: 5px 8px;
     border-radius: 3px;
@@ -209,6 +216,7 @@ a {
 .color-button-close {
     background: #f7c7c7;
     color: #3a0202;
+    vertical-align: middle;
 }
 
 .color-button-green {
@@ -233,6 +241,21 @@ a {
 
 
 @media (min-width: 360px) { 
+    .with-css {
+        width: 143px;
+    }
+    
+    .with-css h5 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .my-button-hearth {
+        width: 2em;
+    }
+
+
     .my-card {
         width: 15em;
     }
@@ -250,9 +273,16 @@ a {
     }
 }
 
+@media (min-width: 417px) {
+    .my-card-div {
+        width: 20em;
+        height: 15.8em;
+    }
+}
+
 @media (min-width: 577px) { 
     .button-width {
-        width: 14em;
+        width: 14.2em;
     }  
 }
 
@@ -264,8 +294,8 @@ a {
 
 
     .my-card-div {
-        height: 20em;
         width: 18em;
+        height: 15.8em;
     }
 }
 /* Medium devices (tablets, less than 992px) */
@@ -273,6 +303,15 @@ a {
     .button-width {
         width: 8em;
     } 
+
+    .with-css {
+        width: 143px;
+    }
+
+    .my-card-div {
+        width: 18em;
+        height: 15.8em;
+    }
 
     *, ::after, ::before {
         box-sizing: border-box;
@@ -296,16 +335,20 @@ a {
         padding: 6px;
     }
 
+    .with-css {
+        width: 207px;
+    }
+
+    .my-card-div {
+        width: 22em;
+        height: 15.8em;
+    }
+
     .my-dash-button {
         width: 9em;
     }
 
     *, ::after, ::before {
         box-sizing: border-box;
-    }
-
-    .my-card-div {
-        width: 22em;
-        height: 19em;
     }
 }

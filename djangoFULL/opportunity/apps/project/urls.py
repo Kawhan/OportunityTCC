@@ -14,5 +14,6 @@ urlpatterns = [
     path('retirar/<int:vaga_id>', desinscrever_aluno, name='retirar_inscricao'),
     path('vagas-pesquisa', projeto_pesquisa, name='projeto_pesquisa'),
     path('vagas-extensao', projeto_extencao, name='projeto_extencao'),
-    path('vagas-estagio', estagio, name="vagas_estagio")
+    path('vagas-estagio', estagio, name="vagas_estagio"),
+    path('new-card', new_cards, name="new-cards")
 ]

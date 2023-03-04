@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<div class="container">
+    <div class="row"></div>
+    <div class="row">
+        {% for vaga in vagas %}
+        <div class="col-12 col-md-6 col-lg-4 col-sm-8 mb-2">
+            <div class="card card mx-auto border-0 bg-light rounded shadow-sm mt-4 mb-2 my-card-div ">
+                <div class="card-body my-card-2 p-3">
+                    {% if vaga.is_closed %}
+                    <div class="hearth-new">
+                        <div class="title-new with-css">
+                            <h5 class="my-card-title-new">{{ vaga.tituloVaga}}</h5>
+                        </div>
+                        <div class="icon-text">
+                        {% if user.user_is_teacher %}
+                        <button class="my-button-hearth disabled mx-2"><i class="fa-solid fa-heart white "></i></button>
+                        {% else %}
+                            {% for aluno in vaga.aluno.all %}
+                            {% if user_info == aluno %}
+                                <a href="{% url 'retirar_inscricao' vaga.id %}" class="my-button-hearth mx-2"><i class="fa-solid fa-heart red-color"></i></a>
+                            {% endif %}
+                            {% empty %}
+                                <a href="{% url 'inscrever_aluno' vaga.id %}" class="my-button-hearth  mx-2"><i class="fa-regular fa-heart white"></i></a>
+                            {% endfor %}
+                            {% endif %}
+                            <span class="badge rounded-pill float-md-end mb-2 mb-lg-0 color-button-close">Fechada</span>
+                        </div>
+                    </div>
+                    <hr>
+                    {% else %}
+                    <div class="hearth-new">
+                        <div class="title-new with-css">
+                            <h5 class="my-card-title-new">{{ vaga.tituloVaga}}</h5>
+                        </div>
+                        <div class="icon-text">
+                        {% if user.user_is_teacher %}
+                            <button class="my-button-hearth disabled mx-2"><i class="fa-solid fa-heart white"></i></button>
+                            {% else %}
+                            {% for aluno in vaga.aluno.all %}
+                            {% if user_info == aluno %}
+                                <a href="{% url 'retirar_inscricao' vaga.id %}" class="my-button-hearth mx-2"><i class="fa-solid fa-heart red-color"></i></a>
+                            {% endif %}
+                            {% empty %}
+                                <a href="{% url 'inscrever_aluno' vaga.id %}" class="my-button-hearth mx-2"><i class="fa-regular fa-heart white"></i></a>
+                            {% endfor %}
+                            {% endif %}
+                            <span class="badge rounded-pill float-md-end mb-2 mb-lg-0  color-button-green">Aberta</span>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endif %}
+                    <div class="">
+                        <div class="my-content">
+                            <span>Número de Vagas: <span class="text-aside">{{ vaga.numeroVagas }}</span></span>
+                            {% if vaga.tipo_vaga == "PP" %}
+                                <span class="">Tipo vaga: <span class="text-aside">Projeto de Pesquisa</span></span>
+                            {% elif vaga.tipo_vaga == "PE" %}
+                            <span>Tipo vaga: <span class="text-aside">Projeto de Extensão</span></span>
+                            {% else %}
+                            <span>Tipo vaga: <span class="text-aside">Estágio</span></span>
+                            {% endif %}
+                            <span>Empresa/projeto:<span class="text-aside">{{ vaga.nome_empresa }}</span></span>
+                            {% if vaga.is_closed %}
+                            <span>Link inscrição:<a class="text-aside color-red" ></a></span>
+                            {% else %}
+                            <span>Link inscrição:<a class="text-aside" href="{{ vaga.link_vaga }}">Aqui <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row div-center">
+                        <div class="col-8 col-md-8 col-sm-8 col-lg-6 div-center-content">
+                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary rouded-button">Descrição da Vaga</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+{% comment %} <script>
+    function deletePost(vaga_id) {
+        let url = `{% url 'retirar_inscricao' ${vaga_id} %}`
+        let ask = window.confirm("Você deseja mesmo se retirar dessa vaga?");
+        if (ask) {
+            window.location.href = url;
+    
+        }
+    }
+</script> {% endcomment %}
+
+
+{% comment %} {% if vaga.is_closed %}
+                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
+                                <a href="{% url 'inscrever_aluno' vaga.id %}"
+                                    class="btn btn-success button-width disabled  ">Tenho Interesse</a>
+                            </div>
+                        {% elif user.user_is_teacher %}
+                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
+                                <a href="{% url 'inscrever_aluno' vaga.id %}"
+                                    class="btn btn-success button-width disabled ">Tenho Interesse</a>
+                            </div>
+                        {% else %}
+                            {% for aluno in vaga.aluno.all %}
+                            {% if user_info == aluno %}
+                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
+                                <a href="{% url 'retirar_inscricao' vaga.id %}"
+                                    class="btn btn-danger button-width ">Remover interesse</a>
+                            </div>
+                            {% endif %}
+                            {% empty %}
+                            <div class="mt-3 col-8 col-md-8 col-sm-8 col-lg-6">
+                                <a href="{% url 'inscrever_aluno' vaga.id %}"
+                                    class="btn btn-success button-width ">Tenho Interesse</a>
+                            </div>
+                            {% endfor %}
+                        {% endif %} {% endcomment %}
+
+{% include "partials/_paginator.html" %}
+
+{% endblock %}
