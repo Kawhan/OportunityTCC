@@ -16,12 +16,16 @@ The system gained a version with django full stack template that has the same fu
 ---
 
 ## 📌 Funcionalidades
-- Verificação de cadastro por e-mail
-- Cadastro de vagas do CAMPUS IV
-- Verificar interesse dos alunos do campus
+```
+1° Verificação de cadastro por e-mail
+2° Cadastro de vagas do CAMPUS IV
+3° Verificar interesse dos alunos do campus
+```
 
 ## Novas funcionalidades
-- Plataforma de analise das informações colhidas no interesse dos alunos
+```
+1° Plataforma de analise das informações colhidas no interesse dos alunos
+```
 
 ---
 ## 🚢 Using Docker
