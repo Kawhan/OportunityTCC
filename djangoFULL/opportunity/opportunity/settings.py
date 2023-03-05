@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'fontawesomefree',
     'widget_tweaks',
-    'tinymce'
+    'tinymce',
+    'graphic'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
