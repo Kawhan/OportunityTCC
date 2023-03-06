@@ -237,7 +237,7 @@ def inscrever_aluno(request, vaga_id):
     job = get_object_or_404(vagasEmprego, pk=vaga_id)
 
     if aluno in job.aluno.all():
-        messages.error(request, "Você já está inscrito nessa vaga")
+        messages.error(request, "Você já demonstrou interesse nessa vaga")
         return redirect("index")
 
     if job == None:
@@ -250,7 +250,6 @@ def inscrever_aluno(request, vaga_id):
 
     job.aluno.add(aluno)
 
-    messages.success(request, "Interesse registrado com sucesso!")
     return redirect('index')
 
 
@@ -287,8 +286,6 @@ def desinscrever_aluno(request, vaga_id):
         job.aluno.remove(aluno)
 
         job.save()
-
-        messages.success(request, "Seu interesse foi removido com sucesso!")
 
         return redirect("index")
 
