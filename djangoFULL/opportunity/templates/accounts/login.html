@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% load widget_tweaks %}
 <!-- Preloader -->
 
 <!-- ##### Contact Form Area Start ##### -->
@@ -17,13 +18,16 @@
                             alt="profile">
                     </div>
 
-                    <div class="mb-3">
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
-                            placeholder="Email">
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
-                    </div>
+                    {% for field in form.visible_fields %}
+                        <div class="mb-3">
+                            {{ field|add_class:'form-control' }}
+                        </div>
+                        {% for error in field.errors %}
+                            <ul class="errorlist2">
+                                <li>{{ error }} </li>
+                            </ul>
+                        {% endfor %}
+                    {% endfor %}
                     <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button>
                     </div>
                     <div id="emailHelp" class="form-text text-center mb-5 text-dark">Ainda não é registrado?<a

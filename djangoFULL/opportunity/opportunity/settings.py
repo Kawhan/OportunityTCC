@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'fontawesomefree',
     'widget_tweaks',
-    'tinymce'
+    'tinymce',
+    'captcha'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -221,3 +222,9 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": "600px",
     'image_caption': True,
 }
+
+
+RECAPTCHA_PUBLIC_KEY = env('PUBLIC_KEY_RECAPCHA')
+RECAPTCHA_PRIVATE_KEY = env('PRIVATE_KEY_RECAPCHA')
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

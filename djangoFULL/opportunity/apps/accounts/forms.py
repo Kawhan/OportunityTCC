@@ -1,5 +1,7 @@
 from accounts.models import User
 from accounts.validator import *
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.safestring import mark_safe
@@ -8,12 +10,26 @@ from tempus_dominus.widgets import DatePicker
 from .models import User, UserProfile
 
 
+class UserLoginForm(AuthenticationForm):
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
+
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['placeholder'] = 'Coloque seu e-mail dcx'
+        self.fields['password'].widget.attrs['placeholder'] = 'Coloque sua senha'
+
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'captcha']
+
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
 
 class UserRegistrationForm(UserCreationForm):
     error_css_class = 'error'
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
     def __init__(self, *args, **kwargs):
         super(UserRegistrationForm, self).__init__(*args, **kwargs)
@@ -25,7 +41,7 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username',
-                  'email', 'password1', 'password2']
+                  'email', 'password1', 'password2', 'captcha']
         # help_texts = {
         #     'username': mark_safe(
         #         '<div class="teste">\
@@ -61,6 +77,19 @@ class UserRegistrationForm(UserCreationForm):
             attrs.update({'class': attrs.get('class', '') + ' is-invalid'})
 
         return result
+
+    # def clean(self):
+    #     email = self.cleaned_data.get("email")
+    #     lista_de_erros = {}
+
+    #     email_not_dcx(email, "email", lista_de_erros)
+
+    #     if lista_de_erros is not None:
+    #         for erro in lista_de_erros:
+    #             mensagem_error = lista_de_erros[erro]
+    #             self.add_error(erro, mensagem_error)
+
+    #     return self.cleaned_data
 
 
 class UserProfileForm(forms.ModelForm):

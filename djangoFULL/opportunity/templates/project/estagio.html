@@ -28,15 +28,13 @@
                             <h5 class="my-card-title-new">{{ vaga.tituloVaga}}</h5>
                         </div>
                         <div class="icon-text">
-                        {% if user.user_is_teacher %}
+                            {% if user.user_is_teacher %}
                             {% else %}
-                            {% for aluno in vaga.aluno.all %}
-                            {% if user_info == aluno %}
+                            {% if user_info in vaga.aluno.all %}
                                 <a href="{% url 'retirar_inscricao' vaga.id %}" class="my-button-hearth mx-2"><i class="fa-solid fa-heart red-color"></i></a>
-                            {% endif %}
-                            {% empty %}
+                            {% else %}
                                 <a href="{% url 'inscrever_aluno' vaga.id %}" class="my-button-hearth mx-2"><i class="fa-regular fa-heart white"></i></a>
-                            {% endfor %}
+                            {% endif %}
                             {% endif %}
                             <span class="badge rounded-pill float-md-end mb-2 mb-lg-0  color-button-green">Aberta</span>
                         </div>

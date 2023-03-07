@@ -1,11 +1,11 @@
 import datetime
 
 from accounts.decorators import user_not_authenticated
-from accounts.forms import UserProfileForm, UserRegistrationForm
+from accounts.forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 from accounts.models import User, UserProfile
 from accounts.tokens import account_activation_token
 from django.contrib import auth, messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.sites.shortcuts import get_current_site
 # Email
@@ -60,13 +60,6 @@ def activateEmail(request, user, to_email):
             request, f'Problema ao enviar e-mail para {to_email}, verifique se você digitou corretamente.')
 
 
-def login(request):
-    dados = {}
-
-    dados['title'] = "Login"
-    return render(request, 'accounts/login.html', dados)
-
-
 @user_not_authenticated
 def cadastro(request):
     # form = UserRegistrationForm()
@@ -86,9 +79,11 @@ def cadastro(request):
             activateEmail(request, user, form.cleaned_data.get('email'))
             return redirect('index')
 
-        # else:
-        #     for error in list(form.errors.values()):
-        #         messages.error(request, error)
+        else:
+            for key, error in list(form.errors.items()):
+                if key == 'captcha' and error[0] == 'Este campo é obrigatório.':
+                    messages.error(
+                        request, "Você deve fazer o teste de reCAPTCHA")
 
         dados["form"] = form
 
@@ -148,31 +143,23 @@ def cadastro(request):
 
 
 def login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        senha = request.POST['senha']
+    form = UserLoginForm()
 
-        if not email.strip():
-            messages.error(request, "O campo email não pode ficar em branco")
-            return redirect('login')
+    dados = {}
 
-        if not senha.strip():
-            messages.error(request, "Senha vazia!")
-            return redirect('login')
+    dados['title'] = "Login"
+    dados['form'] = form
 
-        # Trazendo as informações desse usuário apartir do email
-        if User.objects.filter(email=email).exists():
-            user = auth.authenticate(request, email=email, password=senha)
+    if request.user.is_authenticated:
+        return redirect("index")
 
-            if user == None:
-                messages.error(
-                    request, 'Cedenciais invalidas.')
-                return redirect('login')
-
-            if not user.is_active:
-                messages.error(
-                    request, 'Confirme seu e-mail para continuar.')
-                return redirect('login')
+    if request.method == "POST":
+        form = UserLoginForm(request=request, data=request.POST)
+        if form.is_valid():
+            user = authenticate(
+                username=form.cleaned_data["username"],
+                password=form.cleaned_data["password"],
+            )
             if user is not None:
                 auth.login(request, user)
                 dados = {}
@@ -190,18 +177,73 @@ def login(request):
             else:
                 messages.error(request, 'Credenciais invalidas!.')
                 return redirect('login')
-        else:
-            messages.error(request, 'Credenciais invalidas!.')
-            return redirect('login')
-    else:
-        dados = {}
-        dados["title"] = "Login"
-        if not request.user.is_authenticated:
-            return render(request, 'accounts/login.html', dados)
-        else:
-            messages.error(
-                request, 'Você já está logado! Por favor efetue o logout.')
-            return redirect('index')
+
+        # else:
+        #     for key, error in list(form.errors.items()):
+        #         if key == 'captcha' and error[0] == 'Este campo é obrigatório.':
+        #             messages.error(
+        #                 request, "Você deve fazer o teste de reCAPTCHA")
+
+        dados["form"] = form
+
+    return render(request, 'accounts/login.html', dados)
+
+
+# def login(request):
+#     if request.method == 'POST':
+#         email = request.POST['email']
+#         senha = request.POST['senha']
+
+#         if not email.strip():
+#             messages.error(request, "O campo email não pode ficar em branco")
+#             return redirect('login')
+
+#         if not senha.strip():
+#             messages.error(request, "Senha vazia!")
+#             return redirect('login')
+
+#         # Trazendo as informações desse usuário apartir do email
+#         if User.objects.filter(email=email).exists():
+#             user = auth.authenticate(request, email=email, password=senha)
+
+#             if user == None:
+#                 messages.error(
+#                     request, 'Cedenciais invalidas.')
+#                 return redirect('login')
+
+#             if not user.is_active:
+#                 messages.error(
+#                     request, 'Confirme seu e-mail para continuar.')
+#                 return redirect('login')
+#             if user is not None:
+#                 auth.login(request, user)
+#                 dados = {}
+#                 dados["title"] = "Cadastro Informacoes"
+
+#                 if user.user_is_teacher:
+#                     dados['title'] = 'Home'
+#                     messages.success(
+#                         request, "Login realizado com sucesso! Seja bem-vindo Professor(a)")
+#                     return redirect('index')
+
+#                 messages.success(
+#                     request, "Login realizado com sucesso! Cadastre suas informações")
+#                 return redirect('profile')
+#             else:
+#                 messages.error(request, 'Credenciais invalidas!.')
+#                 return redirect('login')
+#         else:
+#             messages.error(request, 'Credenciais invalidas!.')
+#             return redirect('login')
+#     else:
+#         dados = {}
+#         dados["title"] = "Login"
+#         if not request.user.is_authenticated:
+#             return render(request, 'accounts/login.html', dados)
+#         else:
+#             messages.error(
+#                 request, 'Você já está logado! Por favor efetue o logout.')
+#             return redirect('index')
 
 
 def logout(request):
