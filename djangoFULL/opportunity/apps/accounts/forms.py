@@ -104,6 +104,7 @@ class UserProfileForm(forms.ModelForm):
             'user': forms.HiddenInput,
             'data_ingresso': DateInput(),
             'data_estimada_saida': DateInput(),
+            'is_verify': forms.HiddenInput,
             # 'nota_estrutura'
         }
         # help_texts = {

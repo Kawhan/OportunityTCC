@@ -275,6 +275,8 @@ def update_profile(request):
             request.POST, instance=request.user.userprofile)
 
         if user_profile_form.is_valid():
+            aluno = user_profile_form.save(commit=False)
+            aluno.is_verify = True
             messages.success(
                 request, "Obrigado por cadastrar suas informações!")
             user_profile_form.save()

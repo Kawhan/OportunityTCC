@@ -248,6 +248,10 @@ def inscrever_aluno(request, vaga_id):
         messages.error(request, "Vaga não está aberta!")
         return redirect("index")
 
+    if aluno.is_verify == False:
+        messages.error(request, "Você não completou suas informações!")
+        return redirect("profile")
+
     job.aluno.add(aluno)
 
     return redirect('index')
