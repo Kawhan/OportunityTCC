@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('project.urls')),
     path('accounts/', include('accounts.urls')),
     path('tinymce/', include('tinymce.urls')),
+    path('graficos/', include('analysis.urls'))
     # re_path(r'^favicon\.ico$', favicon_view)
 ]
 if settings.DEBUG:

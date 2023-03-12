@@ -1,5 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
+/* grafic */
+.chartCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chartBox {
+    width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 3px rgba(54, 162, 235, 1);
+    background: white;
+}
 
 /* new cards */
 .hearth-new {
@@ -34,8 +47,6 @@
     padding: 0;
 }
 
-
-
 .number-int-div {
     display: flex;
     flex-direction: column;
@@ -45,8 +56,6 @@
 .teste {
     color: red;
 }
-
-
 
 /* end new cards */
 
@@ -65,7 +74,6 @@
     list-style-type: "❌ ";
 }
 
-
 div.layout ul {
     list-style-type: "☑️ ";
     color: #c0c0c0;
@@ -78,15 +86,14 @@ div.layout ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-weight: bold;
 }
 
 .my-info-div {
     margin-top: 2em;
 
-    font-family: 'Roboto';
-    
+    font-family: "Roboto";
 }
 
 .my-info-div span {
@@ -94,7 +101,7 @@ div.layout ul {
 }
 
 .red-color {
-    color:red;
+    color: red;
     font-size: 1.6em;
 }
 
@@ -108,7 +115,6 @@ div.layout ul {
     border: none;
 }
 
-
 .div-center {
     display: flex;
     justify-content: space-between;
@@ -116,7 +122,6 @@ div.layout ul {
     margin: 0;
     padding: 0;
 }
-
 
 .div-center-content {
     display: flex;
@@ -138,8 +143,7 @@ div.layout ul {
     margin-top: 1em;
 }
 
-
-.my-content span{
+.my-content span {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -148,11 +152,9 @@ div.layout ul {
 
 span .text-aside {
     font-size: 14px;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-weight: bold;
 }
-
-
 
 .date {
     padding: 10px;
@@ -173,7 +175,6 @@ div.alerts-mensage ul {
 .teste-container {
     width: 60%;
 }
-
 
 .body-class {
     background-color: #ecf0f1;
@@ -236,7 +237,6 @@ a {
     text-decoration: none;
 }
 
-
 .my-card {
     border-radius: 10px;
     height: 19em;
@@ -261,7 +261,6 @@ a {
     vertical-align: middle;
 }
 
-
 .rouded-button {
     border-radius: 9px;
     width: 18em;
@@ -272,15 +271,14 @@ a {
 }
 
 .color-body {
-    background-color: #FDFDFD;
+    background-color: #fdfdfd;
 }
 
-
-@media (min-width: 360px) { 
+@media (min-width: 360px) {
     .with-css {
         width: 143px;
     }
-    
+
     .with-css h5 {
         overflow: hidden;
         white-space: nowrap;
@@ -290,7 +288,6 @@ a {
     .my-button-hearth {
         width: 2em;
     }
-
 
     .my-card {
         width: 15em;
@@ -316,18 +313,17 @@ a {
     }
 }
 
-@media (min-width: 577px) { 
+@media (min-width: 577px) {
     .button-width {
         width: 14.2em;
-    }  
+    }
 }
 
-
 /* Small devices (landscape phones, less than 768px) */
-@media (min-width: 766px) { 
+@media (min-width: 766px) {
     .button-width {
         width: 11em;
-    }  
+    }
 
     .with-css {
         width: 138px;
@@ -339,10 +335,10 @@ a {
     }
 }
 /* Medium devices (tablets, less than 992px) */
-@media (min-width: 991.98px) { 
+@media (min-width: 991.98px) {
     .button-width {
         width: 8em;
-    } 
+    }
 
     .with-css {
         width: 142px;
@@ -353,7 +349,9 @@ a {
         height: 15.8em;
     }
 
-    *, ::after, ::before {
+    *,
+    ::after,
+    ::before {
         box-sizing: border-box;
     }
 }
@@ -361,15 +359,17 @@ a {
 @media (min-width: 1189px) {
     .button-width {
         width: 7.4em;
-    }    
+    }
 
-    *, ::after, ::before {
+    *,
+    ::after,
+    ::before {
         box-sizing: border-box;
     }
 }
 
 /* Large devices (desktops, less than 1200px) */
-@media (min-width: 1199.98px) { 
+@media (min-width: 1199.98px) {
     .button-width {
         width: 9em;
         padding: 6px;
@@ -388,7 +388,9 @@ a {
         width: 9em;
     }
 
-    *, ::after, ::before {
+    *,
+    ::after,
+    ::before {
         box-sizing: border-box;
     }
 }

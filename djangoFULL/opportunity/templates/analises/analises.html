@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% comment %} <div class="container">
+  <div class="row">
+    <div class="chartCard col-lg-12 col-md-12 col-sm-12">
+        <div class="card  chartBox mx-2">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div  class="card  chartBox">
+            <canvas id="myChart2"></canvas>
+        </div>
+        <div  class="card  chartBox mx-2">
+            <canvas id="myChart3"></canvas>
+        </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+<div class="container">
+  <div class="row">
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Vagas</strong></p>
+            <hr />
+            <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong" >
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Vagas</strong></p>
+            <hr />
+            <canvas id="myChart2"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Quantidade de alunos Pesquisa</strong></p>
+            <hr />
+            <canvas id="myChart3"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Quantidade de alunos Extensão</strong></p>
+            <hr />
+            <canvas id="myChart4"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Quantidade de Alunos Estagio</strong></p>
+            <hr />
+            <canvas id="myChart5"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Inscritos em Pesquisa</strong></p>
+            <hr />
+            <canvas id="myChart6"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Inscritos em Extensão</strong></p>
+            <hr />
+            <canvas id="myChart6"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+            <p class="text-uppercase mb-2"><strong>Inscritos em Estágio</strong></p>
+            <hr />
+            <canvas id="myChart6"></canvas>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  
+</div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  
+  <script>
+    
+    
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+    const ctx3 = document.getElementById('myChart3');
+    const ctx4 = document.getElementById('myChart4');
+    const ctx5 = document.getElementById('myChart5');
+    const ctx6 = document.getElementById('myChart6');
+    
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Projeto de Pesquisa', 'Projeto de extensão', 'Estágio'],
+        datasets: [{
+          label: 'Vagas',
+          data: [{{ data.PP|safe }}, {{ data.PE|safe }}, {{ data.ES|safe }}],
+          borderWidth: 1
+        }]
+      },
+      plugins: [ChartDataLabels],
+      options: {
+        responsive: true,
+        aspectRatio: 1,
+        plugins: {
+          // Change options for ALL labels of THIS CHART
+          datalabels: {
+              color: 'black',
+              font: {
+                size: 17
+              }
+          }
+        }
+      }
+    });
+
+
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels:  ['PP', 'PE', 'ES'],
+          datasets: [{
+            label: 'Vagas',
+            data: [{{ data.PP|safe }}, {{ data.PE|safe }}, {{ data.ES|safe }}],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          aspectRatio: 1,
+          ticks: {
+            min: 0, // it is for ignoring negative step.
+            beginAtZero: true,
+            precision: 0
+          },
+        }
+    });
+
+    new Chart(ctx3, {
+        type: 'pie',
+        data: {
+          labels: ['SI', 'LCC'],
+          datasets: [{
+            label: 'Alunos',
+            data: [{{ data.alunos_SI_pesquisa|safe }}, {{ data.alunos_LCC_pesquisa|safe }}],
+            borderWidth: 1
+          }]
+        },
+        plugins: [ChartDataLabels],
+        options: {
+          responsive: true,
+          aspectRatio: 1,
+          plugins: {
+            // Change options for ALL labels of THIS CHART
+            datalabels: {
+                color: 'black',
+                font: {
+                  size: 17
+                }
+            }
+          }
+        }
+    });
+
+    new Chart(ctx4, {
+        type: 'pie',
+        data: {
+          labels: ['SI', 'LCC'],
+          datasets: [{
+            label: 'Alunos',
+            data: [{{ data.alunos_SI_extensao|safe }}, {{ data.alunos_LCC_extensao|safe }}],
+            borderWidth: 1
+          }]
+        },
+        plugins: [ChartDataLabels],
+        options: {
+          responsive: true,
+          aspectRatio: 1,
+          plugins: {
+            // Change options for ALL labels of THIS CHART
+            datalabels: {
+                color: 'black',
+                font: {
+                  size: 17
+                }
+            }
+          }
+        }
+    });
+
+    new Chart(ctx5, {
+        type: 'pie',
+        data: {
+          labels: ['SI', 'LCC'],
+          datasets: [{
+            label: 'Alunos',
+            data: [{{ data.alunos_SI_estagio|safe }}, {{ data.alunos_LCC_estagio|safe }}],
+            borderWidth: 1
+          }]
+        },
+        plugins: [ChartDataLabels],
+        options: {
+          responsive: true,
+          aspectRatio: 1,
+          plugins: {
+            // Change options for ALL labels of THIS CHART
+            datalabels: {
+                color: 'black',
+                font: {
+                  size: 17
+                }
+            }
+          }
+        }
+    });
+  
+    new Chart(ctx6, {
+      type: 'pie',
+      data: {
+        labels: ['SI', 'LCC'],
+        datasets: [{
+          label: 'Alunos',
+          data: [{{ data.inscricoes_SI_pesquisa|safe }}, {{ data.inscricoes_LCC_pesquisa|safe }}],
+          borderWidth: 1
+        }]
+      },
+      plugins: [ChartDataLabels],
+      options: {
+        responsive: true,
+        aspectRatio: 1,
+        plugins: {
+          // Change options for ALL labels of THIS CHART
+          datalabels: {
+              color: 'black',
+              font: {
+                size: 17
+              }
+          }
+        }
+      }
+  });
+  
+  
+  
+
+
+    </script>
+    
+
+
+{% endblock %}

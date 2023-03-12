@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'widget_tweaks',
     'tinymce',
-    'captcha'
+    'captcha',
+    'analysis'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
