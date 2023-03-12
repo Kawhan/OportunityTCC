@@ -30,6 +30,7 @@ The system gained a version with django full stack template that has the same fu
 ```
 
 ## Analysis system
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/grafics.png)
 
 
 
