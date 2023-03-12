@@ -15,17 +15,23 @@ The system gained a version with django full stack template that has the same fu
 
 ---
 
+
 ## 📌 Funcionalidades
 ```
 1° Verificação de cadastro por e-mail
 2° Cadastro de vagas do CAMPUS IV
 3° Verificar interesse dos alunos do campus
+4° Parte analitica do sistema
 ```
 
 ## Novas funcionalidades
 ```
 1° Plataforma de analise das informações colhidas no interesse dos alunos
 ```
+
+## Analysis system
+
+
 
 ---
 ## 🚢 Using Docker
@@ -65,6 +71,7 @@ python manage.py runserver                  //Iniciar o servidor
 - Django Forms
 - Django template
 - Oauth token
+- chartjs
 
 ---
 
