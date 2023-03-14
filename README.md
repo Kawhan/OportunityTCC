@@ -33,6 +33,14 @@ The system gained a version with django full stack template that has the same fu
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/grafics.png)
 
 
+## Login
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/login.png)
+
+## Register
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/registro.png)
+
+## Confirm register
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/confirm_register.png)
 
 ---
 ## 🚢 Using Docker
