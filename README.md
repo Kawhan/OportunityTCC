@@ -42,6 +42,14 @@ The system gained a version with django full stack template that has the same fu
 ## Confirm register
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/confirm_register.png)
 
+## Student info
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/Infos.png)
+
+## Jobs page
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/index.png)
+
+##
+
 ---
 ## 🚢 Using Docker
 ```
