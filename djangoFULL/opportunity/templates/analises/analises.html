@@ -86,7 +86,7 @@
         <div class="card-body">
             <p class="text-uppercase mb-2"><strong>Inscritos em Extensão</strong></p>
             <hr />
-            <canvas id="myChart6"></canvas>
+            <canvas id="myChart7"></canvas>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
         <div class="card-body">
             <p class="text-uppercase mb-2"><strong>Inscritos em Estágio</strong></p>
             <hr />
-            <canvas id="myChart6"></canvas>
+            <canvas id="myChart8"></canvas>
         </div>
       </div>
     </div>
@@ -118,6 +118,8 @@
     const ctx4 = document.getElementById('myChart4');
     const ctx5 = document.getElementById('myChart5');
     const ctx6 = document.getElementById('myChart6');
+    const ctx7 = document.getElementById('myChart7');
+    const ctx8 = document.getElementById('myChart8');
     
     new Chart(ctx, {
       type: 'pie',
@@ -271,6 +273,59 @@
         }
       }
   });
+
+  new Chart(ctx7, {
+    type: 'pie',
+    data: {
+      labels: ['SI', 'LCC'],
+      datasets: [{
+        label: 'Alunos',
+        data: [{{ data.inscricoes_SI_extensao|safe }}, {{ data.inscricoes_LCC_extensao|safe }}],
+        borderWidth: 1
+      }]
+    },
+    plugins: [ChartDataLabels],
+    options: {
+      responsive: true,
+      aspectRatio: 1,
+      plugins: {
+        // Change options for ALL labels of THIS CHART
+        datalabels: {
+            color: 'black',
+            font: {
+              size: 17
+            }
+        }
+      }
+    }
+});
+
+new Chart(ctx8, {
+  type: 'pie',
+  data: {
+    labels: ['SI', 'LCC'],
+    datasets: [{
+      label: 'Alunos',
+      data: [{{ data.inscricoes_SI_estagio|safe }}, {{ data.inscricoes_LCC_estagio|safe }}],
+      borderWidth: 1
+    }]
+  },
+  plugins: [ChartDataLabels],
+  options: {
+    responsive: true,
+    aspectRatio: 1,
+    plugins: {
+      // Change options for ALL labels of THIS CHART
+      datalabels: {
+          color: 'black',
+          font: {
+            size: 17
+          }
+      }
+    }
+  }
+});
+
   
   
   
