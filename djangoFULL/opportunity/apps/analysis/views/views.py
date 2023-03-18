@@ -52,6 +52,7 @@ def analises(request):
     # Quantidade inscritos em pesquisa
 
     return render(request, "analises/analises.html", {
+        'title': "Analises gerais",
         'labels': labels,
         'data': data
     })
