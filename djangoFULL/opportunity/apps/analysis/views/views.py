@@ -83,7 +83,8 @@ def indiviual_analysis(request, vaga_id):
     # catch all periods in job
     data = IndividualStart.period_all_stundes_in_job(data)['data']
 
-    # print(data)
+    # Catch avergae
+    data = IndividualStart.average_in_job(data, alunos)['data']
 
     return render(request, "analises/individual.html", {
         'title': 'Graficos',

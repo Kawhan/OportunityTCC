@@ -200,4 +200,38 @@ class IndividualStart:
         return {
             'data': data
         }
+
+    def average_in_job(data: dict, alunos: list):
+        query_set_data = data['vaga_object']
+        count_list = len(alunos)
+        data['cra_average'] = 0
+        data['ip_average'] = 0
+        data['poo_average'] = 0
+        data['nota_linguagem'] = 0
+        data['nota_estrutura'] = 0
+
+        for alunos_curso in query_set_data:
+            for aluno in alunos_curso.aluno.values().distinct():
+                data['cra_average'] += aluno['cra']
+                data['ip_average'] += aluno['nota_introducao']
+
+                if aluno['nota_POO'] != None:
+                    data['poo_average'] += aluno['nota_POO']
+
+                if aluno['nota_linguagem'] != None:
+                    data['nota_linguagem'] += aluno['nota_linguagem']
+
+                if aluno['nota_estrutura'] != None:
+                    data['nota_estrutura'] += aluno['nota_estrutura']
+
+        data['cra_average'] = round(data['cra_average'] / count_list, 2)
+        data['ip_average'] = round(data['ip_average'] / count_list, 2)
+        data['poo_average'] = round(data['poo_average'] / count_list, 2)
+        data['nota_linguagem'] = round(data['nota_linguagem'] / count_list, 2)
+        data['nota_estrutura'] = round(data['nota_estrutura'] / count_list, 2)
+
+        return {
+            'data': data
+        }
+
         pass

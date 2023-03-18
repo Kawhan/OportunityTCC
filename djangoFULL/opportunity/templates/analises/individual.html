@@ -51,6 +51,53 @@
       </div>
     </div>
 
+    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+      <div class="card shadow-2-strong">
+        <div class="card-body">
+          <p class="text-uppercase mb-2"><strong>Médias gerais</strong></p>
+          <hr />
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">CRA</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">POO</th>
+                  <th scope="col">LPP</th>
+                  <th scope="col">Alg</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ data.cra_average|safe }}</td>
+                  <td>{{ data.ip_average|safe }}</td>
+
+                  {% if data.poo_average == 0 %}
+                    <td>NDA</td>
+                  {% else %}
+                    <td>{{ data.poo_average|safe }}</td>
+                  {% endif %}
+
+                  {% if data.nota_linguagem == 0 %}
+                    <td>NDA</td>
+                  {% else %}
+                    <td>{{ data.nota_linguagem|safe }}</td>
+                  {% endif %}
+
+                  {% if data.nota_estrutura == 0 %}
+                    <td>NDA</td>
+                  {% else %}
+                    <td>{{ data.nota_estrutura|safe }}</td>
+                  {% endif %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   
 </div>
   

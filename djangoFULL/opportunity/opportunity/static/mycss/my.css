@@ -57,6 +57,13 @@
     color: red;
 }
 
+.average_value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+}
+
 /* end new cards */
 
 .errorlist {
