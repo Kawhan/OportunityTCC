@@ -120,3 +120,84 @@ class Start:
         return {
             'data': data
         }
+
+
+class IndividualStart:
+    def define_data_info(data: dict):
+        data['alunos_SI'] = 0
+        data['alunos_LCC'] = 0
+
+        data['inscricoes_SI'] = 0
+        data['inscricoes_LCC'] = 0
+
+        return data
+
+    def define_info_count_from_jobs(data: dict, vaga_id: int):
+        data['vagas'] = vagasEmprego.objects.filter(
+            id=vaga_id).values('numeroVagas')
+        data['vagas'] = data['vagas'][0]['numeroVagas']
+        data['vaga_object'] = vagasEmprego.objects.filter(
+            id=vaga_id)
+
+        return data
+
+    def info_subscribe_in_job(data: dict, alunos: list):
+        query_set_data = data['vaga_object']
+
+        for alunos_curso in query_set_data:
+            for aluno in alunos_curso.aluno.values().distinct():
+                if aluno['curso'] == 'SI' and aluno not in alunos:
+                    alunos.append(aluno)
+                    data['alunos_SI'] += 1
+                elif aluno['curso'] == 'LCC' and aluno not in alunos:
+                    alunos.append(aluno)
+                    data['alunos_LCC'] += 1
+
+        return {
+            'alunos': alunos,
+            'data': data
+        }
+
+    # def all_subscribe_in_job(data: dict):
+    #     query_set_data = data['vaga_object']
+
+    #     for info in query_set_data:
+    #         for aluno in info.aluno.values().distinct():
+    #             if aluno['curso'] == 'SI':
+    #                 data['inscricoes_SI'] += 1
+    #             elif aluno['curso'] == 'LCC':
+    #                 data['inscricoes_LCC'] += 1
+
+    #     return {
+    #         'data': data
+    #     }
+
+    def period_all_stundes_in_job(data: dict):
+        query_set_data = data['vaga_object']
+        data['periodos'] = {
+            '1': 0,
+            '2': 0,
+            '3': 0,
+            '4': 0,
+            '5': 0,
+            '6': 0,
+            '7': 0,
+            '8': 0,
+            '9': 0
+        }
+
+        for alunos_curso in query_set_data:
+            for aluno in alunos_curso.aluno.values().distinct():
+                for periodo in data['periodos']:
+                    if aluno['periodo'] == int(periodo):
+                        data['periodos'][f'{periodo}'] += 1
+                        break
+
+        d = data['periodos']
+        d = {k: v for k, v in d.items() if v != 0}
+        data['periodos'] = d
+
+        return {
+            'data': data
+        }
+        pass
