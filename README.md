@@ -48,7 +48,11 @@ The system gained a version with django full stack template that has the same fu
 ## Jobs page
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/index.png)
 
-##
+## Private interface for teacher 
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/teacher_interface.png)
+
+## Private grafics interface
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/private_grafics_job.png)
 
 ---
 ## 🚢 Using Docker
