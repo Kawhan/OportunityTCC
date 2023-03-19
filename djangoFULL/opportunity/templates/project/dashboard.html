@@ -7,11 +7,11 @@
 
 <div class="container">
     <div class="row"></div>
-    <div class="row">
+    <div class="row d-flex justify-content-center align-items-center">
         {% for vaga in vagas %}
-        <div class="col-12 col-md-4 mb-2">
-            <div class="card border-0 bg-light rounded shadow mt-4 mb-2">
-                <div class="card-body p-3">
+        <div class="col-sm-10 d-flex justify-content-center align-items-center  col-md-8 col-lg-5 col-xl-4 mb-2">
+            <div class="card card-teacher border-0 bg-light rounded mt-4 mb-2">
+                <div class="card-body  p-3">
                     {% if vaga.is_closed %}
                     <span class="badge rounded-pill float-md-end mb-3 mb-sm-0 color-button-close">Fechada</span>
                     {% else %}
@@ -22,21 +22,29 @@
                     </div>
                     <div class="mt-3">
                         <span><strong>Número de Vagas: </strong>{{ vaga.numeroVagas }}</span>
-                        <span class="d-block"><strong>Professor: </strong>{{ vaga.professor }}</span>
+                        
+                        {% if vaga.tipo_vaga == 'PP' %}
+                        <span class="d-block"><strong>Tipo vaga: </strong>Projeto de Pesquisa</span>
+                        {% elif vaga.tipo_vaga == "PE" %}
+                        <span class="d-block"><strong>Tipo vaga: </strong>Projeto de Extensão</span>
+                        {% elif vaga.tipo_vaga == "ES"%}
+                        <span class="d-block"><strong>Tipo vaga: </strong>Estagio</span>
+                        {% endif %}
+                        <span><strong>Data de cadastro: </strong>{{ vaga.dataCadastro }}</span>
                     </div>
 
                     <div class="row">
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary">Visualizar sua vaga</a>
+                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary rounded-pill">Visualizar sua vaga</a>
                         </div>
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'change_vaga' vaga.id %}" class="btn btn-primary">Editar sua Vaga</a>
+                            <a href="{% url 'change_vaga' vaga.id %}" class="btn btn-primary rounded-pill">Editar sua Vaga</a>
                         </div>
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'delete_vaga' vaga.id %}" class="btn btn-primary">Deletar sua vaga</a>
+                            <a href="{% url 'delete_vaga' vaga.id %}" class="btn btn-primary rounded-pill">Deletar sua vaga</a>
                         </div>
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'individual' vaga.id %}" class="btn btn-primary">Informações vaga</a>
+                            <a href="{% url 'individual' vaga.id %}" class="btn btn-primary rounded-pill">Informações vaga</a>
                         </div>
                     </div>
                 </div>

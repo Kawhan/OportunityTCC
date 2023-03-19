@@ -311,12 +311,20 @@ a {
     .my-dash-button {
         width: 9em;
     }
+
+    .card-teacher {
+        width: 96%;
+    }
 }
 
 @media (min-width: 417px) {
     .my-card-div {
         width: 20em;
         height: 15.8em;
+    }
+
+    .card-teacher {
+        width: 81%;
     }
 }
 
@@ -327,7 +335,7 @@ a {
 }
 
 /* Small devices (landscape phones, less than 768px) */
-@media (min-width: 766px) {
+@media (min-width: 766px) and (max-width: 991.98px) {
     .button-width {
         width: 11em;
     }
@@ -339,6 +347,10 @@ a {
     .my-card-div {
         width: 18em;
         height: 15.8em;
+    }
+
+    .card-teacher {
+        width: 82%;
     }
 }
 /* Medium devices (tablets, less than 992px) */
@@ -399,5 +411,17 @@ a {
     ::after,
     ::before {
         box-sizing: border-box;
+    }
+}
+
+@media (min-width: 1400px) {
+    .card-teacher {
+        width: 76%;
+    }
+}
+
+@media (mid-width: 1200px) {
+    .card-teacher {
+        width: 76%;
     }
 }
