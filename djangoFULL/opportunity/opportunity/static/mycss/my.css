@@ -33,6 +33,10 @@
     justify-self: flex-end;
 }
 
+.button-primary-custom {
+    width: 109%;
+}
+
 .number-int {
     color: black;
     font-weight: bolder;

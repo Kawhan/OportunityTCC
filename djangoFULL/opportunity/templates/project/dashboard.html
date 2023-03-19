@@ -30,21 +30,21 @@
                         {% elif vaga.tipo_vaga == "ES"%}
                         <span class="d-block"><strong>Tipo vaga: </strong>Estagio</span>
                         {% endif %}
-                        <span><strong>Data de cadastro: </strong>{{ vaga.dataCadastro }}</span>
+                        <span><strong>Data de cadastro: </strong>{{ vaga.numeroVagas }}</span>
                     </div>
 
                     <div class="row">
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary rounded-pill">Visualizar sua vaga</a>
+                            <a href="{% url 'view_vaga' vaga.id %}" class="btn btn-primary button-primary-custom rounded-pill">Visualizar vaga</a>
                         </div>
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'change_vaga' vaga.id %}" class="btn btn-primary rounded-pill">Editar sua Vaga</a>
+                            <a href="{% url 'change_vaga' vaga.id %}" class="btn btn-primary button-primary-custom rounded-pill">Editar Vaga</a>
                         </div>
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'delete_vaga' vaga.id %}" class="btn btn-primary rounded-pill">Deletar sua vaga</a>
+                            <a href="{% url 'delete_vaga' vaga.id %}" class="btn btn-primary button-primary-custom rounded-pill">Deletar vaga</a>
                         </div>
                         <div class="mt-3 col-6 col-md-8 col-lg-6 col-sm-2 my-dash-button">
-                            <a href="{% url 'individual' vaga.id %}" class="btn btn-primary rounded-pill">Informações vaga</a>
+                            <a href="{% url 'individual' vaga.id %}" class="btn btn-primary button-primary-custom rounded-pill">Info vaga</a>
                         </div>
                     </div>
                 </div>
