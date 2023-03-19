@@ -43,7 +43,6 @@ class vagasEmprego(models.Model):
     horasSemana = models.IntegerField("Horas Semana")
     valorSalario = models.FloatField("Valor Salario")
     dataCadastro = models.DateField("Data de cadastro", default=timezone.now)
-    tipoVaga = models.CharField("Tipo da Vaga", max_length=255)
     beneficios = models.CharField("Beneficios", max_length=255)
     tituloVaga = models.CharField("Titulo da Vaga", max_length=255)
     descricao = HTMLField("Descrição")

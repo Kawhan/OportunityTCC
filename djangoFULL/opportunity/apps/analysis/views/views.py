@@ -84,7 +84,12 @@ def indiviual_analysis(request, vaga_id):
     data = IndividualStart.period_all_stundes_in_job(data)['data']
 
     # Catch avergae
-    data = IndividualStart.average_in_job(data, alunos)['data']
+    data = IndividualStart.average_in_job(data, alunos, request)['data']
+
+    if data == False:
+        messages.error(
+            request, "A vaga não tem nenhum inscrito, por favor aguardar")
+        return redirect("minhas_vagas")
 
     return render(request, "analises/individual.html", {
         'title': 'Graficos',

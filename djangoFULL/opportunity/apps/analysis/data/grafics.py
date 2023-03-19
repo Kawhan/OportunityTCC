@@ -201,7 +201,12 @@ class IndividualStart:
             'data': data
         }
 
-    def average_in_job(data: dict, alunos: list):
+    def average_in_job(data: dict, alunos: list, request):
+        if len(alunos) == 0:
+            return {
+                'data': False
+            }
+
         query_set_data = data['vaga_object']
         count_list = len(alunos)
         data['cra_average'] = 0
