@@ -50,7 +50,7 @@ The system gained a version with django full stack template that has the same fu
 ## Jobs page
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/index.png)
 
-## Private interface for teacher 
+## Private interface for professor 
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/teacher_interface.png)
 
 ## Private grafics interface
