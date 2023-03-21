@@ -21,6 +21,42 @@ class Start:
         data['inscricoes_SI_estagio'] = 0
         data['inscricoes_LCC_estagio'] = 0
 
+        data['periodos_pesquisa'] = {
+            '1': 0,
+            '2': 0,
+            '3': 0,
+            '4': 0,
+            '5': 0,
+            '6': 0,
+            '7': 0,
+            '8': 0,
+            '9': 0
+        }
+
+        data['periodos_extensao'] = {
+            '1': 0,
+            '2': 0,
+            '3': 0,
+            '4': 0,
+            '5': 0,
+            '6': 0,
+            '7': 0,
+            '8': 0,
+            '9': 0
+        }
+
+        data['periodos_estagio'] = {
+            '1': 0,
+            '2': 0,
+            '3': 0,
+            '4': 0,
+            '5': 0,
+            '6': 0,
+            '7': 0,
+            '8': 0,
+            '9': 0
+        }
+
         return data
 
     def define_info_count_from_jobs(data: dict):
@@ -116,6 +152,54 @@ class Start:
                     data['inscricoes_SI_estagio'] += 1
                 if aluno['curso'] == 'LCC':
                     data['inscricoes_LCC_estagio'] += 1
+
+        return {
+            'data': data
+        }
+
+    def period_all_stundes_in_research_job(data: dict, lista_alunos_pesquisa: list):
+        query_set_data = lista_alunos_pesquisa
+
+        for alunos_curso in query_set_data:
+            if alunos_curso['periodo'] == int(alunos_curso['periodo']):
+                periodo = alunos_curso['periodo']
+                data['periodos_pesquisa'][f'{periodo}'] += 1
+
+        d = data['periodos_pesquisa']
+        d = {k: v for k, v in d.items() if v != 0}
+        data['periodos_pesquisa'] = d
+
+        return {
+            'data': data
+        }
+
+    def period_all_stundes_in_extension_job(data: dict, alunos_extensao: list):
+        query_set_data = alunos_extensao
+
+        for alunos_curso in query_set_data:
+            if alunos_curso['periodo'] == int(alunos_curso['periodo']):
+                periodo = alunos_curso['periodo']
+                data['periodos_extensao'][f'{periodo}'] += 1
+
+        d = data['periodos_extensao']
+        d = {k: v for k, v in d.items() if v != 0}
+        data['periodos_extensao'] = d
+
+        return {
+            'data': data
+        }
+
+    def period_all_stundes_in_intern_job(data: dict, alunos_estagio: list):
+        query_set_data = alunos_estagio
+
+        for alunos_curso in query_set_data:
+            if alunos_curso['periodo'] == int(alunos_curso['periodo']):
+                periodo = alunos_curso['periodo']
+                data['periodos_estagio'][f'{periodo}'] += 1
+
+        d = data['periodos_estagio']
+        d = {k: v for k, v in d.items() if v != 0}
+        data['periodos_estagio'] = d
 
         return {
             'data': data
