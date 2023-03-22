@@ -74,24 +74,12 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=255, null=True, blank=True, unique=True)
-    idade = models.IntegerField(null=True, blank=True)
+    idade = models.IntegerField(blank=True, null=True)
     matricula = models.CharField(
         unique=True, max_length=11, null=True, blank=True)
-    data_ingresso = models.DateField(null=True, blank=True)
-    data_estimada_saida = models.DateField(null=True, blank=True)
-    periodo = models.IntegerField(null=True, blank=True)
-    cra = models.FloatField(null=True, blank=True)
+    periodo_ingresso = models.CharField(max_length=60, null=True, blank=True)
     curso = models.CharField(max_length=3, null=True,
                              blank=True, choices=curso)
-    nota_introducao = models.IntegerField(null=True, blank=True)
-    nota_POO = models.IntegerField(null=True, blank=True)
-    nota_linguagem = models.IntegerField(null=True, blank=True)
-    nota_estrutura = models.IntegerField(null=True, blank=True)
-    disposicao = models.CharField(
-        max_length=1, null=True, blank=True, choices=resp)
-    numero_disciplinas = models.IntegerField(null=True, blank=True)
-    link_git_hub = models.CharField(max_length=255, null=True, blank=True)
-    link_linkedin = models.CharField(max_length=255, null=True, blank=True)
     is_verify = models.BooleanField(default=False)
 
     def __str__(self):

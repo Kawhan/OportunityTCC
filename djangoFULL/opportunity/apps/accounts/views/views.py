@@ -171,8 +171,16 @@ def login(request):
                         request, "Login realizado com sucesso! Seja bem-vindo Professor(a)")
                     return redirect('index')
 
+                aluno = get_object_or_404(UserProfile, pk=user.id)
+
+                if aluno.is_verify:
+                    messages.success(
+                        request, "Login realizado com sucesso! Seja bem vindo")
+                    return redirect('index')
+
                 messages.success(
-                    request, "Login realizado com sucesso! Cadastre suas informações")
+                    request, "Login realizado com sucesso! Cadastre suas informações!")
+
                 return redirect('profile')
             else:
                 messages.error(request, 'Credenciais invalidas!.')
@@ -258,14 +266,6 @@ def update_profile(request):
     dados = {}
 
     dados["title"] = "Cadastro de informacoes"
-
-    if request.user.userprofile.data_ingresso != None:
-        request.user.userprofile.data_ingresso = request.user.userprofile.data_ingresso.strftime(
-            '%Y-%m-%d')
-
-    if request.user.userprofile.data_estimada_saida != None:
-        request.user.userprofile.data_estimada_saida = request.user.userprofile.data_estimada_saida.strftime(
-            '%Y-%m-%d')
 
     user_profile_form = UserProfileForm(instance=request.user.userprofile)
     dados["form"] = user_profile_form
