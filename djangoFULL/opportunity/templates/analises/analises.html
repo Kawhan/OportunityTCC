@@ -102,35 +102,6 @@
     </div>
     
 
-    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
-      <div class="card shadow-2-strong">
-        <div class="card-body">
-            <p class="text-uppercase mb-2"><strong>Periodo dos alunos de Pesquisa</strong></p>
-            <hr />
-            <canvas id="myChart9"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
-      <div class="card shadow-2-strong">
-        <div class="card-body">
-            <p class="text-uppercase mb-2"><strong>Periodo dos alunos de Extensao</strong></p>
-            <hr />
-            <canvas id="myChart10"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
-      <div class="card shadow-2-strong">
-        <div class="card-body">
-            <p class="text-uppercase mb-2"><strong>Periodo dos alunos de estagio</strong></p>
-            <hr />
-            <canvas id="myChart11"></canvas>
-        </div>
-      </div>
-    </div>
 
 
 
@@ -148,21 +119,7 @@
   
   <script>
 
-    let periodo = {}
-    let periodos_extensao = {}
-    let periodos_estagio = {}
-
-    {% for key,value in data.periodos_pesquisa.items %}
-        periodo['{{ key|safe }}'] = {{value|safe}}
-    {% endfor %}
-
-    {% for key,value in data.periodos_extensao.items %}
-        periodos_extensao['{{ key|safe }}'] = {{value|safe}}
-    {% endfor %}
-
-    {% for key,value in data.periodos_estagio.items %}
-      periodos_estagio['{{ key|safe }}'] = {{value|safe}}
-    {% endfor %}
+  
 
     
     
@@ -174,9 +131,7 @@
     const ctx6 = document.getElementById('myChart6');
     const ctx7 = document.getElementById('myChart7');
     const ctx8 = document.getElementById('myChart8');
-    const ctx9 = document.getElementById('myChart9');
-    const ctx10 = document.getElementById('myChart10');
-    const ctx11 = document.getElementById('myChart11');
+
     
     new Chart(ctx, {
       type: 'pie',
@@ -383,70 +338,6 @@ new Chart(ctx8, {
   }
 });
 
-  
-  new Chart(ctx9, {
-    type: 'bar',
-    data: {
-      labels: Object.keys(periodo),
-      datasets: [{
-        label: 'Alunos',
-        data: Object.values(periodo),
-        borderWidth: 1
-      }]
-    },
-    options: {
-        responsive: true,
-        aspectRatio: 1,
-        ticks: {
-          min: 0, // it is for ignoring negative step.
-          beginAtZero: true,
-          precision: 0
-        },
-      }
-  });
-
-  new Chart(ctx10, {
-    type: 'bar',
-    data: {
-      labels: Object.keys(periodos_extensao),
-      datasets: [{
-        label: 'Alunos',
-        data: Object.values(periodos_extensao),
-        borderWidth: 1
-      }]
-    },
-    options: {
-        responsive: true,
-        aspectRatio: 1,
-        ticks: {
-          min: 0, // it is for ignoring negative step.
-          beginAtZero: true,
-          precision: 0
-        },
-      }
-  });
-
-  new Chart(ctx11, {
-    type: 'bar',
-    data: {
-      labels: Object.keys(periodos_estagio),
-      datasets: [{
-        label: 'Alunos',
-        data: Object.values(periodos_estagio),
-        borderWidth: 1
-      }]
-    },
-    options: {
-        responsive: true,
-        aspectRatio: 1,
-        ticks: {
-          min: 0, // it is for ignoring negative step.
-          beginAtZero: true,
-          precision: 0
-        },
-      }
-  });
-  
   
 
 

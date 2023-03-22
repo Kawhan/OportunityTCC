@@ -21,42 +21,6 @@ class Start:
         data['inscricoes_SI_estagio'] = 0
         data['inscricoes_LCC_estagio'] = 0
 
-        data['periodos_pesquisa'] = {
-            '1': 0,
-            '2': 0,
-            '3': 0,
-            '4': 0,
-            '5': 0,
-            '6': 0,
-            '7': 0,
-            '8': 0,
-            '9': 0
-        }
-
-        data['periodos_extensao'] = {
-            '1': 0,
-            '2': 0,
-            '3': 0,
-            '4': 0,
-            '5': 0,
-            '6': 0,
-            '7': 0,
-            '8': 0,
-            '9': 0
-        }
-
-        data['periodos_estagio'] = {
-            '1': 0,
-            '2': 0,
-            '3': 0,
-            '4': 0,
-            '5': 0,
-            '6': 0,
-            '7': 0,
-            '8': 0,
-            '9': 0
-        }
-
         return data
 
     def define_info_count_from_jobs(data: dict):
@@ -157,54 +121,6 @@ class Start:
             'data': data
         }
 
-    def period_all_stundes_in_research_job(data: dict, lista_alunos_pesquisa: list):
-        query_set_data = lista_alunos_pesquisa
-
-        for alunos_curso in query_set_data:
-            if alunos_curso['periodo'] == int(alunos_curso['periodo']):
-                periodo = alunos_curso['periodo']
-                data['periodos_pesquisa'][f'{periodo}'] += 1
-
-        d = data['periodos_pesquisa']
-        d = {k: v for k, v in d.items() if v != 0}
-        data['periodos_pesquisa'] = d
-
-        return {
-            'data': data
-        }
-
-    def period_all_stundes_in_extension_job(data: dict, alunos_extensao: list):
-        query_set_data = alunos_extensao
-
-        for alunos_curso in query_set_data:
-            if alunos_curso['periodo'] == int(alunos_curso['periodo']):
-                periodo = alunos_curso['periodo']
-                data['periodos_extensao'][f'{periodo}'] += 1
-
-        d = data['periodos_extensao']
-        d = {k: v for k, v in d.items() if v != 0}
-        data['periodos_extensao'] = d
-
-        return {
-            'data': data
-        }
-
-    def period_all_stundes_in_intern_job(data: dict, alunos_estagio: list):
-        query_set_data = alunos_estagio
-
-        for alunos_curso in query_set_data:
-            if alunos_curso['periodo'] == int(alunos_curso['periodo']):
-                periodo = alunos_curso['periodo']
-                data['periodos_estagio'][f'{periodo}'] += 1
-
-        d = data['periodos_estagio']
-        d = {k: v for k, v in d.items() if v != 0}
-        data['periodos_estagio'] = d
-
-        return {
-            'data': data
-        }
-
 
 class IndividualStart:
     def define_data_info(data: dict):
@@ -255,72 +171,5 @@ class IndividualStart:
     #     return {
     #         'data': data
     #     }
-
-    def period_all_stundes_in_job(data: dict):
-        query_set_data = data['vaga_object']
-        data['periodos'] = {
-            '1': 0,
-            '2': 0,
-            '3': 0,
-            '4': 0,
-            '5': 0,
-            '6': 0,
-            '7': 0,
-            '8': 0,
-            '9': 0
-        }
-
-        for alunos_curso in query_set_data:
-            for aluno in alunos_curso.aluno.values().distinct():
-                for periodo in data['periodos']:
-                    if aluno['periodo'] == int(periodo):
-                        data['periodos'][f'{periodo}'] += 1
-                        break
-
-        d = data['periodos']
-        d = {k: v for k, v in d.items() if v != 0}
-        data['periodos'] = d
-
-        return {
-            'data': data
-        }
-
-    def average_in_job(data: dict, alunos: list, request):
-        if len(alunos) == 0:
-            return {
-                'data': False
-            }
-
-        query_set_data = data['vaga_object']
-        count_list = len(alunos)
-        data['cra_average'] = 0
-        data['ip_average'] = 0
-        data['poo_average'] = 0
-        data['nota_linguagem'] = 0
-        data['nota_estrutura'] = 0
-
-        for alunos_curso in query_set_data:
-            for aluno in alunos_curso.aluno.values().distinct():
-                data['cra_average'] += aluno['cra']
-                data['ip_average'] += aluno['nota_introducao']
-
-                if aluno['nota_POO'] != None:
-                    data['poo_average'] += aluno['nota_POO']
-
-                if aluno['nota_linguagem'] != None:
-                    data['nota_linguagem'] += aluno['nota_linguagem']
-
-                if aluno['nota_estrutura'] != None:
-                    data['nota_estrutura'] += aluno['nota_estrutura']
-
-        data['cra_average'] = round(data['cra_average'] / count_list, 2)
-        data['ip_average'] = round(data['ip_average'] / count_list, 2)
-        data['poo_average'] = round(data['poo_average'] / count_list, 2)
-        data['nota_linguagem'] = round(data['nota_linguagem'] / count_list, 2)
-        data['nota_estrutura'] = round(data['nota_estrutura'] / count_list, 2)
-
-        return {
-            'data': data
-        }
 
         pass
