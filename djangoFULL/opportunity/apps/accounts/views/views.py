@@ -192,6 +192,8 @@ def login(request):
         #             messages.error(
         #                 request, "Você deve fazer o teste de reCAPTCHA")
 
+        messages.error(
+            request, "Dados incorretos, por favor tente verificar as informações digitadas!")
         dados["form"] = form
 
     return render(request, 'accounts/login.html', dados)
