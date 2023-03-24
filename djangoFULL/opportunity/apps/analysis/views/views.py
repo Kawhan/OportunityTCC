@@ -49,6 +49,17 @@ def analises(request):
     data = Start.all_subscribe_in_intern(
         query_set_data, alunos_estagio, data)['data']
 
+    # return period studens research
+    data = Start.period_all_stundes_in_research_job(
+        data, alunos_pesquisa)['data']
+
+    # return period studens extension
+    data = Start.period_all_stundes_in_extension_job(
+        data, alunos_extensao)['data']
+
+    # return period students intern
+    data = Start.period_all_stundes_in_intern_job(data, alunos_estagio)['data']
+
     return render(request, "analises/analises.html", {
         'title': "Analises gerais",
         'labels': labels,
