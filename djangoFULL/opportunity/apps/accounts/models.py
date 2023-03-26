@@ -72,12 +72,31 @@ class UserProfile(models.Model):
         ('LCC', 'Lic. Ciência da Computação')
     )
 
+    # 2023.1, 2022.1, 2021.1, ...
+
+    periodo = (
+        ('2019.1', '2019.1'),
+        ('2019.2', '2019.2'),
+        ('2020.1', '2020.1'),
+        ('2020.2', '2020.2'),
+        ('2021.1', '2021.1'),
+        ('2021.2', '2021.2'),
+        ('2022.1', '2022.1'),
+        ('2022.2', '2022.2'),
+        ('2023.1', '2023.1'),
+        ('2023.2', '2023.2'),
+        ('2024.1', '2024.1'),
+        ('2024.2', '2024.2'),
+        ('2025.1', '2025.1'),
+        ('2025.2', '2025.2')
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=255, null=True, blank=True, unique=True)
-    idade = models.IntegerField(blank=True, null=True)
     matricula = models.CharField(
         unique=True, max_length=11, null=True, blank=True)
-    periodo_ingresso = models.CharField(max_length=60, null=True, blank=True)
+    periodo_ingresso = models.CharField(
+        max_length=6, null=True, blank=True, choices=periodo)
     curso = models.CharField(max_length=3, null=True,
                              blank=True, choices=curso)
     is_verify = models.BooleanField(default=False)

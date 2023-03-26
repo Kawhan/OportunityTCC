@@ -98,7 +98,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = '__all__'
-        labels = {'nome': 'Nome <span class="teste">*</span>', 'idade': 'Idade <span class="teste">*</span>',
+        labels = {'nome': 'Nome <span class="teste">*</span>',
                   'matricula': 'Matricula <span class="teste">*</span>', 'periodo_ingresso': 'Periodo de Ingresso <span class="teste">*</span>', 'curso': 'Seu curso <span class="teste">*</span>'}
         widgets = {
             'user': forms.HiddenInput,
@@ -196,7 +196,6 @@ class UserProfileForm(forms.ModelForm):
     def clean(self):
         user = self.cleaned_data.get('user')
         nome = self.cleaned_data.get("nome")
-        idade = self.cleaned_data.get("idade")
         matricula = self.cleaned_data.get("matricula")
         periodo_ingresso = self.cleaned_data.get("periodo_ingresso")
         curso = self.cleaned_data.get("curso")
@@ -204,9 +203,9 @@ class UserProfileForm(forms.ModelForm):
         lista_de_erros = {}
 
         nome_invalid(nome, user, 'nome', lista_de_erros)
-        idade_invalid(idade, 'idade', lista_de_erros)
         matricula_invalid(matricula, user, 'matricula', lista_de_erros)
         curso_invalid(curso, 'curso', lista_de_erros)
+        period_invalid(periodo_ingresso, 'periodo_ingresso', lista_de_erros)
 
         # print(lista_de_erros)
         if lista_de_erros is not None:
@@ -230,7 +229,7 @@ class UserProfileFormAdmin(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = '__all__'
-        labels = {'nome': 'Nome', 'idade': 'Idade',
+        labels = {'nome': 'Nome',
                   'matricula': 'Matricula', 'curso': 'Seu curso', 'periodo_ingresso': 'Periodo de ingresso'}
         widgets = {
             'user': forms.HiddenInput,
@@ -246,11 +245,6 @@ class UserProfileFormAdmin(forms.ModelForm):
             'matricula': mark_safe(
                 '<ul class="listError">\
                     <li>Coloque sua matricula verdadeira</li>\
-                <ul/>'
-            ),
-            'idade': mark_safe(
-                '<ul class="listError">\
-                    <li>Coloque valores possitivos</li>\
                 <ul/>'
             ),
             'curso': mark_safe(
@@ -278,9 +272,9 @@ class UserProfileFormAdmin(forms.ModelForm):
         lista_de_erros = {}
 
         nome_invalid(nome, user, 'nome', lista_de_erros)
-        idade_invalid(idade, 'idade', lista_de_erros)
         matricula_invalid(matricula, user, 'matricula', lista_de_erros)
         curso_invalid(curso, 'curso', lista_de_erros)
+        period_invalid(periodo_ingresso, 'periodo_ingresso', lista_de_erros)
 
         # print(lista_de_erros)
         if lista_de_erros is not None:

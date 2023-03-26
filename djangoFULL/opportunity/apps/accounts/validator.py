@@ -22,16 +22,6 @@ def nome_invalid(nome, user, nome_campo, lista_erros):
         return
 
 
-def idade_invalid(idade, nome_campo, lista_de_erros):
-    if idade == None:
-        lista_de_erros[nome_campo] = "Campo de idade vazio!"
-        return
-
-    if idade <= 0:
-        lista_de_erros[nome_campo] = "Campo de idade invalido!"
-        return
-
-
 def matricula_invalid(matricula, user, nome_campo, lista_erros):
     """ Verifica se a matricula é valida """
     if matricula == None:
@@ -71,4 +61,11 @@ def curso_invalid(curso, nome_campo, lista_de_erros):
 
     if curso != 'SI' and curso != 'LCC':
         lista_de_erros[nome_campo] = "Curso invalido"
+        return
+
+
+def period_invalid(periodo, nome_campo, lista_de_erros):
+    """ Verifica se o periodo é válido """
+    if periodo == None:
+        lista_de_erros[nome_campo] = "Periodo não pode ficar vazio"
         return

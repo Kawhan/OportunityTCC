@@ -9,11 +9,11 @@
             <legend class="border-bottom mb-4 ">
                 <h2>Cadastro</h2>
             </legend>
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 {% for field in form.visible_fields %}
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-8">
                         <div class=" mb-3">
-                            <label for="{{ field.id_for_label }}" class="mb-2">{{ field.label|safe }}</label>
+                            <label  for="{{ field.id_for_label }}" class="mb-2 text-label">{{ field.label|safe }}</label>
                             {{ field|add_class:"form-control my-input-group" }}
                             {% if field.help_text %}
                             <p class="help">{{ field.help_text|safe }}</p>
@@ -34,7 +34,9 @@
                     </div> {% endcomment %}
                     {% endfor %}
             </div>
-            <input type="submit" value="Ok" class="btn btn-success mt-2">
+            <div class="d-flex justify-content-center">
+                <input type="submit" value="Submeter" class="btn btn-success mt-2 button-center">
+            </div>
         </form>
     </section>
 </div>
