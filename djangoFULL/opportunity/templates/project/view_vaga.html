@@ -17,25 +17,27 @@
                 <h5><span>Data de cadastro: </span>{{ vaga.dataCadastro }}</h5>
                 <h5><span>Data de fechamento: </span> {{ vaga.dataFechamento }}</h5>
                 <h5><span>Horas seamana:</span>  {{ vaga.horasSemana }}</h5>
-                <h5>Número vagas: {{ vaga.numeroVagas }}</h5>
-                <h5>valor Salario: R$ {{ vaga.valorSalario }}</h5>
-                <h5>Professor: {{ vaga.professor.nomeProfessor }}</h5>
+                <h5><span>Número vagas:</span> {{ vaga.numeroVagas }}</h5>
+                <h5><span>valor Salario:</span> R$ {{ vaga.valorSalario }}</h5>
+                <h5><span>Professor:</span>  {{ vaga.professor.nomeProfessor }}</h5>
                 {% if vaga.nivel == 'B' %}
-                    <h5>Nivel: Básico</h5>
+                    <h5><span>Nivel:</span>  Básico</h5>
                 {% elif vaga.nivel == 'I' %}
-                    <h5>Nivel: Intermediário</h5>
+                    <h5><span>Nivel: </span>  Intermediário</h5>
                 {% else %}
-                    <h5>Nivel: Avançado</h5>
+                    <h5><span>Nivel:</span> Avançado</h5>
                 {%endif%}
             </div>
             
            
-            
-            <div class="col-lg-9 col-md-12 col-sm-12" class="with-css">
-                <div class="full-width">
-                    {{ vaga.descricao|safe }}
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="col-lg-9 col-md-12 col-sm-12 ">
+                    <div class="myclass">
+                        {{ vaga.descricao|safe }}
+                    </div>
                 </div>
             </div>
+            
             
         </section>
     </div>
