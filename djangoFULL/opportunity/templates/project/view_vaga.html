@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load humanize %}
 {% load static %}
 {% block content %}
 <div class="content-section color-body class-rouder p-3 mt-4 mb-2">
@@ -7,30 +8,24 @@
         <section>
             <h1 class="title">{{ vaga.tituloVaga }}</h1>
             <div class="my-info-div">
-                {% if vaga.tipo_vaga == "PP" %}
-                <h5><span>Tipo vaga:</span> Projeto de Pesquisa</h5>
-                {% elif vaga.tipo_vaga == "PE" %}
-                <h5><span>Tipo vaga:</span>Projeto de Extensão</h5>
-                {% else %}
-                <h5><span>Tipo vaga: </span>Estágio</h5>
-                {% endif %}
-                <h5><span>Data de cadastro: </span>{{ vaga.dataCadastro }}</h5>
-                <h5><span>Data de fechamento: </span> {{ vaga.dataFechamento }}</h5>
-                <h5><span>Horas seamana:</span>  {{ vaga.horasSemana }}</h5>
-                <h5><span>Número vagas:</span> {{ vaga.numeroVagas }}</h5>
-                <h5><span>valor Salario:</span> R$ {{ vaga.valorSalario }}</h5>
-                <h5><span>Professor:</span>  {{ vaga.professor.nomeProfessor }}</h5>
-                {% if vaga.nivel == 'B' %}
-                    <h5><span>Nivel:</span>  Básico</h5>
-                {% elif vaga.nivel == 'I' %}
-                    <h5><span>Nivel: </span>  Intermediário</h5>
-                {% else %}
-                    <h5><span>Nivel:</span> Avançado</h5>
-                {%endif%}
+                <div>
+                    {% if vaga.tipo_vaga == "PP" %}
+                    <h5><span>Tipo vaga:</span> Projeto de Pesquisa</h5>
+                    {% elif vaga.tipo_vaga == "PE" %}
+                    <h5><span>Tipo vaga:</span>Projeto de Extensão</h5>
+                    {% else %}
+                    <h5><span>Tipo vaga: </span>Estágio</h5>
+                    {% endif %}
+                    <h5><span>Período de inscrição: </span>{{ vaga.dataCadastro|naturalday   }} <span>até</span> {{ vaga.dataFechamento|naturalday   }}</h5>
+                    <h5><span>Horas semanais:</span>  {{ vaga.horasSemana }} horas</h5>
+                    <h5><span>Número de vagas:</span> {{ vaga.numeroVagas }} vagas</h5>
+                    <h5><span>Salario:</span> R$ {{ vaga.valorSalario|floatformat:2|intcomma }} reais</h5>
+                </div>
+                
             </div>
             
            
-            <div class="d-flex justify-content-center align-items-center">
+            <div class="">
                 <div class="col-lg-9 col-md-12 col-sm-12 ">
                     <div class="myclass">
                         {{ vaga.descricao|safe }}

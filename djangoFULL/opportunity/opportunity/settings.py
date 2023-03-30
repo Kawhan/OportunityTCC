@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'tinymce',
     'captcha',
-    'analysis'
+    'analysis',
+    'django.contrib.humanize'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
