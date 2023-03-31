@@ -9,9 +9,8 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Header", {"fields": ['tituloVaga', 'numeroVagas']}),
         ("Content", {"fields": [
-         'nivel', 'horasSemana', 'valorSalario', 'descricao', 'tipoVaga', 'beneficios', 'tipo_vaga']}),
+         'nivel', 'horasSemana', 'valorSalario', 'beneficios', 'tipo_vaga']}),
         ("Date", {"fields": ['dataCadastro', 'dataFechamento']}),
-        ("Keys", {"fields": ['professor']},),
         ("Alunos Inscritos", {"fields": ['aluno']})
 
     ]

@@ -20,19 +20,13 @@
                     <h5><span>Horas semanais:</span>  {{ vaga.horasSemana }} horas</h5>
                     <h5><span>Número de vagas:</span> {{ vaga.numeroVagas }} vagas</h5>
                     <h5><span>Salario:</span> R$ {{ vaga.valorSalario|floatformat:2|intcomma }} reais</h5>
-                    {% comment %} <button>Baixar pdf</button> {% endcomment %}
+                    <a class="btn btn-success rouded-button" href="{{vaga.pdf.url}}" download>DowNload PDF</a>  
                 </div>
                 
             </div>
             
            
-            <div class="">
-                <div class="col-lg-9 col-md-12 col-sm-12 ">
-                    <div class="myclass">
-                        {{ vaga.descricao|safe }}
-                    </div>
-                </div>
-            </div>
+            
             
             
         </section>

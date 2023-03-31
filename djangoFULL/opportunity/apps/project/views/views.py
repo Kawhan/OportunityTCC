@@ -1,9 +1,12 @@
 import datetime
+import os
 
 from accounts.models import User, UserProfile
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from project.forms import JobForm
 from project.models import Professor, vagasEmprego
@@ -93,7 +96,7 @@ def create_vaga(request):
 
     # print(user)
 
-    form = JobForm(request.POST or None, initial={
+    form = JobForm(request.POST, request.FILES or None, initial={
                    "professor": user, "dataCadastro": date})
 
     if form.is_valid():
@@ -125,14 +128,19 @@ def change_vaga(request, vaga_id):
         messages.error(request, "Você não pode realizar essa operação!")
         return redirect("index")
 
-    form = JobForm(request.POST or None, instance=job)
+    if request.method != "POST":
+        form = JobForm(instance=job)
+    elif request.method == "POST":
+        form = JobForm(request.POST,
+                       files=request.FILES, instance=job)
 
-    if form.is_valid():
-        # print(form.id)
+        if form.is_valid():
 
-        form.save()
-        messages.success(request, "Vaga de emprego alterado com sucesso!")
-        return redirect('minhas_vagas')
+            # print(form.id)
+
+            form.save()
+            messages.success(request, "Vaga de emprego alterado com sucesso!")
+            return redirect('minhas_vagas')
 
     context["form"] = form
     context["title"] = "Alterar vaga"
@@ -382,3 +390,15 @@ def estagio(request):
     dados['user_info'] = user_info
 
     return render(request, 'project/estagio.html', dados)
+
+
+# def download(request, path):
+#     file_path = os.path.join(settings.MEDIA_ROOT, path)
+#     if os.path.exists(file_path):
+#         with open(file_path, 'rb') as fh:
+#             response = HttpResponse(
+#                 fh.read(), content_type="application/vnd.ms-excel")
+#             response['Content-Disposition'] = 'inline; filename=' + \
+#                 os.path.basename(file_path)
+#             return response
+#     raise Http404
