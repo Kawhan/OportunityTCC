@@ -95,14 +95,18 @@ def create_vaga(request):
     user = Professor.objects.filter(user=request.user.id).first()
 
     # print(user)
+    if request.method == 'POST':
+        form = JobForm(request.POST, request.FILES or None, initial={
+            "professor": user, "dataCadastro": date})
 
-    form = JobForm(request.POST, request.FILES or None, initial={
-                   "professor": user, "dataCadastro": date})
+        if form.is_valid():
+            # print('passou')
+            form.save()
+            return redirect('minhas_vagas')
 
-    if form.is_valid():
-        # print('passou')
-        form.save()
-        return redirect('minhas_vagas')
+    else:
+        form = JobForm(initial={
+            "professor": user, "dataCadastro": date})
 
     context['form'] = form
     context['professor'] = user

@@ -9,7 +9,7 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Header", {"fields": ['tituloVaga', 'numeroVagas']}),
         ("Content", {"fields": [
-         'nivel', 'horasSemana', 'valorSalario', 'beneficios', 'tipo_vaga']}),
+            'horasSemana', 'valorSalario', 'beneficios', 'tipo_vaga']}),
         ("Date", {"fields": ['dataCadastro', 'dataFechamento']}),
         ("Alunos Inscritos", {"fields": ['aluno']})
 
@@ -19,7 +19,6 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
         'id',
         'tituloVaga',
         'numeroVagas',
-        'nivel',
         'horasSemana',
         'valorSalario',
         'dataCadastro',
@@ -31,7 +30,6 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
     search_fields = (
         'tituloVaga',
         'numeroVagas',
-        'nivel',
         'horasSemana',
         'valorSalario',
         'dataCadastro',
@@ -40,14 +38,13 @@ class VagasEmpregoAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
-        'nivel',
         'horasSemana',
         'dataCadastro',
         'professor_id__nomeProfessor',
         'numeroVagas'
     )
 
-    list_display_links = ['id', 'nivel']
+    list_display_links = ['id']
 
     def nome_professor(self, obj):
         return obj.professor.nomeProfessor

@@ -6,6 +6,8 @@
     align-items: center;
     justify-content: center;
 }
+
+/* div info */
 .chartBox {
     width: 700px;
     padding: 20px;
@@ -116,6 +118,10 @@ div.layout ul {
 
 .my-info-div {
     margin-top: 2em;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 
     font-family: "Roboto";
 }
