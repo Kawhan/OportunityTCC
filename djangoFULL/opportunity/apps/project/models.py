@@ -43,7 +43,6 @@ class vagasEmprego(models.Model):
     dataCadastro = models.DateField("Data de cadastro", default=timezone.now)
     beneficios = models.CharField("Beneficios", max_length=255)
     tituloVaga = models.CharField("Titulo da Vaga", max_length=255)
-    # descricao = HTMLField("Descrição")
     pdf = models.FileField(upload_to='pdfs/%d/%m/%Y/')
     dataFechamento = models.DateField("Data de Fechamento")
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
