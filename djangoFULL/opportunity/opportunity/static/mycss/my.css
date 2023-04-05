@@ -7,6 +7,12 @@
     justify-content: center;
 }
 
+.login-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* div info */
 .chartBox {
     width: 700px;

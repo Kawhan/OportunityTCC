@@ -19,7 +19,7 @@
                     </div>
 
                     {% for field in form.visible_fields %}
-                        <div class="mb-3">
+                        <div class="mb-3 login-center">
                             {{ field|add_class:'form-control' }}
                         </div>
                         {% for error in field.errors %}
