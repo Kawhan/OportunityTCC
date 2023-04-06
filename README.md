@@ -34,6 +34,8 @@ The system gained a version with django full stack template that has the same fu
 
 ## Login
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/login.png)
+# The image is from https://pt.vecteezy.com/arte-vetorial/563628-logotipo-de-cabeca-de-aguia-passaro-e-simbolo-vector and the author is 
+mar sono
 
 ## Register
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/registro.png)
