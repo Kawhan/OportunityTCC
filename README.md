@@ -34,12 +34,14 @@ The system gained a version with django full stack template that has the same fu
 
 ## Login
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/login.png)
+## The image in login card is from https://pt.vecteezy.com/arte-vetorial/563628-logotipo-de-cabeca-de-aguia-passaro-e-simbolo-vector and the author is mar sono
 
 ## Register
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/registro.png)
 
 ## Confirm register
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/confirm_register.png)
+
 
 ## Student info
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/Infos.png)
