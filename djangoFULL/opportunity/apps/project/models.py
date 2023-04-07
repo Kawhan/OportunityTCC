@@ -20,12 +20,6 @@ class Professor(models.Model):
 
 
 class vagasEmprego(models.Model):
-    nivel = (
-        ('B', 'Basico'),
-        ('I', 'Intermediário'),
-        ('A', 'Avançado')
-    )
-
     disponivel = (
         ('S', 'Sim'),
         ('N', 'Não')

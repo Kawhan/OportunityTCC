@@ -45,7 +45,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(("first name"), max_length=150, blank=True)
     last_name = models.CharField(("last name"), max_length=150, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
-    first_name = models.CharField(max_length=255)
     auth_provider = models.CharField(
         max_length=255, blank=False,
         null=False, default=AUTH_PROVIDERS.get('email'))
@@ -62,11 +61,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class UserProfile(models.Model):
-    resp = (
-        ('S', 'Sim'),
-        ('N', 'Não'),
-    )
-
     curso = (
         ('SI', 'Sistemas de Informação'),
         ('LCC', 'Lic. Ciência da Computação')
