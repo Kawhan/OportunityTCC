@@ -43,7 +43,7 @@ The system gained a version with django full stack template that has the same fu
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/confirm_register.png)
 
 ## Student info
-![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/Infos.png)
+![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/infos.png)
 
 ## Stundents info using paginator
 ![alt text](https://github.com/Kawhan/OportunityTCC/blob/master/djangoFULL/imgs/view_using_paginator.png)
