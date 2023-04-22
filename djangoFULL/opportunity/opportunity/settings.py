@@ -119,7 +119,7 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 # }
 
 
-# # Local
+# Local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

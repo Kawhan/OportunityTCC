@@ -1,3 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+/* grafic */
+.chartCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* div info */
+.chartBox {
+    width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 3px rgba(54, 162, 235, 1);
+    background: white;
+}
+
+.myclass {
+    width: 100%
+}
+
+/* labels */
+
+.text-label {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+
+
+/* new cards */
+.hearth-new {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-new {
+    justify-self: flex-start;
+    margin: 0;
+}
+
+.title-new h5 {
+    margin-bottom: 0;
+}
+
+.icon-text {
+    justify-self: flex-end;
+}
+
+.button-primary-custom {
+    width: 109%;
+}
+
+.number-int {
+    color: black;
+    font-weight: bolder;
+    font-size: 17px;
+    margin-top: 0;
+    padding: 0;
+}
+
+.number-int-leg {
+    font-size: 12px;
+    margin-top: 0;
+    padding: 0;
+}
+
+.number-int-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teste {
+    color: red;
+}
+
+.average_value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+}
+
+/* end new cards */
+
 .errorlist {
     color: red;
     font-family: italic;
@@ -6,12 +99,12 @@
     margin: 0.2em 0 0 0;
 }
 
-/* .listError {
-    list-style-type: "⚠️ ";
-    color: cadetblue;
-    font-weight: bold;
-    font-size: 17;
-} */
+.errorlist2 {
+    color: red;
+    font-family: italic;
+    font-size: 1em;
+    list-style-type: "❌ ";
+}
 
 div.layout ul {
     list-style-type: "☑️ ";
@@ -19,6 +112,84 @@ div.layout ul {
     font-weight: bold;
     font-size: 17;
     /* font-style: italic; */
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto";
+    font-weight: bold;
+}
+
+.my-info-div {
+    margin-top: 2em;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    font-family: "Roboto";
+}
+
+.my-info-div span {
+    font-weight: bold;
+}
+
+.red-color {
+    color: red;
+    font-size: 1.6em;
+}
+
+.white {
+    font-size: 1.6em;
+}
+
+.my-button-hearth {
+    background-color: #f8f9fa;
+    height: 24px;
+    border: none;
+}
+
+.div-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.div-center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 69%;
+}
+
+.hearth {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-card-title {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.my-content span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+span .text-aside {
+    font-size: 14px;
+    font-family: "Roboto";
+    font-weight: bold;
 }
 
 .date {
@@ -39,11 +210,6 @@ div.alerts-mensage ul {
 
 .teste-container {
     width: 60%;
-}
-
-.teste {
-    color: red;
-    font-size: 16px;
 }
 
 .body-class {
@@ -105,4 +271,186 @@ div.alerts-mensage ul {
 
 a {
     text-decoration: none;
+}
+
+.my-card {
+    border-radius: 10px;
+    height: 19em;
+}
+
+.badge {
+    padding: 5px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.color-button-close {
+    background: #f7c7c7;
+    color: #3a0202;
+    vertical-align: middle;
+}
+
+.color-button-green {
+    background: #bee1be;
+    color: #235923;
+    vertical-align: middle;
+}
+
+.rouded-button {
+    border-radius: 9px;
+    width: 18em;
+}
+
+.button-width {
+    width: 11em;
+}
+
+.color-body {
+    background-color: #fdfdfd;
+}
+
+@media (min-width: 360px) {
+    .with-css {
+        width: 143px;
+    }
+
+    .with-css h5 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .my-button-hearth {
+        width: 2em;
+    }
+
+    .my-card {
+        width: 15em;
+    }
+
+    .my-margin-card {
+        margin-left: 10%;
+    }
+
+    .button-width {
+        width: 17em;
+    }
+
+    .my-dash-button {
+        width: 9em;
+    }
+
+    .card-teacher {
+        width: 96%;
+    }
+}
+
+@media (min-width: 417px) {
+    .my-card-div {
+        width: 20em;
+        height: 15.8em;
+    }
+
+    .card-teacher {
+        width: 81%;
+    }
+}
+
+@media (min-width: 577px) {
+    .button-width {
+        width: 14.2em;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (min-width: 766px) and (max-width: 991.98px) {
+    .button-width {
+        width: 11em;
+    }
+
+    .with-css {
+        width: 138px;
+    }
+
+    .my-card-div {
+        width: 18em;
+        height: 15.8em;
+    }
+
+    .card-teacher {
+        width: 82%;
+    }
+}
+/* Medium devices (tablets, less than 992px) */
+@media (min-width: 991.98px) {
+    .button-width {
+        width: 8em;
+    }
+
+    .with-css {
+        width: 142px;
+    }
+
+    .my-card-div {
+        width: 18em;
+        height: 15.8em;
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 1189px) {
+    .button-width {
+        width: 7.4em;
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (min-width: 1199.98px) {
+    .button-width {
+        width: 9em;
+        padding: 6px;
+    }
+
+    .with-css {
+        width: 206px;
+    }
+
+    .my-card-div {
+        width: 22em;
+        height: 15.8em;
+    }
+
+    .my-dash-button {
+        width: 9em;
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 1400px) {
+    .card-teacher {
+        width: 76%;
+    }
+}
+
+@media (mid-width: 1200px) {
+    .card-teacher {
+        width: 76%;
+    }
 }
