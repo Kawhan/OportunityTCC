@@ -19,7 +19,7 @@
                     <h5><span>Período de inscrição: </span>{{ vaga.dataCadastro  }} <span>até</span> {{ vaga.dataFechamento   }}</h5>
                     <h5><span>Horas semanais:</span>  {{ vaga.horasSemana }} horas</h5>
                     <h5><span>Número de vagas:</span> {{ vaga.numeroVagas }} vagas</h5>
-                    <h5><span>Salario:</span> R$ {{ vaga.valorSalario|floatformat:2|intcomma }} reais</h5>
+                    <h5><span>Valor da bolsa:</span> R$ {{ vaga.valorSalario|floatformat:2|intcomma }} reais</h5>
                     <a class="btn btn-success rouded-button" href="{{vaga.pdf.url}}" download>Download PDF</a>  
                 </div>
                 

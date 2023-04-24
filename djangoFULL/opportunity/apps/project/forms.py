@@ -16,20 +16,36 @@ class JobForm(forms.ModelForm):
 
     class Meta:
         model = vagasEmprego
-        fields = '__all__'
-        labels = {'numeroVagas': 'Número de Vagas <span class="teste">*</span>',
-                  'horasSemana': 'Número de horas semanais <span class="teste">*</span>',
-                  'valorSalario': 'Valor do salario ou bolsa <span class="teste">*</span>',
-                  'dataCadastro': 'Data de cadastro da vaga <span class="teste">*</span>',
-                  'beneficios': 'Beneficios da vaga <span class="teste">*</span>',
-                  'tituloVaga': 'Titulo da vaga <span class="teste">*</span>',
-                  'pdf': 'Pdf contendo explicação <span class="teste">*</span>',
-                  'dataFechamento': 'Data de fechamento da vaga <span class="teste">*</span>',
+        fields = [
+            'tituloVaga',
+            'nome_empresa',
+            'tipo_vaga',
+            'numeroVagas',
+            'horasSemana',
+            'valorSalario',
+            'beneficios',
+            'dataCadastro',
+            'dataFechamento',
+            'link_vaga',
+            'disponivel',
+            'pdf',
+            'professor',
+            'aluno'
+        ]
+        labels = {'numeroVagas': 'Quantidade de vagas <span class="teste">*</span>',
+                  'tituloVaga': 'Titulo <span class="teste">*</span>',
+                  'horasSemana': 'Horas semanais <span class="teste">*</span>',
+                  'valorSalario': 'Valor da bolsa <span class="teste">*</span>',
+                  'dataCadastro': 'Data de cadastro <span class="teste">*</span>',
+                  'beneficios': 'Benefícios <span class="teste">*</span>',
+                  'pdf': 'Informações complementares (PDF) <span class="teste">*</span>',
+                  'dataFechamento': 'Data de fechamento: <span class="teste">*</span>',
                   'disponivel': 'Disponivel para visualização? <span class="teste">*</span>',
-                  'tipo_vaga': 'Tipo da vaga ofertada <span class="teste">*</span>',
-                  'nome_empresa': 'Nome da empresa ou nome do projeto <span class="teste">*</span>',
-                  'link_vaga': 'Link para inscrição na vaga <span class="teste">*</span>'
+                  'tipo_vaga': 'Tipo <span class="teste">*</span>',
+                  'nome_empresa': 'Empresa, Grupo de Pesquisa ou Projeto <span class="teste">*</span>',
+                  'link_vaga': 'Link para inscrição <span class="teste">*</span>'
                   }
+
         widgets = {
             'dataFechamento': DateInput(attrs={'placeholder': '%d/%m/%Y'}),
             'dataCadastro':  DateInput(),

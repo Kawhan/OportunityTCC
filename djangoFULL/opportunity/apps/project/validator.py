@@ -25,7 +25,7 @@ def valor_salario_invalido(valor_salario, nome_campo, lista_erros):
         return
 
     if valor_salario <= 0:
-        lista_erros[nome_campo] = "Campo de valor salario/bolsa invalido! Valor deve ser maior que 0"
+        lista_erros[nome_campo] = "Campo de bolsa invalido! Valor deve ser maior que 0"
         return
 
 
