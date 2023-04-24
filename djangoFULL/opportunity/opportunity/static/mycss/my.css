@@ -7,6 +7,11 @@
     justify-content: center;
 }
 
+.div-center-delete {
+    font-family: "Roboto";
+    font-weight: bolder;
+}
+
 .login-center {
     display: flex;
     align-items: center;

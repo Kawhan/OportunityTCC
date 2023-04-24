@@ -201,6 +201,9 @@ def delete_job(request, vaga_id):
 
     if request.method == "POST":
         job.delete()
+
+        messages.success(request, "Vaga deletada com sucesso")
+
         return redirect('minhas_vagas')
 
     return render(request, 'project/delete.html', context)

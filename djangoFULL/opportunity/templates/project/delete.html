@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% load static %}
 {% block content %}
 
@@ -8,33 +9,40 @@
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
-        <section>
-            <img src="" alt="">
-            <h2>Titulo Vaga: {{ vaga.tituloVaga }}</h2>
-            <h2>tipo vaga: {{  vaga.tipoVaga }}</h2>
-            <h6>Data de cadastro: {{ vaga.dataCadastro }}</h6>
-            <h6>Data de fechamento: {{ vaga.dataFechamento }}</h6>
-            <h6>Horas seamana: {{ vaga.horasSemana }}</h6>
-            <h6>Número vagas: {{ vaga.numeroVagas }}</h6>
-            <h6>valor Salario: R$ {{ vaga.valorSalario }}</h6>
-            <h6>Professor: {{ vaga.professor.nomeProfessor }}</h6>
-            {% if vaga.nivel == 'B' %}
-                <h6>Nivel: Básico</h6>
-            {% elif vaga.nivel == 'I' %}
-                <h6>Nivel: Intermediário</h6>
-            {% else %}
-                <h6>Nivel: Avançado</h6>
-            {%endif%}
-            <div>
-                {{ vaga.descricao|safe }}
+        <div class="content-section color-body class-rouder p-3 mt-4 mb-2">
+
+            <div class="container mt-3">
+                <section>
+                    <h1 class="title">{{ vaga.tituloVaga }}</h1>
+                    <div class="my-info-div">
+                        <div>
+                            {% if vaga.tipo_vaga == "PP" %}
+                            <h5><span>Tipo vaga:</span> Projeto de Pesquisa</h5>
+                            {% elif vaga.tipo_vaga == "PE" %}
+                            <h5><span>Tipo vaga:</span>Projeto de Extensão</h5>
+                            {% else %}
+                            <h5><span>Tipo vaga: </span>Estágio</h5>
+                            {% endif %}
+                            <h5><span>Período de inscrição: </span>{{ vaga.dataCadastro  }} <span>até</span> {{ vaga.dataFechamento   }}</h5>
+                            <h5><span>Horas semanais:</span>  {{ vaga.horasSemana }} horas</h5>
+                            <h5><span>Número de vagas:</span> {{ vaga.numeroVagas }} vagas</h5>
+                            <h5><span>Valor da bolsa:</span> R$ {{ vaga.valorSalario|floatformat:2|intcomma }} reais</h5>
+                            <a class="btn btn-success rouded-button" href="{{vaga.pdf.url}}" download>Download PDF</a>  
+                        </div>
+                        
+                    </div>
+                </section>
             </div>
-            
-    
-    
-        </section>
-        <h2 class="text-danger">Deseja Deletar esse item? </h2>
-        <input type="submit" value="Sim" />
-        <a href="{% url 'index' %}">Cancelar </a>
+            <div>
+                <div class="d-flex justify-content-center mt-2 div-center-delete">
+                    <h2 class="text-danger">Deseja Deletar esse item? </h2>
+                </div>
+                <div class="d-flex justify-content-center w">
+                    <input type="submit" class="w-25 btn btn-success" value="Sim" />
+                    <a class="w-25 btn btn-danger mx-4" href="{% url 'minhas_vagas' %}">Cancelar </a>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 
