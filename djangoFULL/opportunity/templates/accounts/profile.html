@@ -7,7 +7,7 @@
             {% csrf_token %}
             {{ form.user.as_hidden }}
             <legend class="border-bottom mb-4 d-flex justify-content-center">
-                <h2>Cadastro</h2>
+                <h2>Cadastro de Perfil</h2>
             </legend>
             <div class="row d-flex justify-content-center">
                 {% for field in form.visible_fields %}
