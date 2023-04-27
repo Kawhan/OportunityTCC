@@ -1,7 +1,18 @@
 FROM python:3
-ENV PYTHONUNBUFFERED=1
-WORKDIR /usr/src/app
-COPY requirements.txt ./
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN pip install --upgrade pip
+
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-COPY opportunity/.env /usr/src/app/
-COPY . /usr/src/app/
+
+WORKDIR /code
+
+COPY . .
+COPY ./opportunity/.env /code/opportunity/.env
+
+
+COPY ./entrypoint.sh /
+ENTRYPOINT ["sh", "/entrypoint.sh"]

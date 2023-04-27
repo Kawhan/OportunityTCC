@@ -2,17 +2,14 @@ version: '3.8'
 name: opportunity_full
 services:
   django:
-    build: .
+    image: kawhan/opportunity:latest
     container_name: django_full
-    command: >
-      sh -c "python manage.py collectstatic --noinput &&
-             python manage.py makemigrations &&
-             python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app
+    env_file:
+      - ./opportunity/.env
     ports:
-      - "8000:8000"
+      - "80:8000"
     depends_on:
       - pgdb
       - redis
