@@ -34,7 +34,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -107,29 +107,29 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'project',
-#         'USER': 'postgres',
-#         'PASSWORD': 'password',
-#         'HOST': 'pgdb',
-#         'PORT': 5432,
-#     }
-# }
-
-
-# Local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'project',
         'USER': 'postgres',
         'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5435',
+        'HOST': 'pgdb',
+        'PORT': 5432,
     }
 }
+
+
+# Local
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'project',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '5435',
+#     }
+# }
 
 
 # Password validation
@@ -235,3 +235,11 @@ RECAPTCHA_PUBLIC_KEY = env('PUBLIC_KEY_RECAPCHA')
 RECAPTCHA_PRIVATE_KEY = env('PRIVATE_KEY_RECAPCHA')
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+if not DEBUG:
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
