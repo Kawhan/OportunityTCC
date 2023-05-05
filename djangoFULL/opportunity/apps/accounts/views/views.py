@@ -93,54 +93,6 @@ def cadastro(request):
         dados,
     )
 
-# def cadastro(request):
-#     if request.method == 'POST':
-#         nome = request.POST['nome']
-#         email = request.POST['email']
-#         senha = request.POST['password']
-#         senha2 = request.POST['password2']
-
-#         # Validando se o nome é null
-#         if not nome.strip():
-#             messages.error(request, "O nome não pode ficar em branco")
-#             return redirect('cadastro')
-
-#         if not email.strip():
-#             messages.error(request, "O email não pode ficar em branco")
-#             return redirect('cadastro')
-
-#         # Validando se o campo de email não esta em branco
-#         if not nome.strip():
-#             messages.error(request, "O campo nome não pode ficar em branco")
-#             return redirect('cadastro')
-
-#         # Validando senha
-#         if senha != senha2:
-#             messages.error(request, "As senhas não são iguais!")
-#             return redirect('cadastro')
-
-#         # Verificar se o usuário que queremos criar está na base de dados
-#         if User.objects.filter(email=email).exists():
-#             messages.error(request, "Usuario já cadastrado")
-#             return redirect('cadastro')
-
-#         if User.objects.filter(username=nome).exists():
-#             messages.error(request, "Usuario já cadastrado")
-#             return redirect('cadastro')
-
-#         user = User.objects.create_user(
-#             username=nome, email=email, password=senha)
-
-#         user.is_active = False
-#         user.save()
-#         activateEmail(request, user, email)
-#         messages.success(request, "Usuário cadastrado com sucesso!")
-#         return redirect('login')
-#     else:
-#         dados = {}
-#         dados["title"] = "Cadastro"
-#         return render(request, 'accounts/cadastro.html', dados)
-
 
 def login(request):
     form = UserLoginForm()
