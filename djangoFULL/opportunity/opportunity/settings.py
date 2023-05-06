@@ -14,6 +14,7 @@ import os
 import sys
 from pathlib import Path
 
+import django_on_heroku
 import environ
 from django.contrib.messages import constants as messages
 
@@ -36,7 +37,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://opportunityhub.herokuapp.com/']
 
 
 # Application definition
@@ -59,7 +60,7 @@ INSTALLED_APPS = [
     'tinymce',
     'captcha',
     'analysis',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -107,29 +108,29 @@ WSGI_APPLICATION = 'opportunity.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'project',
-#         'USER': 'postgres',
-#         'PASSWORD': 'password',
-#         'HOST': 'pgdb',
-#         'PORT': 5432,
-#     }
-# }
-
-
-# Local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'project',
         'USER': 'postgres',
         'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5435',
+        'HOST': 'pgdb',
+        'PORT': 5432,
     }
 }
+
+
+# Local
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'project',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '5435',
+#     }
+# }
 
 
 # Password validation
@@ -243,3 +244,6 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+
+
+django_on_heroku.settings(locals())
