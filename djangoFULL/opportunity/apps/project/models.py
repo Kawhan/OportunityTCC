@@ -53,4 +53,4 @@ class vagasEmprego(models.Model):
         return date.today() > self.dataFechamento
 
     def __str__(self):
-        return self.tituloVaga + ' - ' + str(self.nivel)
+        return self.tituloVaga
