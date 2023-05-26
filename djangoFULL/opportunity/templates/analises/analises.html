@@ -21,7 +21,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+    {% comment %} <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
       <div class="card shadow-2-strong">
         <div class="card-body">
             <p class="text-uppercase mb-2"><strong>Vagas</strong></p>
@@ -29,7 +29,7 @@
             <canvas id="myChart"></canvas>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
 
     <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
       <div class="card shadow-2-strong" >
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
+    {% comment %} <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12">
       <div class="card shadow-2-strong">
         <div class="card-body">
             <p class="text-uppercase mb-2"><strong>Quantidade de alunos Pesquisa</strong></p>
@@ -129,14 +129,24 @@
             <canvas id="myChart11"></canvas>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
+
+    
 
 
 
 
   </div>
   
-
+  <div class="grapics-card mb-2 mx-auto col-xl-10 col-xxl-4 col-md-8 col-lg-8 col-sm-12 col-12 w-75">
+    <div class="card shadow-2-strong">
+      <div class="card-body">
+          <p class="text-uppercase mb-2"><strong>Interesse</strong></p>
+          <hr />
+          <canvas id="myChart12"></canvas>
+      </div>
+    </div>
+  </div>
   
 
 
@@ -165,8 +175,9 @@
       periodo_estagio['{{ key|safe }}'] = {{value|safe}}
     {% endfor %}
     
-    const ctx = document.getElementById('myChart');
+    {% comment %} const ctx = document.getElementById('myChart'); {% endcomment %}
     const ctx2 = document.getElementById('myChart2');
+    /*
     const ctx3 = document.getElementById('myChart3');
     const ctx4 = document.getElementById('myChart4');
     const ctx5 = document.getElementById('myChart5');
@@ -176,9 +187,11 @@
     const ctx9 = document.getElementById('myChart9');
     const ctx10 = document.getElementById('myChart10');
     const ctx11 = document.getElementById('myChart11');
+    */
+    const ctx12 = document.getElementById('myChart12');
 
     
-    new Chart(ctx, {
+    {% comment %} new Chart(ctx, {
       type: 'pie',
       data: {
         labels: ['Projeto de Pesquisa', 'Projeto de extensão', 'Estágio'],
@@ -202,7 +215,7 @@
           }
         }
       }
-    });
+    }); {% endcomment %}
 
 
 
@@ -226,7 +239,7 @@
           },
         }
     });
-
+/*
     new Chart(ctx3, {
         type: 'pie',
         data: {
@@ -438,6 +451,33 @@ new Chart(ctx11, {
   options: {
       responsive: true,
       aspectRatio: 1,
+      ticks: {
+        min: 0, // it is for ignoring negative step.
+        beginAtZero: true,
+        precision: 0
+      },
+    }
+});
+*/
+new Chart(ctx12, {
+  type: 'bar',
+  data: {
+    labels: ['Projeto de extensão', 'Projeto de Pesquisa', 'Estágio'],
+    datasets: [{
+      label: 'LCC',
+      data: [{{ data.inscricoes_LCC_extensao|safe }}, {{ data.inscricoes_LCC_pesquisa|safe }}, {{ data.inscricoes_LCC_estagio|safe }}] ,
+      borderWidth: 1
+    },
+    {
+      label: 'SI',
+      data: [{{ data.inscricoes_SI_extensao|safe }}, {{ data.inscricoes_SI_pesquisa|safe }}, {{ data.inscricoes_SI_estagio|safe }}] ,
+      borderWidth: 1
+    },
+    ]
+  },
+  options: {
+      responsive: true,
+      aspectRatio: 2,
       ticks: {
         min: 0, // it is for ignoring negative step.
         beginAtZero: true,
