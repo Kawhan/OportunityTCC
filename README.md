@@ -105,4 +105,4 @@ python manage.py runserver                  //Iniciar o servidor
 | :---: | 
 
 
-# Branch do Heroku:
+# Branch do Heroku: Essa branch é responsavel pela aplicação no heroku
