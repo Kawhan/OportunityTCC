@@ -37,12 +37,12 @@ class vagasEmprego(models.Model):
     dataCadastro = models.DateField("Data de cadastro", default=timezone.now)
     beneficios = models.CharField("Beneficios", max_length=255)
     tituloVaga = models.CharField("Titulo da Vaga", max_length=255)
-    pdf = models.FileField(upload_to='pdfs/%d/%m/%Y/')
+    pdf = models.CharField("Link do pdf", max_length=255)
     dataFechamento = models.DateField("Data de Fechamento")
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
     aluno = models.ManyToManyField(
         UserProfile, blank=True)
-    disponivel = models.CharField(max_length=1, choices=disponivel)
+    disponivel = models.CharField(max_length=1, default="S")
     tipo_vaga = models.CharField(max_length=2, choices=tipo_vaga)
     nome_empresa = models.CharField(
         "Nome empresa ou nome projeto", max_length=255)

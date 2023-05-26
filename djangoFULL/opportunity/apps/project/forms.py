@@ -27,7 +27,6 @@ class JobForm(forms.ModelForm):
             'dataCadastro',
             'dataFechamento',
             'link_vaga',
-            'disponivel',
             'pdf',
             'professor',
             'aluno'
@@ -39,8 +38,7 @@ class JobForm(forms.ModelForm):
                   'dataCadastro': 'Data de cadastro <span class="teste">*</span>',
                   'beneficios': 'Benefícios <span class="teste">*</span>',
                   'pdf': 'Informações complementares (PDF) <span class="teste">*</span>',
-                  'dataFechamento': 'Data de fechamento: <span class="teste">*</span>',
-                  'disponivel': 'Disponivel para visualização? <span class="teste">*</span>',
+                  'dataFechamento': 'Data de encerramento da inscrição: <span class="teste">*</span>',
                   'tipo_vaga': 'Tipo <span class="teste">*</span>',
                   'nome_empresa': 'Empresa, Grupo de Pesquisa ou Projeto <span class="teste">*</span>',
                   'link_vaga': 'Link para inscrição <span class="teste">*</span>'
@@ -63,7 +61,6 @@ class JobForm(forms.ModelForm):
         pdf = self.cleaned_data.get('pdf')
         data_fechamento = self.cleaned_data.get('dataFechamento')
         aluno = self.cleaned_data.get('aluno')
-        disponivel = self.cleaned_data.get('disponivel')
         tipo_vaga = self.cleaned_data.get('tipo_vaga')
         nome_empresa = self.cleaned_data.get('nome_empresa')
         link_vaga = self.cleaned_data.get('link_vaga')
