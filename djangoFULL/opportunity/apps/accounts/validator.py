@@ -4,6 +4,20 @@ from accounts.models import User, UserProfile
 from django.forms import ModelForm, ValidationError
 
 
+def username_invalid(username, nome_campo, lista_erros):
+
+    if User.objects.filter(username=username).exists():
+        lista_erros[nome_campo] = "Nome já cadastrado em outro usuário!"
+        return
+
+
+def email_invalid(email, nome_campo, lista_erros):
+
+    if User.objects.filter(email=email).exists():
+        lista_erros[nome_campo] = "Esse e-mail já está cadastrado em uma outra conta"
+        return
+
+
 def nome_invalid(nome, user, nome_campo, lista_erros):
     """ Verifica se o nome é valido """
     if nome == None:

@@ -42,6 +42,7 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields = ['username',
                   'email', 'password1', 'password2', 'captcha']
+        labels = {'username': 'Usuário'}
         # help_texts = {
         #     'username': mark_safe(
         #         '<div class="teste">\
@@ -80,9 +81,12 @@ class UserRegistrationForm(UserCreationForm):
 
     def clean(self):
         email = self.cleaned_data.get("email")
+        username = self.cleaned_data.get("username")
         lista_de_erros = {}
 
         email_not_dcx(email, "email", lista_de_erros)
+        username_invalid(username, "username", lista_de_erros)
+        email_invalid(email, 'email', lista_de_erros)
 
         if lista_de_erros is not None:
             for erro in lista_de_erros:

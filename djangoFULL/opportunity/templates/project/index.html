@@ -8,6 +8,7 @@
 <div class="container">
     <div class="row"></div>
     <div class="row">
+        {% if vagas %}
         {% for vaga in vagas %}
         <div class="col-12 col-md-6 col-lg-4 col-sm-8 mb-2">
             <div class="card card mx-auto border-0 bg-light rounded shadow-sm mt-4 mb-2 my-card-div ">
@@ -53,9 +54,9 @@
                             {% endif %}
                             <span>Empresa/projeto:<span class="text-aside">{{ vaga.nome_empresa }}</span></span>
                             {% if vaga.is_closed %}
-                            <span>Link para inscrição:<a class="text-aside color-red" ></a></span>
+                            <span>Link para inscrição:<a class="text-aside color-red"  target="_blank"></a></span>
                             {% else %}
-                            <span>Link para inscrição:<a class="text-aside" href="{{ vaga.link_vaga }}">Aqui <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
+                            <span>Link para inscrição:<a class="text-aside" href="{{ vaga.link_vaga }}"  target="_blank">Aqui <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
                             {% endif %}
                         </div>
                     </div>
@@ -75,6 +76,11 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+            <div class="no-found">
+                <h1>Nenhuma vaga cadastrada</h1>
+            </div>
+        {% endif %}
     </div>
 </div>
 </div>

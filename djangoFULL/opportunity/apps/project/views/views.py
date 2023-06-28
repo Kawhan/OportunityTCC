@@ -367,7 +367,7 @@ def projeto_extencao(request):
     dados['user'] = user
     dados['user_info'] = user_info
 
-    return render(request, 'project/pesquisa.html', dados)
+    return render(request, 'project/extensao.html', dados)
 
 
 @login_required

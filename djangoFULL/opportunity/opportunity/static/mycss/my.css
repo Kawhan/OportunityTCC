@@ -18,6 +18,14 @@
     justify-content: center;
 }
 
+.no-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto";
+    font-weight: bolder;
+}
+
 /* div info */
 .chartBox {
     width: 700px;

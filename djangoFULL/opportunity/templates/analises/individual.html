@@ -54,7 +54,7 @@
         labels: ['Inscritos de LCC', 'Inscritos de SI'],
         datasets: [{
           label: 'Vagas',
-          data: [{{ data.alunos_SI|safe }}, {{ data.alunos_LCC|safe }}],
+          data: [{{ data.alunos_LCC|safe }}, {{ data.alunos_SI|safe }}],
           borderWidth: 1
         }]
       },

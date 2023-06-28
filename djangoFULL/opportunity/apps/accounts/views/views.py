@@ -123,17 +123,18 @@ def login(request):
                         request, "Login realizado com sucesso! Seja bem-vindo Professor(a)")
                     return redirect('index')
 
-                aluno = get_object_or_404(UserProfile, pk=user.id)
+                try:
+                    aluno = get_object_or_404(UserProfile, user=user.id)
 
-                if aluno.is_verify:
-                    messages.success(
-                        request, "Login realizado com sucesso! Seja bem vindo")
-                    return redirect('index')
+                    if aluno.is_verify:
+                        messages.success(
+                            request, "Login realizado com sucesso! Seja bem vindo")
+                        return redirect('index')
+                    else:
+                        return redirect('profile')
+                except:
 
-                messages.success(
-                    request, "Login realizado com sucesso! Cadastre suas informações!")
-
-                return redirect('profile')
+                    return redirect('profile')
             else:
                 messages.error(request, 'Credenciais invalidas!.')
                 return redirect('login')
